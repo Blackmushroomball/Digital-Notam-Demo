@@ -1,0 +1,1185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Navaid features - Copy 26 -->
+<message:AIXMBasicMessage 
+  xmlns:message="http://www.aixm.aero/schema/5.1.1/message" 
+  xmlns:gts="http://www.isotc211.org/2005/gts" 
+  xmlns:gco="http://www.isotc211.org/2005/gco" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:gml="http://www.opengis.net/gml/3.2" 
+  xmlns:gss="http://www.isotc211.org/2005/gss" 
+  xmlns:aixm="http://www.aixm.aero/schema/5.1.1" 
+  xmlns:event="http://www.aixm.aero/schema/5.1.1/event" 
+  xmlns:gsr="http://www.isotc211.org/2005/gsr" 
+  xmlns:gmd="http://www.isotc211.org/2005/gmd" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.aixm.aero/schema/5.1.1/message http://www.aixm.aero/schema/5.1.1/message/AIXM_BasicMessage.xsd 
+  http://www.aixm.aero/schema/5.1.1/event https://aixm.aero/schema/5.1.1/event/version_5.1.1-k/Event_Features.xsd" 
+  gml:id="Navaid_Copy_26">
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.f7ad1487-c96f-4fd1-8d44-8679ec9c10d0">
+      <gml:identifier codeSpace="urn:uuid:">f7ad1487-c96f-4fd1-8d44-8679ec9c10d0</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_f7ad1487-c96f-4fd1-8d44-8679ec9c10d0_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_f7ad1487-c96f-4fd1-8d44-8679ec9c10d0_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_f7ad1487-c96f-4fd1-8d44-8679ec9c10d0_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>VOR</aixm:type>
+          <aixm:designator>DNS</aixm:designator>
+          <aixm:name>DONEST-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>ALL</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_f7ad1487-c96f-4fd1-8d44-8679ec9c10d0_1_0_B_3">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:074f6f2c-8488-4edb-9e6a-47d40ec8adfd" xlink:title="VOR DNS DONEST" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_f7ad1487-c96f-4fd1-8d44-8679ec9c10d0_1_0_B_4">
+              <gml:pos>42.85259326729001 -30.518985483588953</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">55</aixm:elevation>
+              <aixm:geoidUndulation uom="M">20</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xlink:href="urn:uuid:26ddfdef-c170-4f41-8568-d40cdf4f99aa" xlink:title="EADD DONLON/INTL." xlink:type="simple"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_f7ad1487-c96f-4fd1-8d44-8679ec9c10d0_1_0_B_5">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.5562dc66-b12e-428d-9902-3765d57e78ef">
+      <gml:identifier codeSpace="urn:uuid:">5562dc66-b12e-428d-9902-3765d57e78ef</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_5562dc66-b12e-428d-9902-3765d57e78ef_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_5562dc66-b12e-428d-9902-3765d57e78ef_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_5562dc66-b12e-428d-9902-3765d57e78ef_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>NDB</aixm:type>
+          <aixm:designator>DOT</aixm:designator>
+          <aixm:name>DONEST-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>ALL</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_5562dc66-b12e-428d-9902-3765d57e78ef_1_0_B_3">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:e9c9d3e1-7bf0-4741-b1f9-c63b36418d9c" xlink:title="NDB DOT DONEST" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_5562dc66-b12e-428d-9902-3765d57e78ef_1_0_B_4">
+              <gml:pos>42.85259326729001 -30.518985483588953</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">55</aixm:elevation>
+              <aixm:geoidUndulation uom="M">20</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xlink:href="urn:uuid:26ddfdef-c170-4f41-8568-d40cdf4f99aa" xlink:title="EADD DONLON/INTL." xlink:type="simple"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_5562dc66-b12e-428d-9902-3765d57e78ef_1_0_B_5">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.f4dc39a3-b74d-46a7-a8a9-8ffa61911c57">
+      <gml:identifier codeSpace="urn:uuid:">f4dc39a3-b74d-46a7-a8a9-8ffa61911c57</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_f4dc39a3-b74d-46a7-a8a9-8ffa61911c57_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_f4dc39a3-b74d-46a7-a8a9-8ffa61911c57_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_f4dc39a3-b74d-46a7-a8a9-8ffa61911c57_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>VOR_DME</aixm:type>
+          <aixm:designator>KAV</aixm:designator>
+          <aixm:name>KAVRAN-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>TERMINAL</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_f4dc39a3-b74d-46a7-a8a9-8ffa61911c57_1_0_B_3">
+              <aixm:collocationGroup>1</aixm:collocationGroup>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:df82e5cb-9d55-4875-ad4f-6379a413ce2c" xlink:title="VOR KAV KAVRAN" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_f4dc39a3-b74d-46a7-a8a9-8ffa61911c57_1_0_B_4">
+              <aixm:collocationGroup>1</aixm:collocationGroup>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:bfb9ba92-e923-4c9f-8380-097e2e820c95" xlink:title="DME KAV KAVRAN" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_f4dc39a3-b74d-46a7-a8a9-8ffa61911c57_1_0_B_5">
+              <gml:pos>43.221009937290006 -31.073373778996594</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">30</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xlink:href="urn:uuid:26ddfdef-c170-4f41-8568-d40cdf4f99aa" xlink:title="EADD DONLON/INTL." xlink:type="simple"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_f4dc39a3-b74d-46a7-a8a9-8ffa61911c57_1_0_B_6">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.d02aa6da-36c2-4359-bcf2-ac74d6daca63">
+      <gml:identifier codeSpace="urn:uuid:">d02aa6da-36c2-4359-bcf2-ac74d6daca63</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_d02aa6da-36c2-4359-bcf2-ac74d6daca63_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_d02aa6da-36c2-4359-bcf2-ac74d6daca63_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_d02aa6da-36c2-4359-bcf2-ac74d6daca63_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>TACAN</aixm:type>
+          <aixm:designator>OST</aixm:designator>
+          <aixm:name>OSTO-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>ENROUTE</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_d02aa6da-36c2-4359-bcf2-ac74d6daca63_1_0_B_3">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:54eceba6-3464-4c4b-9be4-4926a3cdc6dd" xlink:title="TACAN OST OSTO" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_d02aa6da-36c2-4359-bcf2-ac74d6daca63_1_0_B_4">
+              <gml:pos>43.18092659729001 -32.18312517410535</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">15</aixm:elevation>
+              <aixm:geoidUndulation uom="M">10</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_d02aa6da-36c2-4359-bcf2-ac74d6daca63_1_0_B_5">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType>AZIMUTH</aixm:signalType>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_d02aa6da-36c2-4359-bcf2-ac74d6daca63_1_0_B_6">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType>DISTANCE</aixm:signalType>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.f788a486-56dc-4cf2-b121-8a1f787fb572">
+      <gml:identifier codeSpace="urn:uuid:">f788a486-56dc-4cf2-b121-8a1f787fb572</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_f788a486-56dc-4cf2-b121-8a1f787fb572_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_f788a486-56dc-4cf2-b121-8a1f787fb572_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_f788a486-56dc-4cf2-b121-8a1f787fb572_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>VOR_DME</aixm:type>
+          <aixm:designator>BOR</aixm:designator>
+          <aixm:name>BOORSPIJK-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>ALL</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_f788a486-56dc-4cf2-b121-8a1f787fb572_1_0_B_3">
+              <aixm:collocationGroup>1</aixm:collocationGroup>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:31d99c28-2880-4b9f-a09e-afe686393916" xlink:title="VOR BOR BOORSPIJK" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_f788a486-56dc-4cf2-b121-8a1f787fb572_1_0_B_4">
+              <aixm:collocationGroup>1</aixm:collocationGroup>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:d47fead7-ffd2-4948-8309-63365709c158" xlink:title="DME BOR BOORSPIJK" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_f788a486-56dc-4cf2-b121-8a1f787fb572_1_0_B_5">
+              <gml:pos>43.05098215729001 -31.4535960407604</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">60</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xlink:href="urn:uuid:26ddfdef-c170-4f41-8568-d40cdf4f99aa" xlink:title="EADD DONLON/INTL." xlink:type="simple"/>
+          <!-- Example of H24 schedule explicitly coded -->
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_f788a486-56dc-4cf2-b121-8a1f787fb572_1_0_B_6">
+              <aixm:timeInterval>
+                <aixm:Timesheet gml:id="id_f788a486-56dc-4cf2-b121-8a1f787fb572_1_0_B_7">
+                  <aixm:timeReference>UTC</aixm:timeReference>
+                  <aixm:startDate>01-01</aixm:startDate>
+                  <aixm:endDate>31-12</aixm:endDate>
+                  <aixm:day>ANY</aixm:day>
+                  <aixm:dayTil>ANY</aixm:dayTil>
+                  <aixm:startTime>00:00</aixm:startTime>
+                  <aixm:endTime>00:00</aixm:endTime>
+                  <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                  <aixm:excluded>NO</aixm:excluded>
+                </aixm:Timesheet>
+              </aixm:timeInterval>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.812075d3-7584-46c4-8ded-ae9ffd79e750">
+      <gml:identifier codeSpace="urn:uuid:">812075d3-7584-46c4-8ded-ae9ffd79e750</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_812075d3-7584-46c4-8ded-ae9ffd79e750_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_812075d3-7584-46c4-8ded-ae9ffd79e750_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_812075d3-7584-46c4-8ded-ae9ffd79e750_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>VOR_DME</aixm:type>
+          <aixm:designator>DON</aixm:designator>
+          <aixm:name>DONLON-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>TERMINAL</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_812075d3-7584-46c4-8ded-ae9ffd79e750_1_0_B_3">
+              <aixm:collocationGroup>1</aixm:collocationGroup>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:111aec35-df72-4551-b5da-3defa0380aca" xlink:title="DME DON DONLON" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_812075d3-7584-46c4-8ded-ae9ffd79e750_1_0_B_4">
+              <aixm:collocationGroup>1</aixm:collocationGroup>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:a9de7920-e296-457a-87f4-74abb9827b9c" xlink:title="VOR DON DONLON" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_812075d3-7584-46c4-8ded-ae9ffd79e750_1_0_B_5">
+              <gml:pos>43.12592659729001 -31.140774912581563</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">60</aixm:elevation>
+              <aixm:geoidUndulation uom="M">13</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_812075d3-7584-46c4-8ded-ae9ffd79e750_1_0_B_6">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.2b5cfa0d-078a-4267-ba8b-d98b04921db9">
+      <gml:identifier codeSpace="urn:uuid:">2b5cfa0d-078a-4267-ba8b-d98b04921db9</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_2b5cfa0d-078a-4267-ba8b-d98b04921db9_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_2b5cfa0d-078a-4267-ba8b-d98b04921db9_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_2b5cfa0d-078a-4267-ba8b-d98b04921db9_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>VOR</aixm:type>
+          <aixm:designator>CAA</aixm:designator>
+          <aixm:name>CALGA-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>TERMINAL</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_2b5cfa0d-078a-4267-ba8b-d98b04921db9_1_0_B_3">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:abfb84cc-aa2c-49a0-950a-50fd294fbd2d" xlink:title="VOR CAA CALGA" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_2b5cfa0d-078a-4267-ba8b-d98b04921db9_1_0_B_4">
+              <gml:pos>43.06437104729001 -30.925643661397505</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">30</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xlink:href="urn:uuid:26ddfdef-c170-4f41-8568-d40cdf4f99aa" xlink:title="EADD DONLON/INTL." xlink:type="simple"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_2b5cfa0d-078a-4267-ba8b-d98b04921db9_1_0_B_5">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.04eb5f81-ca2e-419f-b4a4-a9de3978e3b7">
+      <gml:identifier codeSpace="urn:uuid:">04eb5f81-ca2e-419f-b4a4-a9de3978e3b7</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_04eb5f81-ca2e-419f-b4a4-a9de3978e3b7_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_04eb5f81-ca2e-419f-b4a4-a9de3978e3b7_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_04eb5f81-ca2e-419f-b4a4-a9de3978e3b7_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>NDB</aixm:type>
+          <aixm:designator>DON</aixm:designator>
+          <aixm:name>DONNARD-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>ENROUTE</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_04eb5f81-ca2e-419f-b4a4-a9de3978e3b7_1_0_B_3">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:f9e8f394-7e3f-47f9-80df-d9ffa5940dc8" xlink:title="NDB DON DONNARD" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_04eb5f81-ca2e-419f-b4a4-a9de3978e3b7_1_0_B_4">
+              <gml:pos>43.72092659729001 -31.25287804970563</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">60</aixm:elevation>
+              <aixm:geoidUndulation uom="M">13</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <!-- Example of unknown hours of operation -->
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_04eb5f81-ca2e-419f-b4a4-a9de3978e3b7_1_0_B_5">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation>
+                <aixm:Note gml:id="id_04eb5f81-ca2e-419f-b4a4-a9de3978e3b7_1_0_B_6">
+                  <aixm:propertyName>timeInterval</aixm:propertyName>
+                  <aixm:purpose>DESCRIPTION</aixm:purpose>
+                  <aixm:translatedNote>
+                    <aixm:LinguisticNote gml:id="id_04eb5f81-ca2e-419f-b4a4-a9de3978e3b7_1_0_B_7">
+                      <aixm:note lang="ENG">HX (no specific working hours)</aixm:note>
+                    </aixm:LinguisticNote>
+                  </aixm:translatedNote>
+                </aixm:Note>
+              </aixm:annotation>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.25ee9ad2-391b-4712-a618-858c4f1c56ff">
+      <gml:identifier codeSpace="urn:uuid:">25ee9ad2-391b-4712-a618-858c4f1c56ff</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_25ee9ad2-391b-4712-a618-858c4f1c56ff_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_25ee9ad2-391b-4712-a618-858c4f1c56ff_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_25ee9ad2-391b-4712-a618-858c4f1c56ff_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>NDB_MKR</aixm:type>
+          <aixm:designator>KL</aixm:designator>
+          <aixm:name>DONLON-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>TERMINAL</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_25ee9ad2-391b-4712-a618-858c4f1c56ff_1_0_B_3">
+              <aixm:collocationGroup>1</aixm:collocationGroup>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:0c7099e0-1c8a-43c0-ad06-11d27b19c212" xlink:title="NDB KL DONLON" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_25ee9ad2-391b-4712-a618-858c4f1c56ff_1_0_B_4">
+              <aixm:collocationGroup>1</aixm:collocationGroup>
+              <aixm:markerPosition>OUTER</aixm:markerPosition>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:912239d8-72e4-4b23-9dd2-584591eb001a" xlink:title="MKR OM EADD RWY 27R" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_25ee9ad2-391b-4712-a618-858c4f1c56ff_1_0_B_5">
+              <gml:pos>43.06582826729001 -31.005152961219192</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">40</aixm:elevation>
+              <aixm:geoidUndulation uom="M">13</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xlink:href="urn:uuid:26ddfdef-c170-4f41-8568-d40cdf4f99aa" xlink:title="EADD DONLON/INTL." xlink:type="simple"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_25ee9ad2-391b-4712-a618-858c4f1c56ff_1_0_B_6">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation>
+            <aixm:Note gml:id="id_25ee9ad2-391b-4712-a618-858c4f1c56ff_1_0_B_7">
+              <aixm:propertyName xsi:nil="true"/>
+              <aixm:purpose>REMARK</aixm:purpose>
+              <aixm:translatedNote>
+                <aixm:LinguisticNote gml:id="id_25ee9ad2-391b-4712-a618-858c4f1c56ff_1_0_B_8">
+                  <aixm:note lang="ENG">087 MAG/5.7 KM to RWY 27R</aixm:note>
+                </aixm:LinguisticNote>
+              </aixm:translatedNote>
+            </aixm:Note>
+          </aixm:annotation>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.16a32eb4-0c31-435e-882f-c477a5b160ee">
+      <gml:identifier codeSpace="urn:uuid:">16a32eb4-0c31-435e-882f-c477a5b160ee</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_16a32eb4-0c31-435e-882f-c477a5b160ee_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_16a32eb4-0c31-435e-882f-c477a5b160ee_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_16a32eb4-0c31-435e-882f-c477a5b160ee_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>NDB_MKR</aixm:type>
+          <aixm:designator>SCN</aixm:designator>
+          <aixm:name>SCONE-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>TERMINAL</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_16a32eb4-0c31-435e-882f-c477a5b160ee_1_0_B_3">
+              <aixm:collocationGroup>1</aixm:collocationGroup>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:8fde8d9b-2d25-44c9-a88d-f6fcf0063822" xlink:title="NDB SCN SCONE" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_16a32eb4-0c31-435e-882f-c477a5b160ee_1_0_B_4">
+              <aixm:collocationGroup>1</aixm:collocationGroup>
+              <aixm:markerPosition>BACKCOURSE</aixm:markerPosition>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:ac99fc04-2d4c-48ae-99dc-5dbe8f19bb8b" xlink:title="MKR SCN SCONE" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_16a32eb4-0c31-435e-882f-c477a5b160ee_1_0_B_5">
+              <gml:pos>43.05425993729001 -31.163752573657238</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">35</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xlink:href="urn:uuid:2c79a44a-f4fb-48cc-a357-539ab70f62e1" xlink:title="RDN EADD RWY 09L" xlink:type="simple"/>
+          <aixm:servedAirport xlink:href="urn:uuid:26ddfdef-c170-4f41-8568-d40cdf4f99aa" xlink:title="EADD DONLON/INTL." xlink:type="simple"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_16a32eb4-0c31-435e-882f-c477a5b160ee_1_0_B_6">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.9a3bf910-a95c-4a36-b010-669baeccead7">
+      <gml:identifier codeSpace="urn:uuid:">9a3bf910-a95c-4a36-b010-669baeccead7</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_9a3bf910-a95c-4a36-b010-669baeccead7_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_9a3bf910-a95c-4a36-b010-669baeccead7_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_9a3bf910-a95c-4a36-b010-669baeccead7_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>ILS</aixm:type>
+          <aixm:designator>OXS</aixm:designator>
+          <aixm:name xsi:nil="true"/>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>TERMINAL</aixm:purpose>
+          <aixm:signalPerformance>II</aixm:signalPerformance>
+          <aixm:courseQuality>A</aixm:courseQuality>
+          <aixm:integrityLevel>1</aixm:integrityLevel>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_9a3bf910-a95c-4a36-b010-669baeccead7_1_0_B_3">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:3d7c4d67-b60a-469d-b70d-ab97f7c08b9e" xlink:title="LLZ OXS" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_9a3bf910-a95c-4a36-b010-669baeccead7_1_0_B_4">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:fbbd7eb3-9f3b-4ad0-a6ba-f97a47bf6f3e" xlink:title="GP OXS" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_9a3bf910-a95c-4a36-b010-669baeccead7_1_0_B_5">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition>OUTER</aixm:markerPosition>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:912239d8-72e4-4b23-9dd2-584591eb001a" xlink:title="MKR OM EADD RWY 27R" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_9a3bf910-a95c-4a36-b010-669baeccead7_1_0_B_6">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition>MIDDLE</aixm:markerPosition>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:7f705010-4032-4496-b010-caea22dfc13e" xlink:title="MKR MM EADD RWY 27R" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_9a3bf910-a95c-4a36-b010-669baeccead7_1_0_B_7">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition>BACKCOURSE</aixm:markerPosition>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:ac99fc04-2d4c-48ae-99dc-5dbe8f19bb8b" xlink:title="MKR SCN SCONE" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_9a3bf910-a95c-4a36-b010-669baeccead7_1_0_B_8">
+              <gml:pos>43.05813226729001 -31.111013970224416</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">30</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xlink:href="urn:uuid:53e213f8-bbd6-4c2f-8003-30f7bd293441" xlink:title="RDN EADD 27R" xlink:type="simple"/>
+          <aixm:servedAirport xlink:href="urn:uuid:26ddfdef-c170-4f41-8568-d40cdf4f99aa" xlink:title="EADD DONLON/INTL." xlink:type="simple"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_9a3bf910-a95c-4a36-b010-669baeccead7_1_0_B_9">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.34d9dc0e-9aaf-48f4-8c35-383bf1a162c2">
+      <gml:identifier codeSpace="urn:uuid:">34d9dc0e-9aaf-48f4-8c35-383bf1a162c2</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_34d9dc0e-9aaf-48f4-8c35-383bf1a162c2_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_34d9dc0e-9aaf-48f4-8c35-383bf1a162c2_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_34d9dc0e-9aaf-48f4-8c35-383bf1a162c2_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>ILS_DME</aixm:type>
+          <aixm:designator>OSL</aixm:designator>
+          <aixm:name xsi:nil="true"/>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>TERMINAL</aixm:purpose>
+          <aixm:signalPerformance>II</aixm:signalPerformance>
+          <aixm:courseQuality>A</aixm:courseQuality>
+          <aixm:integrityLevel>1</aixm:integrityLevel>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_34d9dc0e-9aaf-48f4-8c35-383bf1a162c2_1_0_B_3">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:0d5639be-d1aa-468d-a769-ea3e35a7c208" xlink:title="LLZ OSL" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_34d9dc0e-9aaf-48f4-8c35-383bf1a162c2_1_0_B_4">
+              <aixm:collocationGroup>1</aixm:collocationGroup>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:fe6d6031-98a7-4a71-997f-8be426581cf1" xlink:title="GP OSL" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_34d9dc0e-9aaf-48f4-8c35-383bf1a162c2_1_0_B_5">
+              <aixm:collocationGroup>1</aixm:collocationGroup>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>NO</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:b0b56917-3204-4515-aa8b-54fc607a10b4" xlink:title="DME OSL" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_34d9dc0e-9aaf-48f4-8c35-383bf1a162c2_1_0_B_6">
+              <gml:pos>43.06110699729001 -31.070318360025986</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">16</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xlink:href="urn:uuid:2c79a44a-f4fb-48cc-a357-539ab70f62e1" xlink:title="RDN EADD RWY 09L" xlink:type="simple"/>
+          <aixm:servedAirport xlink:href="urn:uuid:26ddfdef-c170-4f41-8568-d40cdf4f99aa" xlink:title="EADD DONLON/INTL." xlink:type="simple"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_34d9dc0e-9aaf-48f4-8c35-383bf1a162c2_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.117b07a9-f96e-47c9-9a1d-dbb1adb1274c">
+      <gml:identifier codeSpace="urn:uuid:">117b07a9-f96e-47c9-9a1d-dbb1adb1274c</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_117b07a9-f96e-47c9-9a1d-dbb1adb1274c_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_117b07a9-f96e-47c9-9a1d-dbb1adb1274c_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_117b07a9-f96e-47c9-9a1d-dbb1adb1274c_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>NDB</aixm:type>
+          <aixm:designator>ROB</aixm:designator>
+          <aixm:name>ROBINE-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>ENROUTE</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_117b07a9-f96e-47c9-9a1d-dbb1adb1274c_1_0_B_3">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:274205b4-2954-4765-b0ef-699beb65444e" xlink:title="NDB ROB ROBINE" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_117b07a9-f96e-47c9-9a1d-dbb1adb1274c_1_0_B_4">
+              <gml:pos>42.662593267290006 -31.560639446782524</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">50</aixm:elevation>
+              <aixm:geoidUndulation uom="M">10</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_117b07a9-f96e-47c9-9a1d-dbb1adb1274c_1_0_B_5">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.d86b4db8-f896-4320-82a3-2ddb9d2b00ae">
+      <gml:identifier codeSpace="urn:uuid:">d86b4db8-f896-4320-82a3-2ddb9d2b00ae</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_d86b4db8-f896-4320-82a3-2ddb9d2b00ae_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_d86b4db8-f896-4320-82a3-2ddb9d2b00ae_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_d86b4db8-f896-4320-82a3-2ddb9d2b00ae_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>NDB</aixm:type>
+          <aixm:designator>RIC</aixm:designator>
+          <aixm:name>RICHMAAST-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>TERMINAL</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_d86b4db8-f896-4320-82a3-2ddb9d2b00ae_1_0_B_3">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:a05b3251-cb5b-4a26-88be-b76e001ab1d7" xlink:title="NDB RIC RICHMAAST" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_d86b4db8-f896-4320-82a3-2ddb9d2b00ae_1_0_B_4">
+              <gml:pos>43.52526027729001 -30.59339060933442</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">100</aixm:elevation>
+              <aixm:geoidUndulation uom="M">15</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xsi:nil="true" nilReason="unknown"/> <!-- AirportHeliport feature not yet created -->
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_d86b4db8-f896-4320-82a3-2ddb9d2b00ae_1_0_B_5">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.d5629115-1dc3-4f17-bce1-c51d332332de">
+      <gml:identifier codeSpace="urn:uuid:">d5629115-1dc3-4f17-bce1-c51d332332de</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_d5629115-1dc3-4f17-bce1-c51d332332de_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_d5629115-1dc3-4f17-bce1-c51d332332de_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_d5629115-1dc3-4f17-bce1-c51d332332de_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>NDB</aixm:type>
+          <aixm:designator>WNR</aixm:designator>
+          <aixm:name>WICHNOR/SLIPTON-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>TERMINAL</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_d5629115-1dc3-4f17-bce1-c51d332332de_1_0_B_3">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:ad46c0f9-dbd9-4ecc-bb9e-6791157b204d" xlink:title="NDB WNR WICHNOR/SLIPTON" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_d5629115-1dc3-4f17-bce1-c51d332332de_1_0_B_4">
+              <gml:pos>42.24628204729001 -30.82613494795159</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">60</aixm:elevation>
+              <aixm:geoidUndulation uom="M">15</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xsi:nil="true" nilReason="unknown"/> <!-- AirportHeliport feature not yet created -->
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_d5629115-1dc3-4f17-bce1-c51d332332de_1_0_B_5">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Navaid gml:id="uuid.e7952e3e-7ce9-4d69-8537-08d30ad29122">
+      <gml:identifier codeSpace="urn:uuid:">e7952e3e-7ce9-4d69-8537-08d30ad29122</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:NavaidTimeSlice gml:id="id_e7952e3e-7ce9-4d69-8537-08d30ad29122_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_e7952e3e-7ce9-4d69-8537-08d30ad29122_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_e7952e3e-7ce9-4d69-8537-08d30ad29122_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:type>NDB</aixm:type>
+          <aixm:designator>AK</aixm:designator>
+          <aixm:name>AKVIN-26</aixm:name>
+          <aixm:flightChecked>YES</aixm:flightChecked>
+          <aixm:purpose>TERMINAL</aixm:purpose>
+          <aixm:signalPerformance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:courseQuality xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:integrityLevel xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:touchDownLiftOff xsi:nil="true"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidComponent gml:id="id_e7952e3e-7ce9-4d69-8537-08d30ad29122_1_0_B_3">
+              <aixm:collocationGroup xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:markerPosition xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:providesNavigableLocation>YES</aixm:providesNavigableLocation>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:0b928bd9-5f36-4e20-b340-3c6f5052c716" xlink:title="NDB AK AKVIN" xlink:type="simple"/>
+            </aixm:NavaidComponent>
+          </aixm:navaidEquipment>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_e7952e3e-7ce9-4d69-8537-08d30ad29122_1_0_B_4">
+              <gml:pos>43.36759326729001 -31.562032035087437</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">40</aixm:elevation>
+              <aixm:geoidUndulation uom="M">15</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.1</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:runwayDirection xsi:nil="true"/>
+          <aixm:servedAirport xlink:href="urn:uuid:745ee298-24dc-402e-9b0e-53162ee69b08" xlink:title="EADA AKVIN/Akvin" xlink:type="simple"/>
+          <aixm:availability>
+            <aixm:NavaidOperationalStatus gml:id="id_e7952e3e-7ce9-4d69-8537-08d30ad29122_1_0_B_5">
+              <aixm:timeInterval xsi:nil="true" nilReason="other:H24"/> <!-- No Timesheet coded - H24 schedule -->
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>OPERATIONAL</aixm:operationalStatus>
+              <aixm:signalType xsi:nil="true" nilReason="inapplicable"/>
+            </aixm:NavaidOperationalStatus>
+          </aixm:availability>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:NavaidTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Navaid>
+  </message:hasMember>
+</message:AIXMBasicMessage>

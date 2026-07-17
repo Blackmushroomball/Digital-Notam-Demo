@@ -1,0 +1,1906 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RunwayCentrelinePoint features - Copy 20 -->
+<message:AIXMBasicMessage 
+  xmlns:message="http://www.aixm.aero/schema/5.1.1/message" 
+  xmlns:gts="http://www.isotc211.org/2005/gts" 
+  xmlns:gco="http://www.isotc211.org/2005/gco" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:gml="http://www.opengis.net/gml/3.2" 
+  xmlns:gss="http://www.isotc211.org/2005/gss" 
+  xmlns:aixm="http://www.aixm.aero/schema/5.1.1" 
+  xmlns:event="http://www.aixm.aero/schema/5.1.1/event" 
+  xmlns:gsr="http://www.isotc211.org/2005/gsr" 
+  xmlns:gmd="http://www.isotc211.org/2005/gmd" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.aixm.aero/schema/5.1.1/message http://www.aixm.aero/schema/5.1.1/message/AIXM_BasicMessage.xsd 
+  http://www.aixm.aero/schema/5.1.1/event https://aixm.aero/schema/5.1.1/event/version_5.1.1-k/Event_Features.xsd" 
+  gml:id="RunwayCentrelinePoint_Copy_20">
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.a7ca22db-ca92-4f41-be6d-c1a3848fb01b">
+      <gml:identifier codeSpace="urn:uuid:">a7ca22db-ca92-4f41-be6d-c1a3848fb01b</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_a7ca22db-ca92-4f41-be6d-c1a3848fb01b_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_a7ca22db-ca92-4f41-be6d-c1a3848fb01b_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_a7ca22db-ca92-4f41-be6d-c1a3848fb01b_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>END</aixm:role>
+          <aixm:designator>END_27L</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_a7ca22db-ca92-4f41-be6d-c1a3848fb01b_1_0_B_3">
+              <gml:pos>47.73275119235801 -24.115083700809535</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">14.00</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:a9a8ac38-e573-425c-b100-605e2871308f" xlink:title="RDN EADD RWY 27L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.b02c45ab-90af-4e18-8b12-d5c1d9440880">
+      <gml:identifier codeSpace="urn:uuid:">b02c45ab-90af-4e18-8b12-d5c1d9440880</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_b02c45ab-90af-4e18-8b12-d5c1d9440880_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_b02c45ab-90af-4e18-8b12-d5c1d9440880_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_b02c45ab-90af-4e18-8b12-d5c1d9440880_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START</aixm:role>
+          <aixm:designator>START_27L</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_b02c45ab-90af-4e18-8b12-d5c1d9440880_1_0_B_3">
+              <gml:pos>47.735498149735804 -24.079301621049247</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">20.00</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:a9a8ac38-e573-425c-b100-605e2871308f" xlink:title="RDN EADD RWY 27L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_b02c45ab-90af-4e18-8b12-d5c1d9440880_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_b02c45ab-90af-4e18-8b12-d5c1d9440880_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2700</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_b02c45ab-90af-4e18-8b12-d5c1d9440880_1_0_B_6">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_b02c45ab-90af-4e18-8b12-d5c1d9440880_1_0_B_7">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3000</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_b02c45ab-90af-4e18-8b12-d5c1d9440880_1_0_B_8">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_b02c45ab-90af-4e18-8b12-d5c1d9440880_1_0_B_9">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2900</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.97efce9b-1874-4bac-93f2-41b1e23ef905">
+      <gml:identifier codeSpace="urn:uuid:">97efce9b-1874-4bac-93f2-41b1e23ef905</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_97efce9b-1874-4bac-93f2-41b1e23ef905_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_97efce9b-1874-4bac-93f2-41b1e23ef905_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_97efce9b-1874-4bac-93f2-41b1e23ef905_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>THR</aixm:role>
+          <aixm:designator>27L</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_97efce9b-1874-4bac-93f2-41b1e23ef905_1_0_B_3">
+              <gml:pos>47.735498149735804 -24.079301621049247</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">20.00</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:a9a8ac38-e573-425c-b100-605e2871308f" xlink:title="RDN EADD RWY 27L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_97efce9b-1874-4bac-93f2-41b1e23ef905_1_0_B_4">
+              <aixm:type>LDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_97efce9b-1874-4bac-93f2-41b1e23ef905_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2700</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.4f8128fd-8f5b-4bca-9ff9-29e1fe8592c2">
+      <gml:identifier codeSpace="urn:uuid:">4f8128fd-8f5b-4bca-9ff9-29e1fe8592c2</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_4f8128fd-8f5b-4bca-9ff9-29e1fe8592c2_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_4f8128fd-8f5b-4bca-9ff9-29e1fe8592c2_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_4f8128fd-8f5b-4bca-9ff9-29e1fe8592c2_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>MID</aixm:role>
+          <aixm:designator>MID_27L</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_4f8128fd-8f5b-4bca-9ff9-29e1fe8592c2_1_0_B_3">
+              <gml:pos>47.734124679358004 -24.097192658730386</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">26.54</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:a9a8ac38-e573-425c-b100-605e2871308f" xlink:title="RDN EADD RWY 27L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.dec73518-b380-4c7a-ad62-64b64d23af6e">
+      <gml:identifier codeSpace="urn:uuid:">dec73518-b380-4c7a-ad62-64b64d23af6e</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START_RUN</aixm:role>
+          <aixm:designator>F</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_3">
+              <gml:pos>47.735463385958006 -24.079755509220572</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">20.34</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:a9a8ac38-e573-425c-b100-605e2871308f" xlink:title="RDN EADD RWY 27L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_5">
+                  <aixm:timeInterval>
+                    <aixm:Timesheet gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_6">
+                      <aixm:timeReference>UTC</aixm:timeReference>
+                      <aixm:startDate>01-01</aixm:startDate>
+                      <aixm:endDate>31-12</aixm:endDate>
+                      <aixm:day>ANY</aixm:day>
+                      <aixm:startEvent>SR</aixm:startEvent>
+                      <aixm:endEvent>SS</aixm:endEvent>
+                      <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                      <aixm:excluded>NO</aixm:excluded>
+                    </aixm:Timesheet>
+                  </aixm:timeInterval>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2668</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_7">
+                  <aixm:timeInterval>
+                    <aixm:Timesheet gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_8">
+                      <aixm:timeReference>UTC</aixm:timeReference>
+                      <aixm:startDate>01-01</aixm:startDate>
+                      <aixm:endDate>31-12</aixm:endDate>
+                      <aixm:day>ANY</aixm:day>
+                      <aixm:dayTil>ANY</aixm:dayTil>
+                      <aixm:startEvent>SS</aixm:startEvent>
+                      <aixm:endEvent>SR</aixm:endEvent>
+                      <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                      <aixm:excluded>NO</aixm:excluded>
+                    </aixm:Timesheet>
+                  </aixm:timeInterval>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2400</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_9">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_10">
+                  <aixm:timeInterval>
+                    <aixm:Timesheet gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_11">
+                      <aixm:timeReference>UTC</aixm:timeReference>
+                      <aixm:startDate>01-01</aixm:startDate>
+                      <aixm:endDate>31-12</aixm:endDate>
+                      <aixm:day>ANY</aixm:day>
+                      <aixm:startEvent>SR</aixm:startEvent>
+                      <aixm:endEvent>SS</aixm:endEvent>
+                      <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                      <aixm:excluded>NO</aixm:excluded>
+                    </aixm:Timesheet>
+                  </aixm:timeInterval>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2968</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_12">
+                  <aixm:timeInterval>
+                    <aixm:Timesheet gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_13">
+                      <aixm:timeReference>UTC</aixm:timeReference>
+                      <aixm:startDate>01-01</aixm:startDate>
+                      <aixm:endDate>31-12</aixm:endDate>
+                      <aixm:day>ANY</aixm:day>
+                      <aixm:dayTil>ANY</aixm:dayTil>
+                      <aixm:startEvent>SS</aixm:startEvent>
+                      <aixm:endEvent>SR</aixm:endEvent>
+                      <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                      <aixm:excluded>NO</aixm:excluded>
+                    </aixm:Timesheet>
+                  </aixm:timeInterval>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2700</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_14">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_15">
+                  <aixm:timeInterval>
+                    <aixm:Timesheet gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_16">
+                      <aixm:timeReference>UTC</aixm:timeReference>
+                      <aixm:startDate>01-01</aixm:startDate>
+                      <aixm:endDate>31-12</aixm:endDate>
+                      <aixm:day>ANY</aixm:day>
+                      <aixm:startEvent>SR</aixm:startEvent>
+                      <aixm:endEvent>SS</aixm:endEvent>
+                      <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                      <aixm:excluded>NO</aixm:excluded>
+                    </aixm:Timesheet>
+                  </aixm:timeInterval>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2868</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_17">
+                  <aixm:timeInterval>
+                    <aixm:Timesheet gml:id="id_dec73518-b380-4c7a-ad62-64b64d23af6e_1_0_B_18">
+                      <aixm:timeReference>UTC</aixm:timeReference>
+                      <aixm:startDate>01-01</aixm:startDate>
+                      <aixm:endDate>31-12</aixm:endDate>
+                      <aixm:day>ANY</aixm:day>
+                      <aixm:dayTil>ANY</aixm:dayTil>
+                      <aixm:startEvent>SS</aixm:startEvent>
+                      <aixm:endEvent>SR</aixm:endEvent>
+                      <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                      <aixm:excluded>NO</aixm:excluded>
+                    </aixm:Timesheet>
+                  </aixm:timeInterval>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2600</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.5afd4aa6-d1d0-4dc7-9683-aa038be28826">
+      <gml:identifier codeSpace="urn:uuid:">5afd4aa6-d1d0-4dc7-9683-aa038be28826</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START_RUN</aixm:role>
+          <aixm:designator>G</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_3">
+              <gml:pos>47.73491987295801 -24.0868482029499</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">25.70</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:a9a8ac38-e573-425c-b100-605e2871308f" xlink:title="RDN EADD RWY 27L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_5">
+                  <aixm:timeInterval>
+                    <aixm:Timesheet gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_6">
+                      <aixm:timeReference>UTC</aixm:timeReference>
+                      <aixm:startDate>01-01</aixm:startDate>
+                      <aixm:endDate>31-12</aixm:endDate>
+                      <aixm:day>ANY</aixm:day>
+                      <aixm:startEvent>SR</aixm:startEvent>
+                      <aixm:endEvent>SS</aixm:endEvent>
+                      <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                      <aixm:excluded>NO</aixm:excluded>
+                    </aixm:Timesheet>
+                  </aixm:timeInterval>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2132</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_7">
+                  <aixm:timeInterval>
+                    <aixm:Timesheet gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_8">
+                      <aixm:timeReference>UTC</aixm:timeReference>
+                      <aixm:startDate>01-01</aixm:startDate>
+                      <aixm:endDate>31-12</aixm:endDate>
+                      <aixm:day>ANY</aixm:day>
+                      <aixm:dayTil>ANY</aixm:dayTil>
+                      <aixm:startEvent>SS</aixm:startEvent>
+                      <aixm:endEvent>SR</aixm:endEvent>
+                      <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                      <aixm:excluded>NO</aixm:excluded>
+                    </aixm:Timesheet>
+                  </aixm:timeInterval>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">1900</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_9">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_10">
+                  <aixm:timeInterval>
+                    <aixm:Timesheet gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_11">
+                      <aixm:timeReference>UTC</aixm:timeReference>
+                      <aixm:startDate>01-01</aixm:startDate>
+                      <aixm:endDate>31-12</aixm:endDate>
+                      <aixm:day>ANY</aixm:day>
+                      <aixm:startEvent>SR</aixm:startEvent>
+                      <aixm:endEvent>SS</aixm:endEvent>
+                      <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                      <aixm:excluded>NO</aixm:excluded>
+                    </aixm:Timesheet>
+                  </aixm:timeInterval>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2432</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_12">
+                  <aixm:timeInterval>
+                    <aixm:Timesheet gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_13">
+                      <aixm:timeReference>UTC</aixm:timeReference>
+                      <aixm:startDate>01-01</aixm:startDate>
+                      <aixm:endDate>31-12</aixm:endDate>
+                      <aixm:day>ANY</aixm:day>
+                      <aixm:dayTil>ANY</aixm:dayTil>
+                      <aixm:startEvent>SS</aixm:startEvent>
+                      <aixm:endEvent>SR</aixm:endEvent>
+                      <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                      <aixm:excluded>NO</aixm:excluded>
+                    </aixm:Timesheet>
+                  </aixm:timeInterval>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2200</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_14">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_15">
+                  <aixm:timeInterval>
+                    <aixm:Timesheet gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_16">
+                      <aixm:timeReference>UTC</aixm:timeReference>
+                      <aixm:startDate>01-01</aixm:startDate>
+                      <aixm:endDate>31-12</aixm:endDate>
+                      <aixm:day>ANY</aixm:day>
+                      <aixm:startEvent>SR</aixm:startEvent>
+                      <aixm:endEvent>SS</aixm:endEvent>
+                      <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                      <aixm:excluded>NO</aixm:excluded>
+                    </aixm:Timesheet>
+                  </aixm:timeInterval>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2332</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_17">
+                  <aixm:timeInterval>
+                    <aixm:Timesheet gml:id="id_5afd4aa6-d1d0-4dc7-9683-aa038be28826_1_0_B_18">
+                      <aixm:timeReference>UTC</aixm:timeReference>
+                      <aixm:startDate>01-01</aixm:startDate>
+                      <aixm:endDate>31-12</aixm:endDate>
+                      <aixm:day>ANY</aixm:day>
+                      <aixm:dayTil>ANY</aixm:dayTil>
+                      <aixm:startEvent>SS</aixm:startEvent>
+                      <aixm:endEvent>SR</aixm:endEvent>
+                      <aixm:daylightSavingAdjust>NO</aixm:daylightSavingAdjust>
+                      <aixm:excluded>NO</aixm:excluded>
+                    </aixm:Timesheet>
+                  </aixm:timeInterval>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2100</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.c7bf2273-e906-404d-adda-75690887e3ec">
+      <gml:identifier codeSpace="urn:uuid:">c7bf2273-e906-404d-adda-75690887e3ec</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_c7bf2273-e906-404d-adda-75690887e3ec_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_c7bf2273-e906-404d-adda-75690887e3ec_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_c7bf2273-e906-404d-adda-75690887e3ec_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>END</aixm:role>
+          <aixm:designator>END_27R</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_c7bf2273-e906-404d-adda-75690887e3ec_1_0_B_3">
+              <gml:pos>47.742842597416605 -24.114407809030332</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">30.00</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:675c6bfb-a4f6-4a8b-8593-62c6e036565d" xlink:title="RDN EADD RWY 27R" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidEquipmentDistance gml:id="id_c7bf2273-e906-404d-adda-75690887e3ec_1_0_B_4">
+              <aixm:distance uom="M">65.1</aixm:distance>
+              <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:541f03d6-188f-4439-8437-020400d21daa" xlink:title="LLZ OXS 27R" xlink:type="simple"/>
+            </aixm:NavaidEquipmentDistance>
+          </aixm:navaidEquipment>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.6302c4de-b47f-4627-ab57-978daeada03e">
+      <gml:identifier codeSpace="urn:uuid:">6302c4de-b47f-4627-ab57-978daeada03e</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_6302c4de-b47f-4627-ab57-978daeada03e_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_6302c4de-b47f-4627-ab57-978daeada03e_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_6302c4de-b47f-4627-ab57-978daeada03e_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>DISTHR</aixm:role>
+          <aixm:designator>27R</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_6302c4de-b47f-4627-ab57-978daeada03e_1_0_B_3">
+              <gml:pos>47.745433585509204 -24.07589938992065</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">18.00</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:675c6bfb-a4f6-4a8b-8593-62c6e036565d" xlink:title="RDN EADD RWY 27R" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_6302c4de-b47f-4627-ab57-978daeada03e_1_0_B_4">
+              <aixm:type>LDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_6302c4de-b47f-4627-ab57-978daeada03e_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2900</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_6302c4de-b47f-4627-ab57-978daeada03e_1_0_B_6">
+              <aixm:type>DTHR</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_6302c4de-b47f-4627-ab57-978daeada03e_1_0_B_7">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">300</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment>
+            <aixm:NavaidEquipmentDistance gml:id="id_6302c4de-b47f-4627-ab57-978daeada03e_1_0_B_8">
+              <aixm:distance uom="M">1100</aixm:distance>
+              <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:bf5d856a-f449-43ba-a3b2-3a08767613bc" xlink:title="MKR MM 27R" xlink:type="simple"/>
+            </aixm:NavaidEquipmentDistance>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidEquipmentDistance gml:id="id_6302c4de-b47f-4627-ab57-978daeada03e_1_0_B_9">
+              <aixm:distance uom="M">5700</aixm:distance>
+              <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:ddbf9ac7-4053-4f45-9ad8-e285e877d545" xlink:title="MKR OM 27R" xlink:type="simple"/>
+            </aixm:NavaidEquipmentDistance>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidEquipmentDistance gml:id="id_6302c4de-b47f-4627-ab57-978daeada03e_1_0_B_10">
+              <aixm:distance uom="M">330</aixm:distance>
+              <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:0b3918ec-a817-4626-b7e8-7f3cd1af4a2c" xlink:title="GP OXS 27R" xlink:type="simple"/>
+            </aixm:NavaidEquipmentDistance>
+          </aixm:navaidEquipment>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.217a0812-3781-4e56-bbe4-bcc4e702ee79">
+      <gml:identifier codeSpace="urn:uuid:">217a0812-3781-4e56-bbe4-bcc4e702ee79</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_217a0812-3781-4e56-bbe4-bcc4e702ee79_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_217a0812-3781-4e56-bbe4-bcc4e702ee79_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_217a0812-3781-4e56-bbe4-bcc4e702ee79_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START</aixm:role>
+          <aixm:designator>START_27R</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_217a0812-3781-4e56-bbe4-bcc4e702ee79_1_0_B_3">
+              <gml:pos>47.745701431958004 -24.07191832667159</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">16.50</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:675c6bfb-a4f6-4a8b-8593-62c6e036565d" xlink:title="RDN EADD RWY 27R" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_217a0812-3781-4e56-bbe4-bcc4e702ee79_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_217a0812-3781-4e56-bbe4-bcc4e702ee79_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3200</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_217a0812-3781-4e56-bbe4-bcc4e702ee79_1_0_B_6">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_217a0812-3781-4e56-bbe4-bcc4e702ee79_1_0_B_7">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3500</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_217a0812-3781-4e56-bbe4-bcc4e702ee79_1_0_B_8">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_217a0812-3781-4e56-bbe4-bcc4e702ee79_1_0_B_9">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3200</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.ad478d2b-f7e3-4f7b-9766-f2cc61291f69">
+      <gml:identifier codeSpace="urn:uuid:">ad478d2b-f7e3-4f7b-9766-f2cc61291f69</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_ad478d2b-f7e3-4f7b-9766-f2cc61291f69_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_ad478d2b-f7e3-4f7b-9766-f2cc61291f69_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_ad478d2b-f7e3-4f7b-9766-f2cc61291f69_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>MID</aixm:role>
+          <aixm:designator>MID_27R</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_ad478d2b-f7e3-4f7b-9766-f2cc61291f69_1_0_B_3">
+              <gml:pos>47.744272040551 -24.09316306785096</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">22.00</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:675c6bfb-a4f6-4a8b-8593-62c6e036565d" xlink:title="RDN EADD RWY 27R" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.4665fe9f-2dc5-4dc8-a7d1-db0546fb9b4c">
+      <gml:identifier codeSpace="urn:uuid:">4665fe9f-2dc5-4dc8-a7d1-db0546fb9b4c</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_4665fe9f-2dc5-4dc8-a7d1-db0546fb9b4c_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_4665fe9f-2dc5-4dc8-a7d1-db0546fb9b4c_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_4665fe9f-2dc5-4dc8-a7d1-db0546fb9b4c_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START_RUN</aixm:role>
+          <aixm:designator>B</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_4665fe9f-2dc5-4dc8-a7d1-db0546fb9b4c_1_0_B_3">
+              <gml:pos>47.745051936958006 -24.08159622558477</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">20.15</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:675c6bfb-a4f6-4a8b-8593-62c6e036565d" xlink:title="RDN EADD RWY 27R" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_4665fe9f-2dc5-4dc8-a7d1-db0546fb9b4c_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_4665fe9f-2dc5-4dc8-a7d1-db0546fb9b4c_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2474</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_4665fe9f-2dc5-4dc8-a7d1-db0546fb9b4c_1_0_B_6">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_4665fe9f-2dc5-4dc8-a7d1-db0546fb9b4c_1_0_B_7">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2774</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_4665fe9f-2dc5-4dc8-a7d1-db0546fb9b4c_1_0_B_8">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_4665fe9f-2dc5-4dc8-a7d1-db0546fb9b4c_1_0_B_9">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2474</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.493a7d75-eea8-4e0e-ad40-d80f9a2d9c65">
+      <gml:identifier codeSpace="urn:uuid:">493a7d75-eea8-4e0e-ad40-d80f9a2d9c65</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_493a7d75-eea8-4e0e-ad40-d80f9a2d9c65_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_493a7d75-eea8-4e0e-ad40-d80f9a2d9c65_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_493a7d75-eea8-4e0e-ad40-d80f9a2d9c65_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START_RUN</aixm:role>
+          <aixm:designator>A</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_493a7d75-eea8-4e0e-ad40-d80f9a2d9c65_1_0_B_3">
+              <gml:pos>47.74567210795801 -24.072355636027403</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">16.66</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:675c6bfb-a4f6-4a8b-8593-62c6e036565d" xlink:title="RDN EADD RWY 27R" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_493a7d75-eea8-4e0e-ad40-d80f9a2d9c65_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_493a7d75-eea8-4e0e-ad40-d80f9a2d9c65_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3170</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_493a7d75-eea8-4e0e-ad40-d80f9a2d9c65_1_0_B_6">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_493a7d75-eea8-4e0e-ad40-d80f9a2d9c65_1_0_B_7">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3470</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_493a7d75-eea8-4e0e-ad40-d80f9a2d9c65_1_0_B_8">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_493a7d75-eea8-4e0e-ad40-d80f9a2d9c65_1_0_B_9">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3170</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.339cf2c9-ac47-4205-9de1-3af507802d36">
+      <gml:identifier codeSpace="urn:uuid:">339cf2c9-ac47-4205-9de1-3af507802d36</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_339cf2c9-ac47-4205-9de1-3af507802d36_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_339cf2c9-ac47-4205-9de1-3af507802d36_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_339cf2c9-ac47-4205-9de1-3af507802d36_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START</aixm:role>
+          <aixm:designator>START_09L</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_339cf2c9-ac47-4205-9de1-3af507802d36_1_0_B_3">
+              <gml:pos>47.742842597416605 -24.114407809030332</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">30.00</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:da8dbcd1-b520-443b-b802-7a0cea649397" xlink:title="RDN EADD RWY 09L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_339cf2c9-ac47-4205-9de1-3af507802d36_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_339cf2c9-ac47-4205-9de1-3af507802d36_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3200</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_339cf2c9-ac47-4205-9de1-3af507802d36_1_0_B_6">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_339cf2c9-ac47-4205-9de1-3af507802d36_1_0_B_7">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3200</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_339cf2c9-ac47-4205-9de1-3af507802d36_1_0_B_8">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_339cf2c9-ac47-4205-9de1-3af507802d36_1_0_B_9">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3200</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.a847fc4e-7a29-400e-b5b3-76469fadaa08">
+      <gml:identifier codeSpace="urn:uuid:">a847fc4e-7a29-400e-b5b3-76469fadaa08</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_a847fc4e-7a29-400e-b5b3-76469fadaa08_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_a847fc4e-7a29-400e-b5b3-76469fadaa08_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_a847fc4e-7a29-400e-b5b3-76469fadaa08_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>END</aixm:role>
+          <aixm:designator>END_09L</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_a847fc4e-7a29-400e-b5b3-76469fadaa08_1_0_B_3">
+              <gml:pos>47.745701431958004 -24.07191832667159</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">16.50</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:da8dbcd1-b520-443b-b802-7a0cea649397" xlink:title="RDN EADD RWY 09L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:navaidEquipment>
+            <aixm:NavaidEquipmentDistance gml:id="id_a847fc4e-7a29-400e-b5b3-76469fadaa08_1_0_B_4">
+              <aixm:distance uom="M">65</aixm:distance>
+              <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:66212fff-4ab5-46ca-b2d3-ce4c3c077d96" xlink:title="LLZ OSL 09L" xlink:type="simple"/>
+            </aixm:NavaidEquipmentDistance>
+          </aixm:navaidEquipment>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.086010b0-76ce-4c58-958a-9b8b78cb5d57">
+      <gml:identifier codeSpace="urn:uuid:">086010b0-76ce-4c58-958a-9b8b78cb5d57</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_086010b0-76ce-4c58-958a-9b8b78cb5d57_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_086010b0-76ce-4c58-958a-9b8b78cb5d57_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_086010b0-76ce-4c58-958a-9b8b78cb5d57_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>MID</aixm:role>
+          <aixm:designator>MID_09L</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_086010b0-76ce-4c58-958a-9b8b78cb5d57_1_0_B_3">
+              <gml:pos>47.744272040551 -24.09316306785096</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">22.00</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:da8dbcd1-b520-443b-b802-7a0cea649397" xlink:title="RDN EADD RWY 09L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.b0bf872f-f87d-4a6e-8989-14cca6cdc053">
+      <gml:identifier codeSpace="urn:uuid:">b0bf872f-f87d-4a6e-8989-14cca6cdc053</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_b0bf872f-f87d-4a6e-8989-14cca6cdc053_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_b0bf872f-f87d-4a6e-8989-14cca6cdc053_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_b0bf872f-f87d-4a6e-8989-14cca6cdc053_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>THR</aixm:role>
+          <aixm:designator>09L</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_b0bf872f-f87d-4a6e-8989-14cca6cdc053_1_0_B_3">
+              <gml:pos>47.742842597416605 -24.114407809030332</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">30.00</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:da8dbcd1-b520-443b-b802-7a0cea649397" xlink:title="RDN EADD RWY 09L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_b0bf872f-f87d-4a6e-8989-14cca6cdc053_1_0_B_4">
+              <aixm:type>LDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_b0bf872f-f87d-4a6e-8989-14cca6cdc053_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3200</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment>
+            <aixm:NavaidEquipmentDistance gml:id="id_b0bf872f-f87d-4a6e-8989-14cca6cdc053_1_0_B_6">
+              <aixm:distance uom="M">333</aixm:distance>
+              <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:c2d8bdac-9a25-4827-93a1-7e11f57cc742" xlink:title="GP_OSL_09L" xlink:type="simple"/>
+            </aixm:NavaidEquipmentDistance>
+          </aixm:navaidEquipment>
+          <aixm:navaidEquipment>
+            <aixm:NavaidEquipmentDistance gml:id="id_b0bf872f-f87d-4a6e-8989-14cca6cdc053_1_0_B_7">
+              <aixm:distance uom="M">333</aixm:distance>
+              <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:theNavaidEquipment xlink:href="urn:uuid:e8190a34-99be-406c-b512-5b40f458e368" xlink:title="DME_OSL_09L" xlink:type="simple"/>
+            </aixm:NavaidEquipmentDistance>
+          </aixm:navaidEquipment>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.ee3d6962-dd2c-4175-8a76-8ff948fae19a">
+      <gml:identifier codeSpace="urn:uuid:">ee3d6962-dd2c-4175-8a76-8ff948fae19a</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_ee3d6962-dd2c-4175-8a76-8ff948fae19a_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_ee3d6962-dd2c-4175-8a76-8ff948fae19a_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_ee3d6962-dd2c-4175-8a76-8ff948fae19a_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START_RUN</aixm:role>
+          <aixm:designator>E</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_ee3d6962-dd2c-4175-8a76-8ff948fae19a_1_0_B_3">
+              <gml:pos>47.742872441958006 -24.113965633580243</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">29.83</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:da8dbcd1-b520-443b-b802-7a0cea649397" xlink:title="RDN EADD RWY 09L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_ee3d6962-dd2c-4175-8a76-8ff948fae19a_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_ee3d6962-dd2c-4175-8a76-8ff948fae19a_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3170</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_ee3d6962-dd2c-4175-8a76-8ff948fae19a_1_0_B_6">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_ee3d6962-dd2c-4175-8a76-8ff948fae19a_1_0_B_7">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3170</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_ee3d6962-dd2c-4175-8a76-8ff948fae19a_1_0_B_8">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_ee3d6962-dd2c-4175-8a76-8ff948fae19a_1_0_B_9">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3170</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.689da8f7-bb24-42bc-b846-448df4ca0ac8">
+      <gml:identifier codeSpace="urn:uuid:">689da8f7-bb24-42bc-b846-448df4ca0ac8</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_689da8f7-bb24-42bc-b846-448df4ca0ac8_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_689da8f7-bb24-42bc-b846-448df4ca0ac8_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_689da8f7-bb24-42bc-b846-448df4ca0ac8_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START_RUN</aixm:role>
+          <aixm:designator>D</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_689da8f7-bb24-42bc-b846-448df4ca0ac8_1_0_B_3">
+              <gml:pos>47.743687706958006 -24.101876579507405</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">25.28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:da8dbcd1-b520-443b-b802-7a0cea649397" xlink:title="RDN EADD RWY 09L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_689da8f7-bb24-42bc-b846-448df4ca0ac8_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_689da8f7-bb24-42bc-b846-448df4ca0ac8_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2258</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_689da8f7-bb24-42bc-b846-448df4ca0ac8_1_0_B_6">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_689da8f7-bb24-42bc-b846-448df4ca0ac8_1_0_B_7">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2258</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_689da8f7-bb24-42bc-b846-448df4ca0ac8_1_0_B_8">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_689da8f7-bb24-42bc-b846-448df4ca0ac8_1_0_B_9">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2258</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.f6248eaa-21a5-4db7-843b-8eaf348169b3">
+      <gml:identifier codeSpace="urn:uuid:">f6248eaa-21a5-4db7-843b-8eaf348169b3</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_f6248eaa-21a5-4db7-843b-8eaf348169b3_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_f6248eaa-21a5-4db7-843b-8eaf348169b3_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_f6248eaa-21a5-4db7-843b-8eaf348169b3_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START_RUN</aixm:role>
+          <aixm:designator>C</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_f6248eaa-21a5-4db7-843b-8eaf348169b3_1_0_B_3">
+              <gml:pos>47.74454552195801 -24.08913195813278</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">20.47</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:da8dbcd1-b520-443b-b802-7a0cea649397" xlink:title="RDN EADD RWY 09L" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_f6248eaa-21a5-4db7-843b-8eaf348169b3_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_f6248eaa-21a5-4db7-843b-8eaf348169b3_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">1298</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_f6248eaa-21a5-4db7-843b-8eaf348169b3_1_0_B_6">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_f6248eaa-21a5-4db7-843b-8eaf348169b3_1_0_B_7">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">1298</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_f6248eaa-21a5-4db7-843b-8eaf348169b3_1_0_B_8">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_f6248eaa-21a5-4db7-843b-8eaf348169b3_1_0_B_9">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">1298</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.3628a4d4-f70c-4092-a347-c215f79c4871">
+      <gml:identifier codeSpace="urn:uuid:">3628a4d4-f70c-4092-a347-c215f79c4871</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_3628a4d4-f70c-4092-a347-c215f79c4871_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_3628a4d4-f70c-4092-a347-c215f79c4871_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_3628a4d4-f70c-4092-a347-c215f79c4871_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>THR</aixm:role>
+          <aixm:designator>09R</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_3628a4d4-f70c-4092-a347-c215f79c4871_1_0_B_3">
+              <gml:pos>47.732751168174204 -24.115083670725994</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">14.00</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:71dd1004-e663-425c-ace9-12639153b292" xlink:title="RDN EADD RWY 09R" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_3628a4d4-f70c-4092-a347-c215f79c4871_1_0_B_4">
+              <aixm:type>LDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_3628a4d4-f70c-4092-a347-c215f79c4871_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2700</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.f1bcbdaa-ba1f-4f4d-999f-68e9e628660f">
+      <gml:identifier codeSpace="urn:uuid:">f1bcbdaa-ba1f-4f4d-999f-68e9e628660f</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_f1bcbdaa-ba1f-4f4d-999f-68e9e628660f_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_f1bcbdaa-ba1f-4f4d-999f-68e9e628660f_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_f1bcbdaa-ba1f-4f4d-999f-68e9e628660f_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>END</aixm:role>
+          <aixm:designator>END_09R</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_f1bcbdaa-ba1f-4f4d-999f-68e9e628660f_1_0_B_3">
+              <gml:pos>47.735498149735804 -24.079301621049247</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">20.00</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:71dd1004-e663-425c-ace9-12639153b292" xlink:title="RDN EADD RWY 09R" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.704d0f4a-0141-489b-aa65-58fe054459d2">
+      <gml:identifier codeSpace="urn:uuid:">704d0f4a-0141-489b-aa65-58fe054459d2</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_704d0f4a-0141-489b-aa65-58fe054459d2_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_704d0f4a-0141-489b-aa65-58fe054459d2_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_704d0f4a-0141-489b-aa65-58fe054459d2_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START</aixm:role>
+          <aixm:designator>START_09R</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_704d0f4a-0141-489b-aa65-58fe054459d2_1_0_B_3">
+              <gml:pos>47.732751168174204 -24.115083670725994</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">14.00</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:71dd1004-e663-425c-ace9-12639153b292" xlink:title="RDN EADD RWY 09R" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_704d0f4a-0141-489b-aa65-58fe054459d2_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_704d0f4a-0141-489b-aa65-58fe054459d2_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2700</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_704d0f4a-0141-489b-aa65-58fe054459d2_1_0_B_6">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_704d0f4a-0141-489b-aa65-58fe054459d2_1_0_B_7">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">3000</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_704d0f4a-0141-489b-aa65-58fe054459d2_1_0_B_8">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_704d0f4a-0141-489b-aa65-58fe054459d2_1_0_B_9">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2700</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.6a14cea3-5ada-4782-9534-8b1903084aca">
+      <gml:identifier codeSpace="urn:uuid:">6a14cea3-5ada-4782-9534-8b1903084aca</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_6a14cea3-5ada-4782-9534-8b1903084aca_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_6a14cea3-5ada-4782-9534-8b1903084aca_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_6a14cea3-5ada-4782-9534-8b1903084aca_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>MID</aixm:role>
+          <aixm:designator>MID_09R</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_6a14cea3-5ada-4782-9534-8b1903084aca_1_0_B_3">
+              <gml:pos>47.7341246793216 -24.09719265871804</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">26.54</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:71dd1004-e663-425c-ace9-12639153b292" xlink:title="RDN EADD RWY 09R" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.527d789d-49ea-4ab7-9f77-9d0c131ab4df">
+      <gml:identifier codeSpace="urn:uuid:">527d789d-49ea-4ab7-9f77-9d0c131ab4df</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_527d789d-49ea-4ab7-9f77-9d0c131ab4df_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_527d789d-49ea-4ab7-9f77-9d0c131ab4df_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_527d789d-49ea-4ab7-9f77-9d0c131ab4df_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START_RUN</aixm:role>
+          <aixm:designator>TP2</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_527d789d-49ea-4ab7-9f77-9d0c131ab4df_1_0_B_3">
+              <gml:pos>47.73362113999211 -24.103749547660286</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">21.59</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:71dd1004-e663-425c-ace9-12639153b292" xlink:title="RDN EADD RWY 09R" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_527d789d-49ea-4ab7-9f77-9d0c131ab4df_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_527d789d-49ea-4ab7-9f77-9d0c131ab4df_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">1846</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_527d789d-49ea-4ab7-9f77-9d0c131ab4df_1_0_B_6">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_527d789d-49ea-4ab7-9f77-9d0c131ab4df_1_0_B_7">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2146</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_527d789d-49ea-4ab7-9f77-9d0c131ab4df_1_0_B_8">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_527d789d-49ea-4ab7-9f77-9d0c131ab4df_1_0_B_9">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">1846</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:RunwayCentrelinePoint gml:id="uuid.3d9f451c-bf27-46a4-bad7-0b90b237ff43">
+      <gml:identifier codeSpace="urn:uuid:">3d9f451c-bf27-46a4-bad7-0b90b237ff43</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:RunwayCentrelinePointTimeSlice gml:id="id_3d9f451c-bf27-46a4-bad7-0b90b237ff43_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_3d9f451c-bf27-46a4-bad7-0b90b237ff43_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_3d9f451c-bf27-46a4-bad7-0b90b237ff43_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:role>START_RUN</aixm:role>
+          <aixm:designator>TP1</aixm:designator>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_3d9f451c-bf27-46a4-bad7-0b90b237ff43_1_0_B_3">
+              <gml:pos>47.732899867669005 -24.11314375665481</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.1</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">14.50</aixm:elevation>
+              <aixm:geoidUndulation uom="M">11.5</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.25</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:onRunway xlink:href="urn:uuid:71dd1004-e663-425c-ace9-12639153b292" xlink:title="RDN EADD RWY 09R" xlink:type="simple"/>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_3d9f451c-bf27-46a4-bad7-0b90b237ff43_1_0_B_4">
+              <aixm:type>TORA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_3d9f451c-bf27-46a4-bad7-0b90b237ff43_1_0_B_5">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2555</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_3d9f451c-bf27-46a4-bad7-0b90b237ff43_1_0_B_6">
+              <aixm:type>TODA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_3d9f451c-bf27-46a4-bad7-0b90b237ff43_1_0_B_7">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2855</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:associatedDeclaredDistance>
+            <aixm:RunwayDeclaredDistance gml:id="id_3d9f451c-bf27-46a4-bad7-0b90b237ff43_1_0_B_8">
+              <aixm:type>ASDA</aixm:type>
+              <aixm:declaredValue>
+                <aixm:RunwayDeclaredDistanceValue gml:id="id_3d9f451c-bf27-46a4-bad7-0b90b237ff43_1_0_B_9">
+                  <aixm:timeInterval xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:annotation xsi:nil="true"/>
+                  <aixm:specialDateAuthority xsi:nil="true"/>
+                  <aixm:distance uom="M">2555</aixm:distance>
+                  <aixm:distanceAccuracy uom="M">1</aixm:distanceAccuracy>
+                </aixm:RunwayDeclaredDistanceValue>
+              </aixm:declaredValue>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:RunwayDeclaredDistance>
+          </aixm:associatedDeclaredDistance>
+          <aixm:navaidEquipment xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+        </aixm:RunwayCentrelinePointTimeSlice>
+      </aixm:timeSlice>
+    </aixm:RunwayCentrelinePoint>
+  </message:hasMember>
+</message:AIXMBasicMessage>

@@ -1,0 +1,2369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AircraftStand features - Copy 21 -->
+<message:AIXMBasicMessage 
+  xmlns:message="http://www.aixm.aero/schema/5.1.1/message" 
+  xmlns:gts="http://www.isotc211.org/2005/gts" 
+  xmlns:gco="http://www.isotc211.org/2005/gco" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:gml="http://www.opengis.net/gml/3.2" 
+  xmlns:gss="http://www.isotc211.org/2005/gss" 
+  xmlns:aixm="http://www.aixm.aero/schema/5.1.1" 
+  xmlns:event="http://www.aixm.aero/schema/5.1.1/event" 
+  xmlns:gsr="http://www.isotc211.org/2005/gsr" 
+  xmlns:gmd="http://www.isotc211.org/2005/gmd" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.aixm.aero/schema/5.1.1/message http://www.aixm.aero/schema/5.1.1/message/AIXM_BasicMessage.xsd 
+  http://www.aixm.aero/schema/5.1.1/event https://aixm.aero/schema/5.1.1/event/version_5.1.1-k/Event_Features.xsd" 
+  gml:id="AircraftStand_Copy_21">
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526">
+      <gml:identifier codeSpace="urn:uuid:">3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>1</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_4">
+              <gml:pos>45.398313811124005 -37.75309536700923</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:e1606618-618e-4754-bfbe-e31b05fff354" xlink:title="APE EADD APRON A 3" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.3985893973023 -37.75223448881392 45.3981635575358 -37.752173750292734 45.39811060759251 -37.752926691874414
+                                45.398256503769105 -37.75307610369791 45.39824307522031 -37.75326705580512 45.398359255563804 -37.7532836272315
+                                45.3983726840149 -37.75309267511542 45.39853645718691 -37.75298745677289 45.3985893973023 -37.75223448881392</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_11">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_12">
+                      <aixm:timeInterval>
+                        <aixm:Timesheet gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_13">
+                          <aixm:timeReference>UTC</aixm:timeReference>
+                          <aixm:startDate>01-01</aixm:startDate>
+                          <aixm:endDate>31-12</aixm:endDate>
+                          <aixm:day>ANY</aixm:day>
+                          <aixm:dayTil>ANY</aixm:dayTil>
+                          <aixm:startTime>20:00</aixm:startTime>
+                          <aixm:endTime>07:00</aixm:endTime>
+                          <aixm:daylightSavingAdjust>YES</aixm:daylightSavingAdjust>
+                          <aixm:excluded>NO</aixm:excluded>
+                        </aixm:Timesheet>
+                      </aixm:timeInterval>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>OR</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_14">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_15">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_16">
+                      <aixm:timeInterval>
+                        <aixm:Timesheet gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_17">
+                          <aixm:timeReference>UTC</aixm:timeReference>
+                          <aixm:startDate>01-01</aixm:startDate>
+                          <aixm:endDate>31-12</aixm:endDate>
+                          <aixm:day>ANY</aixm:day>
+                          <aixm:startTime>07:00</aixm:startTime>
+                          <aixm:endTime>20:00</aixm:endTime>
+                          <aixm:daylightSavingAdjust>YES</aixm:daylightSavingAdjust>
+                          <aixm:excluded>NO</aixm:excluded>
+                        </aixm:Timesheet>
+                      </aixm:timeInterval>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_3bd1d750-87f3-4acf-8ed5-3f3ad6ed5526_1_0_B_18">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.520d5403-1bb8-490a-86bf-23ce74a5e4f3">
+      <gml:identifier codeSpace="urn:uuid:">520d5403-1bb8-490a-86bf-23ce74a5e4f3</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>2</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_4">
+              <gml:pos>45.397821819124005 -37.75302554025821</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:e1606618-618e-4754-bfbe-e31b05fff354" xlink:title="APE EADD APRON A 3" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.398097429727 -37.75216431871959 45.3976715899605 -37.752103580198494 45.39761864001721 -37.75285652178009
+                                45.397764536193804 -37.75300593360358 45.39775110764501 -37.753196885710786 45.397867287988504 -37.75321345713726
+                                45.3978807164396 -37.75302250502109 45.39804448961161 -37.75291728667857 45.398097429727 -37.75216431871959</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_11">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_12">
+                      <aixm:timeInterval>
+                        <aixm:Timesheet gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_13">
+                          <aixm:timeReference>UTC</aixm:timeReference>
+                          <aixm:startDate>01-01</aixm:startDate>
+                          <aixm:endDate>31-12</aixm:endDate>
+                          <aixm:day>ANY</aixm:day>
+                          <aixm:dayTil>ANY</aixm:dayTil>
+                          <aixm:startTime>20:00</aixm:startTime>
+                          <aixm:endTime>07:00</aixm:endTime>
+                          <aixm:daylightSavingAdjust>YES</aixm:daylightSavingAdjust>
+                          <aixm:excluded>NO</aixm:excluded>
+                        </aixm:Timesheet>
+                      </aixm:timeInterval>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_14">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_15">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_16">
+                      <aixm:timeInterval>
+                        <aixm:Timesheet gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_17">
+                          <aixm:timeReference>UTC</aixm:timeReference>
+                          <aixm:startDate>01-01</aixm:startDate>
+                          <aixm:endDate>31-12</aixm:endDate>
+                          <aixm:day>ANY</aixm:day>
+                          <aixm:startTime>07:00</aixm:startTime>
+                          <aixm:endTime>20:00</aixm:endTime>
+                          <aixm:daylightSavingAdjust>YES</aixm:daylightSavingAdjust>
+                          <aixm:excluded>NO</aixm:excluded>
+                        </aixm:Timesheet>
+                      </aixm:timeInterval>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_520d5403-1bb8-490a-86bf-23ce74a5e4f3_1_0_B_18">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.02da0767-9826-43e3-a48d-d8e380c5c327">
+      <gml:identifier codeSpace="urn:uuid:">02da0767-9826-43e3-a48d-d8e380c5c327</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>3</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_4">
+              <gml:pos>45.397329829124004 -37.75295571437666</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:e1606618-618e-4754-bfbe-e31b05fff354" xlink:title="APE EADD APRON A 3" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.39760546435561 -37.75209414972124 45.39717962458911 -37.75203341120014 45.397126674645804 -37.75278635278173
+                                45.3972725708224 -37.752935764605226 45.397259142273604 -37.75312671671244 45.3973753226171 -37.753143288138816
+                                45.397388751068206 -37.75295233602274 45.397552524240204 -37.75284711768022 45.39760546435561 -37.75209414972124</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_11">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_12">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_02da0767-9826-43e3-a48d-d8e380c5c327_1_0_B_13">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.58a7864d-ed24-463e-8ad6-3e9dee073c40">
+      <gml:identifier codeSpace="urn:uuid:">58a7864d-ed24-463e-8ad6-3e9dee073c40</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>4</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_4">
+              <gml:pos>45.396837838024005 -37.752885887625645</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:e1606618-618e-4754-bfbe-e31b05fff354" xlink:title="APE EADD APRON A 3" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.397113497302605 -37.75202398126466 45.396687657536106 -37.75196324274347 45.3966347075928 -37.75271618432515
+                                45.39678060376941 -37.75286559614856 45.3967671752206 -37.75305654825576 45.39688335556401 -37.753073119682234
+                                45.396896784015205 -37.752882167566156 45.3970605571872 -37.75277694922364 45.397113497302605 -37.75202398126466</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_11">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_12">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_58a7864d-ed24-463e-8ad6-3e9dee073c40_1_0_B_13">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.96d71b3c-74c3-4d71-bf93-86361627ae5b">
+      <gml:identifier codeSpace="urn:uuid:">96d71b3c-74c3-4d71-bf93-86361627ae5b</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>5</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_4">
+              <gml:pos>45.396345848024005 -37.75281606435252</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:e1606618-618e-4754-bfbe-e31b05fff354" xlink:title="APE EADD APRON A 3" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.3966215312602 -37.75195381373372 45.3961956914938 -37.751893075212536 45.396142741550406 -37.752646016794216
+                                45.3962886377271 -37.75279542861771 45.396275209178306 -37.75298638072491 45.3963913895217 -37.7530029521513
+                                45.39640481797291 -37.75281200003522 45.396568591144906 -37.752706781692694 45.3966215312602 -37.75195381373372</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_11">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_12">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_96d71b3c-74c3-4d71-bf93-86361627ae5b_1_0_B_13">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.dd7272b1-088f-4769-bbb8-1a157f0ba949">
+      <gml:identifier codeSpace="urn:uuid:">dd7272b1-088f-4769-bbb8-1a157f0ba949</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>6</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_4">
+              <gml:pos>45.395853856924006 -37.75274624281836</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:e1606618-618e-4754-bfbe-e31b05fff354" xlink:title="APE EADD APRON A 3" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.39612956363101 -37.75188364675803 45.39570372386461 -37.751822908236846 45.395650773921204 -37.75257584981853
+                                45.3957966700978 -37.75272526164202 45.395783241549104 -37.752916213749224 45.3958994218925 -37.75293278517561
+                                45.395912850343706 -37.75274183305953 45.396076623515704 -37.752636614717005 45.39612956363101 -37.75188364675803</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_11">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_12">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_dd7272b1-088f-4769-bbb8-1a157f0ba949_1_0_B_13">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8">
+      <gml:identifier codeSpace="urn:uuid:">cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>7</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_4">
+              <gml:pos>45.395361864924006 -37.75267642128419</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:e1606618-618e-4754-bfbe-e31b05fff354" xlink:title="APE EADD APRON A 3" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.395637597389204 -37.75181348076172 45.395211757622704 -37.75175274224053 45.3951588076794 -37.75250568382221
+                                45.395304703856006 -37.75265509564571 45.3952912753072 -37.75284604775291 45.395407455650606 -37.75286261917929
+                                45.3954208841018 -37.75267166706322 45.3955846572738 -37.75256644872069 45.395637597389204 -37.75181348076172</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_11">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_12">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_cb4dcac7-b045-4ac6-bc2c-c1d40e02c6e8_1_0_B_13">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.a939baab-cd78-4366-8d4b-a475d816025d">
+      <gml:identifier codeSpace="urn:uuid:">a939baab-cd78-4366-8d4b-a475d816025d</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>8</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_4">
+              <gml:pos>45.394869875924 -37.752606598880554</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:e1606618-618e-4754-bfbe-e31b05fff354" xlink:title="APE EADD APRON A 3" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.395145631328504 -37.7517433155728 45.3947197915621 -37.75168257705161 45.3946668416187 -37.752435518633206
+                                45.394812737795306 -37.7525849304567 45.3947993092465 -37.75277588256391 45.394915489590005 -37.75279245399038
+                                45.3949289180411 -37.75260150187422 45.3950926912131 -37.75249628353169 45.395145631328504 -37.7517433155728</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_11">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_12">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_a939baab-cd78-4366-8d4b-a475d816025d_1_0_B_13">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.24e5abbb-42cf-4ef8-9418-18c42e0338fd">
+      <gml:identifier codeSpace="urn:uuid:">24e5abbb-42cf-4ef8-9418-18c42e0338fd</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>9</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_4">
+              <gml:pos>45.394802573824 -37.75003034894862</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:a5982b5e-71bd-4c1e-b72b-9da9167e9eca" xlink:title="APE EADD APRON A 2" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.3949529737849 -37.75095014043068 45.3950059236123 -37.750197200497965 45.394860027435705 -37.750047788674465
+                                45.3948734559845 -37.749856836567346 45.394757275641005 -37.74984026514088 45.39474384718991 -37.750031217256954 45.3945800740179
+                                -37.75013643559948 45.3945271339006 -37.75088940358402 45.3949529737849 -37.75095014043068</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_11">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_12">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_24e5abbb-42cf-4ef8-9418-18c42e0338fd_1_0_B_13">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.3ee55a35-e728-4272-b5fc-415585ec0d68">
+      <gml:identifier codeSpace="urn:uuid:">3ee55a35-e728-4272-b5fc-415585ec0d68</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>10</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_4">
+              <gml:pos>45.395294566924 -37.75010014100755</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:a5982b5e-71bd-4c1e-b72b-9da9167e9eca" xlink:title="APE EADD APRON A 2" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.3954449401616 -37.75102030527398 45.395497889989 -37.75026736534126 45.395351993812405 -37.750117953517766
+                                45.3953654223612 -37.74992700141056 45.395249242017705 -37.749910429984176 45.3952358135665 -37.750101382100254 45.3950720403945
+                                -37.75020660044278 45.3950191002773 -37.75095956842732 45.3954449401616 -37.75102030527398</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_11">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_12">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_3ee55a35-e728-4272-b5fc-415585ec0d68_1_0_B_13">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.15e10848-c01d-4c0a-ba4c-98813f175461">
+      <gml:identifier codeSpace="urn:uuid:">15e10848-c01d-4c0a-ba4c-98813f175461</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>11</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_4">
+              <gml:pos>45.395786558924 -37.750169932110055</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:a5982b5e-71bd-4c1e-b72b-9da9167e9eca" xlink:title="APE EADD APRON A 2" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.395936906711206 -37.75109047092337 45.395989856538506 -37.75033753099074 45.3958439603619 -37.75018811916725
+                                45.395857388910706 -37.74999716706004 45.3957412085672 -37.74998059563357 45.395727780116104 -37.750171547749645
+                                45.395564006944106 -37.75027676609217 45.395511066826906 -37.7510297340768 45.395936906711206 -37.75109047092337</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_11">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_12">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_15e10848-c01d-4c0a-ba4c-98813f175461_1_0_B_13">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.7a099aef-5053-423b-8fb4-a7d21997f82a">
+      <gml:identifier codeSpace="urn:uuid:">7a099aef-5053-423b-8fb4-a7d21997f82a</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>12</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_4">
+              <gml:pos>45.39627855202401 -37.75023972669046</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:a5982b5e-71bd-4c1e-b72b-9da9167e9eca" xlink:title="APE EADD APRON A 2" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.39642887336171 -37.75116063736877 45.396481823189106 -37.750407697436046 45.3963359270125 -37.75025828561255
+                                45.396349355561306 -37.75006733350535 45.3962331752178 -37.75005076207896 45.396219746766704 -37.75024171419504
+                                45.396055973594706 -37.75034693253757 45.396003033477506 -37.75109990052211 45.39642887336171 -37.75116063736877</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_11">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_12">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_7a099aef-5053-423b-8fb4-a7d21997f82a_1_0_B_13">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.1fcc4bc1-afec-419b-ad44-bb64ed2ee208">
+      <gml:identifier codeSpace="urn:uuid:">1fcc4bc1-afec-419b-ad44-bb64ed2ee208</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>13</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_4">
+              <gml:pos>45.396770545024005 -37.750309523009825</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:a5982b5e-71bd-4c1e-b72b-9da9167e9eca" xlink:title="APE EADD APRON A 2" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.3969208395086 -37.75123080452374 45.3969737893359 -37.75047786459111 45.396827893159305 -37.75032845276762
+                                45.3968413217081 -37.750137500660415 45.396725141364605 -37.750120929233944 45.39671171291351 -37.75031188135002
+                                45.3965479397415 -37.75041709969255 45.3964949996243 -37.75117006767717 45.3969208395086 -37.75123080452374</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_11">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_12">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_1fcc4bc1-afec-419b-ad44-bb64ed2ee208_1_0_B_13">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.39c4294e-b89f-4ced-ae1f-53bc54d1298e">
+      <gml:identifier codeSpace="urn:uuid:">39c4294e-b89f-4ced-ae1f-53bc54d1298e</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>14</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem>A_VDGS</aixm:visualDockingSystem>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_3">
+              <aixm:composition>ASPH</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_4">
+              <gml:pos>45.39726253712401 -37.750379319329184</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:a5982b5e-71bd-4c1e-b72b-9da9167e9eca" xlink:title="APE EADD APRON A 2" xlink:type="simple"/>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_5">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:Ring>
+                      <gml:curveMember>
+                        <aixm:Curve gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_6">
+                          <gml:segments>
+                            <gml:GeodesicString>
+                              <gml:posList>45.397412806847306 -37.75130097263036 45.397465756674706 -37.750548032697644 45.3973198604981 -37.75039862087415
+                                45.397333289046905 -37.75020766876694 45.3972171087034 -37.75019109734056 45.397203680252204 -37.75038204945664
+                                45.397039907080206 -37.75048726779916 45.396986966963006 -37.7512402357837 45.397412806847306 -37.75130097263036</gml:posList>
+                            </gml:GeodesicString>
+                          </gml:segments>
+                        </aixm:Curve>
+                      </gml:curveMember>
+                    </gml:Ring>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">28</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_7">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_8">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_9">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_10">
+                          <aixm:type>LANDPLANE</aixm:type>
+                          <aixm:wingSpan uom="M">36</aixm:wingSpan>
+                          <aixm:wingSpanInterpretation>AT_OR_BELOW</aixm:wingSpanInterpretation>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_11">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_12">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_39c4294e-b89f-4ced-ae1f-53bc54d1298e_1_0_B_13">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.a4fca4d3-8474-4219-8875-2424f3d3b8b3">
+      <gml:identifier codeSpace="urn:uuid:">a4fca4d3-8474-4219-8875-2424f3d3b8b3</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>H1</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B_3">
+              <aixm:composition>CONC</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B_4">
+              <gml:pos>45.398694830024006 -37.749138406694634</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">30</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:2a9431f6-ed63-4218-8396-70a6cf0b18b0" xlink:title="APE EADD APRON B 1" xlink:type="simple"/>
+          <aixm:extent xsi:nil="true"/>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B_5">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B_6">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B_7">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>OR</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B_8">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B_9">
+                          <aixm:type>TILT_WING</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B_10">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B_11">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_a4fca4d3-8474-4219-8875-2424f3d3b8b3_1_0_B_12">
+                          <aixm:type>LANDPLANE</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:AircraftStand gml:id="uuid.862a3cb7-24f5-405e-a91f-42e19695a134">
+      <gml:identifier codeSpace="urn:uuid:">862a3cb7-24f5-405e-a91f-42e19695a134</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:AircraftStandTimeSlice gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B_1">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:correctionNumber>0</aixm:correctionNumber>
+          <aixm:featureLifetime>
+            <gml:TimePeriod gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B_2">
+              <gml:beginPosition>2027-07-08T00:00:00Z</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </aixm:featureLifetime>
+          <aixm:designator>H2</aixm:designator>
+          <aixm:type>NI</aixm:type>
+          <aixm:visualDockingSystem xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B_3">
+              <aixm:composition>CONC</aixm:composition>
+              <aixm:preparation xsi:nil="true" nilReason="unknown"/>
+              <aixm:surfaceCondition>GOOD</aixm:surfaceCondition>
+              <aixm:classPCN>80</aixm:classPCN>
+              <aixm:pavementTypePCN>RIGID</aixm:pavementTypePCN>
+              <aixm:pavementSubgradePCN>B</aixm:pavementSubgradePCN>
+              <aixm:maxTyrePressurePCN>W</aixm:maxTyrePressurePCN>
+              <aixm:evaluationMethodPCN>TECH</aixm:evaluationMethodPCN>
+              <aixm:classLCN xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:tyrePressureSIWL xsi:nil="true" nilReason="unknown"/>
+              <aixm:weightAUW xsi:nil="true" nilReason="unknown"/>
+              <aixm:annotation xsi:nil="true"/>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:location>
+            <aixm:ElevatedPoint srsName="urn:ogc:def:crs:EPSG::4326" gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B_4">
+              <gml:pos>45.398721531824 -37.74875788937589</gml:pos>
+              <aixm:horizontalAccuracy uom="M">0.5</aixm:horizontalAccuracy>
+              <aixm:elevation uom="M">30</aixm:elevation>
+              <aixm:geoidUndulation uom="M">12</aixm:geoidUndulation>
+              <aixm:verticalDatum>EGM_96</aixm:verticalDatum>
+              <aixm:verticalAccuracy uom="M">0.5</aixm:verticalAccuracy>
+            </aixm:ElevatedPoint>
+          </aixm:location>
+          <aixm:apronLocation xlink:href="urn:uuid:2a9431f6-ed63-4218-8396-70a6cf0b18b0" xlink:title="APE EADD APRON B 2" xlink:type="simple"/>
+          <aixm:extent xsi:nil="true"/>
+          <aixm:contaminant xsi:nil="true" nilReason="inapplicable"/>
+          <aixm:annotation xsi:nil="true"/>
+          <aixm:availability>
+            <aixm:ApronAreaAvailability gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B_5">
+              <aixm:timeInterval xsi:nil="true"/>
+              <aixm:annotation xsi:nil="true"/>
+              <aixm:specialDateAuthority xsi:nil="true"/>
+              <aixm:operationalStatus>NORMAL</aixm:operationalStatus>
+              <aixm:warning xsi:nil="true" nilReason="inapplicable"/>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B_6">
+                  <aixm:type>PERMIT</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B_7">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>OR</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B_8">
+                          <aixm:type>HELICOPTER</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B_9">
+                          <aixm:type>TILT_WING</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+              <aixm:usage>
+                <aixm:ApronAreaUsage gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B_10">
+                  <aixm:type>FORBID</aixm:type>
+                  <aixm:priorPermission xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:contact xsi:nil="true" nilReason="inapplicable"/>
+                  <aixm:selection>
+                    <aixm:ConditionCombination gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B_11">
+                      <aixm:timeInterval xsi:nil="true"/>
+                      <aixm:annotation xsi:nil="true"/>
+                      <aixm:specialDateAuthority xsi:nil="true"/>
+                      <aixm:logicalOperator>NONE</aixm:logicalOperator>
+                      <aixm:weather xsi:nil="true"/>
+                      <aixm:aircraft>
+                        <aixm:AircraftCharacteristic gml:id="id_862a3cb7-24f5-405e-a91f-42e19695a134_1_0_B_12">
+                          <aixm:type>LANDPLANE</aixm:type>
+                        </aixm:AircraftCharacteristic>
+                      </aixm:aircraft>
+                      <aixm:flight xsi:nil="true"/>
+                      <aixm:subCondition xsi:nil="true"/>
+                    </aixm:ConditionCombination>
+                  </aixm:selection>
+                  <aixm:annotation xsi:nil="true"/>
+                </aixm:ApronAreaUsage>
+              </aixm:usage>
+            </aixm:ApronAreaAvailability>
+          </aixm:availability>
+        </aixm:AircraftStandTimeSlice>
+      </aixm:timeSlice>
+    </aixm:AircraftStand>
+  </message:hasMember>
+</message:AIXMBasicMessage>

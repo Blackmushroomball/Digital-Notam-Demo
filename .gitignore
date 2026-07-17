@@ -1,0 +1,6 @@
+target/
+frontend/node_modules/
+.idea/
+.vscode/
+*.iml
+utils/NOTAM-Production-Templates/
