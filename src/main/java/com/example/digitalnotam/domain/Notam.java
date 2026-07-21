@@ -1,4 +1,4 @@
-package com.example.digitalnotam;
+package com.example.digitalnotam.domain;
 
 import java.time.Instant;
 

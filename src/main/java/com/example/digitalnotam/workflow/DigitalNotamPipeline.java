@@ -1,4 +1,9 @@
-package com.example.digitalnotam;
+package com.example.digitalnotam.workflow;
+
+import com.example.digitalnotam.baseline.BaselineTaxiwayCatalog;
+import com.example.digitalnotam.domain.Notam;
+import com.example.digitalnotam.scenario.adcls.AdClsNotamProducer;
+import com.example.digitalnotam.scenario.adcls.AdClsScenarioBuilder;
 
 import org.w3c.dom.*;
 import org.xml.sax.InputSource;
@@ -15,7 +20,7 @@ import java.nio.file.*;
 import java.time.*;
 import java.util.*;
 
-final class DigitalNotamPipeline {
+public final class DigitalNotamPipeline {
     private static final Set<String> SCENARIOS = Set.of("AD.CLS", "AD.LIM", "RWY.CLS", "RWY.LIM", "TWY.CLS", "TWY.LIM");
     private static final Path SAMPLES = Path.of("data", "virtual data", "Donlon_2025", "Donlon", "Digital NOTAM");
     private static final Map<String, String> BLUEPRINT = Map.of(
@@ -27,7 +32,7 @@ final class DigitalNotamPipeline {
     private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder());
     private final AdClsNotamProducer adClsNotamProducer = new AdClsNotamProducer();
 
-    List<Notam> restorePublished() {
+    public List<Notam> restorePublished() {
         if (!Files.isDirectory(store)) return List.of();
         List<Notam> restored = new ArrayList<>();
         try (var files = Files.list(store)) {
@@ -107,7 +112,7 @@ final class DigitalNotamPipeline {
                 condition, "", "", "", "", "", start, end, "", "", "", "N", "E", "QXXXX", "IV", "NBO", "A", "", "", "CONTINUOUS", "ANY", timeOf(start), timeOf(end), "PUBLISHED", modified, modified);
     }
 
-    String publish(Notam n) throws Exception {
+    public String publish(Notam n) throws Exception {
         if (!SCENARIOS.contains(n.scenario())) throw new IllegalArgumentException("不支持的场景: " + n.scenario());
         validatePublicationTime(n);
         ScenarioBuilder dedicatedBuilder = scenarioBuilders.get(n.scenario());
@@ -158,7 +163,7 @@ final class DigitalNotamPipeline {
         return xml;
     }
 
-    Imported importXml(String xml) throws Exception {
+    public Imported importXml(String xml) throws Exception {
         Document d = parse(xml);
         validateRules(d);
         validateXsd(d);
@@ -176,7 +181,7 @@ final class DigitalNotamPipeline {
                 metersOfFl(text(d, "minimumFL"), false), metersOfFl(text(d, "maximumFL"), true), scheduleMode, scheduleDays(lastEventAvailability(d)), childText(schedule, "startTime", "00:00"), childText(schedule, "endTime", "23:59"));
     }
 
-    String transform(String xml, String scenario) throws Exception {
+    public String transform(String xml, String scenario) throws Exception {
         TransformerFactory f = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", getClass().getClassLoader());
         f.setURIResolver(new DonlonResolver());
         Path xsl = Path.of("utils", "NOTAM-Production-Templates", "xslt-scenarios", scenario + "_CNOTAM_text_generation.xslt").toAbsolutePath();
@@ -723,7 +728,7 @@ final class DigitalNotamPipeline {
         return LocalDateTime.parse(compact, java.time.format.DateTimeFormatter.ofPattern("yyMMddHHmm")).toInstant(ZoneOffset.UTC).toString();
     }
 
-    record Imported(String number, String scenario, String title, String airport, String condition, String start,
+    public record Imported(String number, String scenario, String title, String airport, String condition, String start,
                     String end, String issued, String latitude, String longitude, String radiusNm,
                     String latitudeHemisphere, String longitudeHemisphere, String qCode, String traffic, String purpose,
                     String scope, String lowerMeters, String upperMeters, String scheduleMode, String scheduleDay,

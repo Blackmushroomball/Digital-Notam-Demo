@@ -1,17 +1,20 @@
-package com.example.digitalnotam;
+package com.example.digitalnotam.persistence;
+
+import com.example.digitalnotam.domain.Notam;
+import com.example.digitalnotam.xml.AixmXml;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 
-final class AixmXmlStore {
+public final class AixmXmlStore {
     private final Path directory;
 
-    AixmXmlStore(Path directory) {
+    public AixmXmlStore(Path directory) {
         this.directory = directory.toAbsolutePath().normalize();
     }
 
-    Path save(Notam notam) throws IOException {
+    public Path save(Notam notam) throws IOException {
         Files.createDirectories(directory);
         Path target = fileOf(notam);
         Path temporary = Files.createTempFile(directory, ".notam-", ".xml.tmp");
@@ -29,7 +32,7 @@ final class AixmXmlStore {
         }
     }
 
-    boolean delete(Notam notam) throws IOException {
+    public boolean delete(Notam notam) throws IOException {
         return Files.deleteIfExists(fileOf(notam));
     }
 

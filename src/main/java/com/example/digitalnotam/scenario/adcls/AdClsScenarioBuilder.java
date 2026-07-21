@@ -1,11 +1,16 @@
-package com.example.digitalnotam;
+package com.example.digitalnotam.scenario.adcls;
+
+import com.example.digitalnotam.baseline.BaselineAirportHeliportCatalog;
+import com.example.digitalnotam.domain.Notam;
+import com.example.digitalnotam.workflow.ScenarioBuilder;
+import com.example.digitalnotam.xml.CommonDigitalNotamBuilder;
 
 import org.w3c.dom.*;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.*;
 
-final class AdClsScenarioBuilder implements ScenarioBuilder {
+public final class AdClsScenarioBuilder implements ScenarioBuilder {
     private static final Path BLUEPRINT=Path.of("data","virtual data","Donlon_2025","Donlon","Digital NOTAM","DN_AD.CLS_1_ad_closed.xml");
     private final CommonDigitalNotamBuilder common=new CommonDigitalNotamBuilder();
     private final BaselineAirportHeliportCatalog catalog=new BaselineAirportHeliportCatalog();

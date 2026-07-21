@@ -1,4 +1,6 @@
-package com.example.digitalnotam;
+package com.example.digitalnotam.persistence;
+
+import com.example.digitalnotam.domain.Notam;
 
 import java.time.Instant;
 import java.util.*;
@@ -6,11 +8,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.time.Year;
 import java.time.ZoneOffset;
 
-final class NotamRepository {
+public final class NotamRepository {
+    public NotamRepository() {}
     private final Map<String, Notam> data = new ConcurrentHashMap<>();
     private static final Set<String> SERIES = Set.of("A", "C", "D");
 
-    void seedIfEmpty() {
+    public void seedIfEmpty() {
         if (!data.isEmpty()) return;
         Notam draft = new Notam(UUID.randomUUID().toString(), assignNumber("A", "1001"), "RWY.CLS", "DONLON 09R/27L 跑道关闭", "EADD", "RUNWAY",
                 "RWY 09R/27L CLSD DUE TO MAINT", "09R/27L", "", "跑道关闭", "MAINT", "", "2026-07-14T01:00:00Z", "2026-07-14T05:00:00Z",
@@ -22,16 +25,16 @@ final class NotamRepository {
         data.put(published.id(), published);
     }
 
-    void restore(Collection<Notam> notams) {
+    public void restore(Collection<Notam> notams) {
         for (Notam notam : notams) data.put(notam.id(), notam);
     }
 
-    Collection<Notam> all() { return data.values().stream().sorted(Comparator.comparing(Notam::createdAt).reversed()).toList(); }
-    Optional<Notam> find(String id) { return Optional.ofNullable(data.get(id)); }
-    Notam save(Notam n) { data.put(n.id(), n); return n; }
-    boolean delete(String id) { return data.remove(id) != null; }
+    public Collection<Notam> all() { return data.values().stream().sorted(Comparator.comparing(Notam::createdAt).reversed()).toList(); }
+    public Optional<Notam> find(String id) { return Optional.ofNullable(data.get(id)); }
+    public Notam save(Notam n) { data.put(n.id(), n); return n; }
+    public boolean delete(String id) { return data.remove(id) != null; }
 
-    synchronized String assignNumber(String series, String requestedDigits) {
+    public synchronized String assignNumber(String series, String requestedDigits) {
         String normalizedSeries = series == null ? "" : series.trim().toUpperCase(Locale.ROOT);
         if (!SERIES.contains(normalizedSeries)) throw new IllegalArgumentException("编号系列必须为 A、C 或 D");
         int year = Year.now(ZoneOffset.UTC).getValue() % 100;

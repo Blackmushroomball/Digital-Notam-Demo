@@ -1,4 +1,13 @@
-package com.example.digitalnotam;
+package com.example.digitalnotam.application;
+
+import com.example.digitalnotam.baseline.BaselineAirportHeliportCatalog;
+import com.example.digitalnotam.baseline.BaselineRunwayCatalog;
+import com.example.digitalnotam.baseline.BaselineTaxiwayCatalog;
+import com.example.digitalnotam.domain.Notam;
+import com.example.digitalnotam.persistence.AixmXmlStore;
+import com.example.digitalnotam.persistence.NotamRepository;
+import com.example.digitalnotam.workflow.DigitalNotamPipeline;
+import com.example.digitalnotam.xml.AixmXml;
 
 import com.sun.net.httpserver.*;
 import java.io.*;

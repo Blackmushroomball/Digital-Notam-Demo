@@ -1,9 +1,11 @@
-package com.example.digitalnotam;
+package com.example.digitalnotam.xml;
 
-final class AixmXml {
+import com.example.digitalnotam.domain.Notam;
+
+public final class AixmXml {
     private AixmXml() {}
 
-    static String render(Notam n) {
+    public static String render(Notam n) {
         String feature = switch (n.featureType()) {
             case "RUNWAY" -> "Runway";
             case "AIRSPACE" -> "Airspace";

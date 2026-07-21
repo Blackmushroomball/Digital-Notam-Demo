@@ -1,4 +1,6 @@
-package com.example.digitalnotam;
+package com.example.digitalnotam.xml;
+
+import com.example.digitalnotam.domain.Notam;
 
 import org.w3c.dom.*;
 import org.xml.sax.InputSource;
@@ -11,10 +13,10 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-final class CommonDigitalNotamBuilder {
-    static final String AIXM="http://www.aixm.aero/schema/5.1.1",EVENT="http://www.aixm.aero/schema/5.1.1/event",GML="http://www.opengis.net/gml/3.2",XLINK="http://www.w3.org/1999/xlink";
+public final class CommonDigitalNotamBuilder {
+    public static final String AIXM="http://www.aixm.aero/schema/5.1.1",EVENT="http://www.aixm.aero/schema/5.1.1/event",GML="http://www.opengis.net/gml/3.2",XLINK="http://www.w3.org/1999/xlink";
 
-    Document populate(Path blueprint,Notam n)throws Exception{
+    public Document populate(Path blueprint,Notam n)throws Exception{
         Document d=parse(Files.readString(blueprint,StandardCharsets.UTF_8));String[] number=n.number().split("/");
         setFirst(d,"series",number[0].substring(0,1));setFirst(d,"number",number[0].substring(1));setFirst(d,"year","20"+number[1]);
         setFirst(d,"scenario",n.scenario());setFirst(d,"name",n.title());setFirst(d,"text",n.condition());
@@ -24,7 +26,7 @@ final class CommonDigitalNotamBuilder {
         return d;
     }
 
-    void regenerateIds(Document d,String airportUuid,String designator,String name){
+    public void regenerateIds(Document d,String airportUuid,String designator,String name){
         NodeList all=d.getElementsByTagNameNS("*","*");for(int i=0;i<all.getLength();i++){Element e=(Element)all.item(i);if(e.hasAttributeNS(GML,"id"))e.setAttributeNS(GML,"gml:id","id_"+UUID.randomUUID());}
         d.getDocumentElement().setAttributeNS(GML,"gml:id","DN_AD.CLS_"+UUID.randomUUID());
         String eventUuid=UUID.randomUUID().toString();Element event=one(d,EVENT,"Event");event.setAttributeNS(GML,"gml:id","uuid."+eventUuid);one(event,GML,"identifier").setTextContent(eventUuid);
@@ -33,11 +35,11 @@ final class CommonDigitalNotamBuilder {
     }
 
     static Document parse(String xml)throws Exception{DocumentBuilderFactory f=DocumentBuilderFactory.newInstance();f.setNamespaceAware(true);f.setFeature("http://apache.org/xml/features/disallow-doctype-decl",true);f.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD,"");return f.newDocumentBuilder().parse(new InputSource(new StringReader(xml)));}
-    static Element one(Document d,String ns,String local){NodeList n=d.getElementsByTagNameNS(ns,local);if(n.getLength()==0)throw new IllegalArgumentException("XML 缺少元素: "+local);return(Element)n.item(0);}
-    static Element one(Element e,String ns,String local){NodeList n=e.getElementsByTagNameNS(ns,local);if(n.getLength()==0)throw new IllegalArgumentException("XML 缺少元素: "+local);return(Element)n.item(0);}
-    static List<Element> all(Document d,String ns,String local){NodeList n=d.getElementsByTagNameNS(ns,local);List<Element> r=new ArrayList<>();for(int i=0;i<n.getLength();i++)r.add((Element)n.item(i));return r;}
+    public static Element one(Document d,String ns,String local){NodeList n=d.getElementsByTagNameNS(ns,local);if(n.getLength()==0)throw new IllegalArgumentException("XML 缺少元素: "+local);return(Element)n.item(0);}
+    public static Element one(Element e,String ns,String local){NodeList n=e.getElementsByTagNameNS(ns,local);if(n.getLength()==0)throw new IllegalArgumentException("XML 缺少元素: "+local);return(Element)n.item(0);}
+    public static List<Element> all(Document d,String ns,String local){NodeList n=d.getElementsByTagNameNS(ns,local);List<Element> r=new ArrayList<>();for(int i=0;i<n.getLength();i++)r.add((Element)n.item(i));return r;}
     static void setFirst(Document d,String local,String value){NodeList n=d.getElementsByTagNameNS("*",local);if(n.getLength()==0)throw new IllegalArgumentException("XML 缺少元素: "+local);n.item(0).setTextContent(value);}
-    static void setNotam(Document d,String local,String value){one(one(d,EVENT,"NOTAM"),EVENT,local).setTextContent(value);}
+    public static void setNotam(Document d,String local,String value){one(one(d,EVENT,"NOTAM"),EVENT,local).setTextContent(value);}
     static void replaceAll(Document d,String local,String value){NodeList n=d.getElementsByTagNameNS("*",local);for(int i=0;i<n.getLength();i++)n.item(i).setTextContent(value);}
     private static String date(String iso){return Instant.parse(iso).atZone(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyMMddHHmm"));}
     private static String coordinates(Notam n){return coordinate(n.latitude(),2,n.latitudeHemisphere())+coordinate(n.longitude(),3,n.longitudeHemisphere());}

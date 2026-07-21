@@ -1,4 +1,8 @@
-package com.example.digitalnotam;
+package com.example.digitalnotam.scenario.adcls;
+
+import com.example.digitalnotam.baseline.BaselineAirportHeliportCatalog;
+import com.example.digitalnotam.domain.Notam;
+import com.example.digitalnotam.xml.CommonDigitalNotamBuilder;
 
 import org.w3c.dom.*;
 import java.util.*;

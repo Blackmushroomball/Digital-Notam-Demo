@@ -1,5 +1,6 @@
-package com.example.digitalnotam;
+package com.example.digitalnotam.application;
 
+import com.example.digitalnotam.domain.Notam;
 import java.util.*;
 import java.util.regex.*;
 

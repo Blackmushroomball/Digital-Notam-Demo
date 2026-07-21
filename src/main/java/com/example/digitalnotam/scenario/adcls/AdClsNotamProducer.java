@@ -1,15 +1,19 @@
-package com.example.digitalnotam;
+package com.example.digitalnotam.scenario.adcls;
+
+import com.example.digitalnotam.baseline.BaselineAirportHeliportCatalog;
+import com.example.digitalnotam.domain.Notam;
+import com.example.digitalnotam.xml.CommonDigitalNotamBuilder;
 
 import org.w3c.dom.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-final class AdClsNotamProducer {
+public final class AdClsNotamProducer {
     private static final Map<String,String[]> Q_DEFAULTS=Map.of("QFALC",new String[]{"IV","NBO"},"QFPLC",new String[]{"IV","NBO"});
     private final BaselineAirportHeliportCatalog catalog=new BaselineAirportHeliportCatalog();
 
-    NotamFields produce(Document d,Notam n)throws Exception{
+    public NotamFields produce(Document d,Notam n)throws Exception{
         var b=catalog.find(n.airport(),Instant.parse(n.effectiveStart()),Instant.parse(n.effectiveEnd()));
         String automaticQ="HP".equals(b.type())?"QFPLC":"QFALC";String[] defaults=Q_DEFAULTS.get(automaticQ);
         boolean overridden=!n.qOverrideReason().isBlank();
@@ -34,5 +38,5 @@ final class AdClsNotamProducer {
     private static String hemisphere(String value,boolean latitude){return Double.parseDouble(value)<0?(latitude?"S":"W"):(latitude?"N":"E");}
     private static String formatCoordinates(String lat,String latHem,String lon,String lonHem){return coordinate(lat,2,latHem)+coordinate(lon,3,lonHem);}private static String coordinate(String value,int width,String hem){double v=Math.abs(Double.parseDouble(value));int deg=(int)Math.floor(v),min=(int)Math.round((v-deg)*60);if(min==60){deg++;min=0;}return("%0"+width+"d%02d%s").formatted(deg,min,hem);}
     private static String padRadius(String value){return "%03d".formatted(Integer.parseInt(value));}
-    record NotamFields(String fir,String qCode,String traffic,String purpose,String scope,String lower,String upper,String coordinates,String radius,String itemA,String itemB,String itemC,String itemD,String itemE,String itemF,String itemG){}
+    public record NotamFields(String fir,String qCode,String traffic,String purpose,String scope,String lower,String upper,String coordinates,String radius,String itemA,String itemB,String itemC,String itemD,String itemE,String itemF,String itemG){}
 }
