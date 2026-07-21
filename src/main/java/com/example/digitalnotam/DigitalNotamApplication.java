@@ -15,6 +15,7 @@ public final class DigitalNotamApplication {
     private static final AixmXmlStore XML_STORE = new AixmXmlStore(Path.of("data", "notams"));
     private static final BaselineRunwayCatalog BASELINE_RUNWAYS = new BaselineRunwayCatalog();
     private static final BaselineTaxiwayCatalog BASELINE_TAXIWAYS = new BaselineTaxiwayCatalog();
+    private static final BaselineAirportHeliportCatalog BASELINE_AIRPORTS = new BaselineAirportHeliportCatalog();
     private static final Path PUBLIC = Path.of("src", "main", "resources", "public").toAbsolutePath().normalize();
 
     static {
@@ -30,6 +31,7 @@ public final class DigitalNotamApplication {
         server.createContext("/api/import", DigitalNotamApplication::importXml);
         server.createContext("/api/baseline/runways", DigitalNotamApplication::baselineRunways);
         server.createContext("/api/baseline/taxiways", DigitalNotamApplication::baselineTaxiways);
+        server.createContext("/api/baseline/airports", DigitalNotamApplication::baselineAirports);
         server.createContext("/", DigitalNotamApplication::staticFile);
         server.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
         server.start();
@@ -62,8 +64,8 @@ public final class DigitalNotamApplication {
                 Map<String, String> v = Json.parseObject(new String(ex.getRequestBody().readAllBytes(), StandardCharsets.UTF_8));
                 for (String key : List.of("scenario", "fir", "title", "airport", "featureType", "effectiveStart", "effectiveEnd", "numberSeries", "qCode", "traffic", "purpose", "scope", "latitudeHemisphere", "longitudeHemisphere", "scheduleMode"))
                     if (v.getOrDefault(key, "").isBlank()) { send(ex, 400, "application/json", Json.message("缺少必填字段: " + key)); return; }
-                if (!"EAAD".equals(v.get("fir"))) { send(ex,400,"application/json",Json.message("当前版本FIR只能选择EAAD")); return; }
-                if(v.getOrDefault("eventDescription","").isBlank()||v.getOrDefault("reason","").isBlank()){send(ex,400,"application/json",Json.message("所有业务场景都必须填写E项的事件和原因"));return;}
+                if(v.getOrDefault("eventDescription","").isBlank()){send(ex,400,"application/json",Json.message("必须填写E项事件"));return;}
+                if(!"AD.CLS".equals(v.get("scenario"))&&v.getOrDefault("reason","").isBlank()){send(ex,400,"application/json",Json.message("当前场景必须填写E项原因"));return;}
                 if("RWY.CLS".equals(v.get("scenario"))&&v.getOrDefault("selectedRunways","").isBlank()){send(ex,400,"application/json",Json.message("RWY.CLS必须选择跑道"));return;}
                 if("TWY.CLS".equals(v.get("scenario"))&&v.getOrDefault("selectedTaxiways","").isBlank()){send(ex,400,"application/json",Json.message("TWY.CLS必须选择至少一条滑行道"));return;}
                 if("SCHEDULED".equals(v.get("scheduleMode"))&&(v.getOrDefault("scheduleDay","").isBlank()||v.getOrDefault("scheduleStart","").isBlank()||v.getOrDefault("scheduleEnd","").isBlank())){send(ex,400,"application/json",Json.message("计划生效模式必须填写D项日期和时间"));return;}
@@ -75,7 +77,8 @@ public final class DigitalNotamApplication {
                         structuredCondition(v), v.getOrDefault("selectedRunways",""),v.getOrDefault("selectedTaxiways",""),v.getOrDefault("eventDescription",""),v.getOrDefault("reason",""),v.getOrDefault("remarks",""), v.get("effectiveStart"), v.get("effectiveEnd"), v.getOrDefault("latitude", ""),
                         v.getOrDefault("longitude", ""), v.getOrDefault("radiusNm", ""), v.get("latitudeHemisphere"), v.get("longitudeHemisphere"),
                         v.get("qCode").toUpperCase(), v.get("traffic"), v.get("purpose"), v.get("scope"), v.getOrDefault("lowerMeters", ""), v.getOrDefault("upperMeters", ""),
-                        v.get("scheduleMode"),v.getOrDefault("scheduleDay","ANY"),v.getOrDefault("scheduleStart","00:00"),v.getOrDefault("scheduleEnd","00:00"), "DRAFT", Instant.now().toString(), "");
+                        v.get("scheduleMode"),v.getOrDefault("scheduleDay","ANY"),v.getOrDefault("scheduleStart","00:00"),v.getOrDefault("scheduleEnd","00:00"), "DRAFT", Instant.now().toString(), "",
+                        v.get("fir"),v.getOrDefault("scheduleStartDate",""),v.getOrDefault("scheduleEndDate",""),v.getOrDefault("qOverrideReason",""),v.getOrDefault("qOverrideOperator",""),v.getOrDefault("qOverrideAt",""));
                 try { validateQFields(n); }
                 catch (IllegalArgumentException e) { send(ex,400,"application/json",Json.message(e.getMessage())); return; }
                 send(ex, 201, "application/json", Json.notam(REPO.save(n))); return;
@@ -134,8 +137,8 @@ public final class DigitalNotamApplication {
         if(!Set.of("I","V","IV").contains(n.traffic())) throw new IllegalArgumentException("TRAFFIC只能为I、V或IV");
         if(!Set.of("N","B","O","NB","NO","BO","NBO").contains(n.purpose())) throw new IllegalArgumentException("PURPOSE组合不符合当前版本规则");
         if(!Set.of("A","E","AE").contains(n.scope())) throw new IllegalArgumentException("SCOPE只能为A、E或AE");
-        if(!Set.of("CONTINUOUS","SCHEDULED").contains(n.scheduleMode()))throw new IllegalArgumentException("D项生效模式无效");
-        if("SCHEDULED".equals(n.scheduleMode())){
+        if(!Set.of("CONTINUOUS","DAILY","WEEKDAYS","DATES").contains(n.scheduleMode()))throw new IllegalArgumentException("D项生效模式无效");
+        if("WEEKDAYS".equals(n.scheduleMode())){
             List<String> days=Arrays.stream(n.scheduleDay().split(",")).filter(s->!s.isBlank()).toList();
             if(days.isEmpty()||days.size()!=new HashSet<>(days).size()||!Set.of("MON","TUE","WED","THU","FRI","SAT","SUN").containsAll(days))
                 throw new IllegalArgumentException("D项必须选择一个或多个明确星期，不允许WORK_DAY或节假日代码");
@@ -170,6 +173,11 @@ public final class DigitalNotamApplication {
         if(!"GET".equals(ex.getRequestMethod())){send(ex,405,"application/json",Json.message("仅支持GET"));return;}
         String airport=query(ex.getRequestURI().getRawQuery()).getOrDefault("airport","");
         try{send(ex,200,"application/json",BASELINE_TAXIWAYS.json(airport));}catch(Exception e){send(ex,400,"application/json",Json.message(e.getMessage()));}
+    }
+
+    private static void baselineAirports(HttpExchange ex)throws IOException{
+        if(!"GET".equals(ex.getRequestMethod())){send(ex,405,"application/json",Json.message("仅支持GET"));return;}
+        try{send(ex,200,"application/json",BASELINE_AIRPORTS.json());}catch(Exception e){send(ex,400,"application/json",Json.message(e.getMessage()));}
     }
 
     private static void send(HttpExchange ex, int status, String type, String body) throws IOException {

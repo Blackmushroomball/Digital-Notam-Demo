@@ -26,7 +26,9 @@ final class Json {
                 field("lowerMeters", n.lowerMeters()) + "," + field("upperMeters", n.upperMeters()) + "," +
                 field("minimumFl", n.minimumFl()) + "," + field("maximumFl", n.maximumFl()) + "," + field("scheduleMode",n.scheduleMode()) + "," + field("scheduleDay", n.scheduleDay()) + "," +
                 field("scheduleStart", n.scheduleStart()) + "," + field("scheduleEnd", n.scheduleEnd()) + "," + field("status", n.status()) + "," +
-                field("createdAt", n.createdAt()) + "," + field("publishedAt", n.publishedAt()) + "}";
+                field("createdAt", n.createdAt()) + "," + field("publishedAt", n.publishedAt()) + "," + field("fir",n.fir()) + "," +
+                field("scheduleStartDate",n.scheduleStartDate()) + "," + field("scheduleEndDate",n.scheduleEndDate()) + "," +
+                field("qOverrideReason",n.qOverrideReason()) + "," + field("qOverrideOperator",n.qOverrideOperator()) + "," + field("qOverrideAt",n.qOverrideAt()) + "}";
     }
 
     static String list(Collection<Notam> items) {

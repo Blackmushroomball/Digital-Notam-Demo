@@ -24,6 +24,8 @@ final class DigitalNotamPipeline {
             "TWY.CLS", "DN_TWY.CLS_1_single_twy_closure.xml", "TWY.LIM", "DN_TWY.LIM_1_closed_except_for.xml");
     private static final Map<String, String> RUNWAY_DIRECTION_BY_ID = Map.of("uuid.5d6513d4-a62a-49e1-9e26-0b8cbf320daf", "09R", "uuid.ee6019d6-29f7-404d-8cee-b6819f325aed", "27L");
     private final Path store = Path.of("data", "notams").toAbsolutePath().normalize();
+    private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder());
+    private final AdClsNotamProducer adClsNotamProducer = new AdClsNotamProducer();
 
     List<Notam> restorePublished() {
         if (!Files.isDirectory(store)) return List.of();
@@ -107,13 +109,25 @@ final class DigitalNotamPipeline {
 
     String publish(Notam n) throws Exception {
         if (!SCENARIOS.contains(n.scenario())) throw new IllegalArgumentException("不支持的场景: " + n.scenario());
+        validatePublicationTime(n);
+        ScenarioBuilder dedicatedBuilder = scenarioBuilders.get(n.scenario());
+        if (dedicatedBuilder != null) {
+            Document d = dedicatedBuilder.build(n);
+            if ("AD.CLS".equals(n.scenario())) adClsNotamProducer.produce(d, n);
+            replaceHeaderComments(d, n.scenario());
+            validateRules(d);
+            dedicatedBuilder.validate(d, n);
+            validateXsd(d);
+            String xml = serialize(d);
+            save(n.number(), xml);
+            return xml;
+        }
         Document d = parse(Files.readString(SAMPLES.resolve(BLUEPRINT.get(n.scenario())), StandardCharsets.UTF_8));
         String[] number = n.number().split("[/]");
         setFirst(d, "series", number[0].substring(0, 1));
         setFirst(d, "number", number[0].substring(1));
         setFirst(d, "year", "20" + number[1]);
         setFirst(d, "scenario", n.scenario());
-        validatePublicationTime(n);
         setNotamField(d, "issued", n.publishedAt());
         setFirst(d, "name", n.title());
         setFirst(d, "text", n.condition());
@@ -401,20 +415,23 @@ final class DigitalNotamPipeline {
     private static String scheduleItem(Document d) {
         Element availability = lastEventAvailability(d);
         if (availability == null) return "-";
-        Map<String, List<String>> grouped = new LinkedHashMap<>();
+        List<String> values = new ArrayList<>();
         for (Node p = availability.getFirstChild(); p != null; p = p.getNextSibling())
             if (p instanceof Element e && "timeInterval".equals(e.getLocalName())) {
                 NodeList sheets = e.getElementsByTagNameNS("http://www.aixm.aero/schema/5.1.1", "Timesheet");
                 for (int i = 0; i < sheets.getLength(); i++) {
                     Element sheet = (Element) sheets.item(i);
-                    String day = childText(sheet, "day", "");
-                    String time = childText(sheet, "startTime", "").replace(":", "") + "-" + childText(sheet, "endTime", "").replace(":", "");
-                    if (!day.isBlank()) grouped.computeIfAbsent(time, k -> new ArrayList<>()).add(day);
+                    String day = childText(sheet, "day", ""), startDate=childText(sheet,"startDate",""), endDate=childText(sheet,"endDate","");
+                    String start=childText(sheet,"startTime","").replace(":",""), rawEnd=childText(sheet,"endTime","");
+                    String time=start+"-"+("00:00".equals(rawEnd)?"2359":rawEnd.replace(":",""));
+                    if(!startDate.isBlank()){String range=notamScheduleDate(startDate);if(!endDate.isBlank()&&!endDate.equals(startDate))range+="-"+notamScheduleDate(endDate);values.add(range+" "+time);}
+                    else if("ANY".equals(day))values.add("DAILY "+time);else if(!day.isBlank())values.add(day+" "+time);
                 }
             }
-        if (grouped.isEmpty()) return "-";
-        return grouped.entrySet().stream().map(e -> String.join(" ", e.getValue()) + " " + e.getKey()).reduce((a, b) -> a + System.lineSeparator() + "D) " + b).orElse("-");
+        return values.isEmpty()?"-":String.join(" ",values);
     }
+
+    private static String notamScheduleDate(String value){return MonthDay.parse(value,java.time.format.DateTimeFormatter.ofPattern("dd-MM")).format(java.time.format.DateTimeFormatter.ofPattern("MMM dd",Locale.ENGLISH)).toUpperCase(Locale.ROOT);}
 
     private static void replaceClosureNotes(Element availability, String reason, String remarks) {
         NodeList notes = availability.getElementsByTagNameNS("http://www.aixm.aero/schema/5.1.1", "Note");
@@ -611,14 +628,15 @@ final class DigitalNotamPipeline {
         if (!end.isAfter(start)) throw new IllegalArgumentException("C项结束时间必须晚于B项开始时间");
         if (issued.isAfter(start))
             throw new IllegalArgumentException("通告发布时间不能晚于B项生效开始时间；当前版本不支持追溯发布");
-        if ("SCHEDULED".equals(n.scheduleMode()) && !scheduleIntersects(n, start, end))
+        if (!"CONTINUOUS".equals(n.scheduleMode()) && !scheduleIntersects(n, start, end))
             throw new IllegalArgumentException("D项时间计划在B-C有效期内没有任何生效区间");
     }
 
     private static boolean scheduleIntersects(Notam n, Instant start, Instant end) {
         LocalTime from = LocalTime.parse(n.scheduleStart()), to = LocalTime.parse(n.scheduleEnd());
         LocalDate first = start.atZone(ZoneOffset.UTC).toLocalDate(), last = end.atZone(ZoneOffset.UTC).toLocalDate();
-        Set<String> selected = new HashSet<>(parseScheduleDays(n.scheduleDay()));
+        Set<String> selected = "WEEKDAYS".equals(n.scheduleMode())?new HashSet<>(parseScheduleDays(n.scheduleDay())):Set.of("MON","TUE","WED","THU","FRI","SAT","SUN");
+        if("DATES".equals(n.scheduleMode())){LocalDate configuredStart=LocalDate.parse(n.scheduleStartDate()),configuredEnd=LocalDate.parse(n.scheduleEndDate());if(configuredEnd.isBefore(configuredStart))throw new IllegalArgumentException("Dates schedule 的 endDate 不能早于 startDate");first=first.isAfter(configuredStart)?first:configuredStart;last=last.isBefore(configuredEnd)?last:configuredEnd;}
         for (LocalDate date = first; !date.isAfter(last); date = date.plusDays(1)) {
             if (!selected.contains(dayCode(date.getDayOfWeek()))) continue;
             Instant occurrenceStart = date.atTime(from).toInstant(ZoneOffset.UTC);
@@ -678,6 +696,7 @@ final class DigitalNotamPipeline {
     }
 
     private static String serialize(Document d) throws Exception {
+        removeWhitespaceOnlyText(d);
         TransformerFactory f = TransformerFactory.newDefaultInstance();
         Transformer t = f.newTransformer();
         t.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -685,6 +704,15 @@ final class DigitalNotamPipeline {
         StringWriter w = new StringWriter();
         t.transform(new DOMSource(d), new StreamResult(w));
         return w.toString();
+    }
+
+    private static void removeWhitespaceOnlyText(Node parent) {
+        for (Node node = parent.getFirstChild(); node != null; ) {
+            Node next = node.getNextSibling();
+            if (node.getNodeType() == Node.TEXT_NODE && node.getNodeValue().isBlank()) parent.removeChild(node);
+            else removeWhitespaceOnlyText(node);
+            node = next;
+        }
     }
 
     private static String notamDate(String iso) {
