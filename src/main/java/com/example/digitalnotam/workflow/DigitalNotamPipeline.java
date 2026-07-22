@@ -4,6 +4,8 @@ import com.example.digitalnotam.baseline.BaselineTaxiwayCatalog;
 import com.example.digitalnotam.domain.Notam;
 import com.example.digitalnotam.scenario.adcls.AdClsNotamProducer;
 import com.example.digitalnotam.scenario.adcls.AdClsScenarioBuilder;
+import com.example.digitalnotam.scenario.adlim.AdLimNotamProducer;
+import com.example.digitalnotam.scenario.adlim.AdLimScenarioBuilder;
 
 import org.w3c.dom.*;
 import org.xml.sax.InputSource;
@@ -29,8 +31,9 @@ public final class DigitalNotamPipeline {
             "TWY.CLS", "DN_TWY.CLS_1_single_twy_closure.xml", "TWY.LIM", "DN_TWY.LIM_1_closed_except_for.xml");
     private static final Map<String, String> RUNWAY_DIRECTION_BY_ID = Map.of("uuid.5d6513d4-a62a-49e1-9e26-0b8cbf320daf", "09R", "uuid.ee6019d6-29f7-404d-8cee-b6819f325aed", "27L");
     private final Path store = Path.of("data", "notams").toAbsolutePath().normalize();
-    private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder());
+    private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder(), "AD.LIM", new AdLimScenarioBuilder());
     private final AdClsNotamProducer adClsNotamProducer = new AdClsNotamProducer();
+    private final AdLimNotamProducer adLimNotamProducer = new AdLimNotamProducer();
 
     public List<Notam> restorePublished() {
         if (!Files.isDirectory(store)) return List.of();
@@ -119,6 +122,7 @@ public final class DigitalNotamPipeline {
         if (dedicatedBuilder != null) {
             Document d = dedicatedBuilder.build(n);
             if ("AD.CLS".equals(n.scenario())) adClsNotamProducer.produce(d, n);
+            if ("AD.LIM".equals(n.scenario())) adLimNotamProducer.produce(d, n);
             replaceHeaderComments(d, n.scenario());
             validateRules(d);
             dedicatedBuilder.validate(d, n);
@@ -182,13 +186,14 @@ public final class DigitalNotamPipeline {
     }
 
     public String transform(String xml, String scenario) throws Exception {
+        Document d = parse(xml);
+        if ("AD.LIM".equals(scenario)) { normalizeLegacyAdLimAvailabilities(d); xml = serialize(d); }
         TransformerFactory f = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", getClass().getClassLoader());
         f.setURIResolver(new DonlonResolver());
         Path xsl = Path.of("utils", "NOTAM-Production-Templates", "xslt-scenarios", scenario + "_CNOTAM_text_generation.xslt").toAbsolutePath();
         Transformer t = f.newTransformer(new StreamSource(xsl.toFile()));
         StringWriter out = new StringWriter();
         t.transform(new StreamSource(new StringReader(xml)), new StreamResult(out));
-        Document d = parse(xml);
         String qCode = text(d, "selectionCode"), minimum = text(d, "minimumFL"), maximum = text(d, "maximumFL");
         String q = "Q) " + String.join("/", text(d, "affectedFIR"), qCode, text(d, "traffic"), text(d, "purpose"), text(d, "scope"), minimum, maximum, text(d, "coordinates") + text(d, "radius"));
         String result = out.toString().replaceFirst("(?m)^Q\\) [^\\r\\n]*", java.util.regex.Matcher.quoteReplacement(q));
@@ -204,6 +209,25 @@ public final class DigitalNotamPipeline {
         boolean warningOrRestriction = qCode.startsWith("QW") || qCode.startsWith("QR");
         String fItem = warningOrRestriction ? "FL" + minimum : "-", gItem = warningOrRestriction ? "FL" + maximum : "-";
         return result + System.lineSeparator() + "F) " + fItem + System.lineSeparator() + "G) " + gItem;
+    }
+
+    private static void normalizeLegacyAdLimAvailabilities(Document d) {
+        Element slice = lastElement(d, "AirportHeliportTimeSlice");
+        List<Element> wrappers = new ArrayList<>();
+        for (Node node = slice.getFirstChild(); node != null; node = node.getNextSibling()) if (node instanceof Element wrapper && "availability".equals(wrapper.getLocalName())) {
+            String status = descendantText(wrapper, "operationalStatus");
+            if ("LIMITED".equals(status) || "OTHER:EXTENDED".equals(status)) wrappers.add(wrapper);
+        }
+        if (wrappers.size() < 2) return;
+        Element target = (Element) wrappers.get(0).getElementsByTagNameNS("*", "AirportHeliportAvailability").item(0);
+        for (int i = 1; i < wrappers.size(); i++) {
+            Element source = (Element) wrappers.get(i).getElementsByTagNameNS("*", "AirportHeliportAvailability").item(0);
+            List<Element> usages = new ArrayList<>();
+            for (Node node = source.getFirstChild(); node != null; node = node.getNextSibling()) if (node instanceof Element e && "usage".equals(e.getLocalName())) usages.add(e);
+            for (Element usage : usages) target.appendChild(usage);
+            slice.removeChild(wrappers.get(i));
+        }
+        for (Node node = target.getFirstChild(); node != null;) { Node next = node.getNextSibling(); if (node.getNodeType() == Node.COMMENT_NODE && node.getNodeValue().trim().toLowerCase(Locale.ROOT).startsWith("limitation")) target.removeChild(node); node = next; }
     }
 
     private void save(String number, String xml) throws IOException {
@@ -706,9 +730,32 @@ public final class DigitalNotamPipeline {
         Transformer t = f.newTransformer();
         t.setOutputProperty(OutputKeys.INDENT, "yes");
         t.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+        t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
         StringWriter w = new StringWriter();
         t.transform(new DOMSource(d), new StreamResult(w));
-        return w.toString();
+        return formatRootStartTag(w.toString());
+    }
+
+    private static String formatRootStartTag(String xml) {
+        String marker = "<message:AIXMBasicMessage";
+        int start = xml.indexOf(marker);
+        if (start < 0) return xml;
+        int end = start + marker.length();
+        boolean quoted = false;
+        for (; end < xml.length(); end++) {
+            char c = xml.charAt(end);
+            if (c == '"') quoted = !quoted;
+            else if (c == '>' && !quoted) break;
+        }
+        if (end >= xml.length()) return xml;
+        String opening = xml.substring(start, end + 1);
+        java.util.regex.Matcher attributes = java.util.regex.Pattern.compile("\\s+([^\\s=]+)=\"([^\"]*)\"").matcher(opening.substring(marker.length(), opening.length() - 1));
+        StringBuilder formatted = new StringBuilder(marker);
+        while (attributes.find()) formatted.append(System.lineSeparator()).append("  ").append(attributes.group(1)).append("=\"").append(attributes.group(2)).append('"');
+        formatted.append('>');
+        String prefix = xml.substring(0, start).stripTrailing();
+        if (!prefix.isEmpty()) prefix += System.lineSeparator();
+        return prefix + formatted + xml.substring(end + 1);
     }
 
     private static void removeWhitespaceOnlyText(Node parent) {

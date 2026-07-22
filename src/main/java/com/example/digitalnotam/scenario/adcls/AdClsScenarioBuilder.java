@@ -40,7 +40,7 @@ public final class AdClsScenarioBuilder implements ScenarioBuilder {
         clearOptional(availability);
         if(!"CONTINUOUS".equals(n.scheduleMode()))addSchedule(d,availability,n);
         addAnnotation(d,availability,n.reason(),true);addAnnotation(d,availability,n.remarks(),false);
-        common.regenerateIds(d,baseline.uuid(),baseline.designator(),baseline.name());
+        common.regenerateIds(d,baseline.uuid(),baseline.designator(),baseline.name(),scenario());
         validate(d,n);return d;
     }
     public void validate(Document d,Notam n){validator.validate(d,n);}

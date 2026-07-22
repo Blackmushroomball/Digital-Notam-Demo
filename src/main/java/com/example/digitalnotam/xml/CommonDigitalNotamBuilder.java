@@ -26,12 +26,12 @@ public final class CommonDigitalNotamBuilder {
         return d;
     }
 
-    public void regenerateIds(Document d,String airportUuid,String designator,String name){
+    public void regenerateIds(Document d,String airportUuid,String designator,String name,String scenario){
         NodeList all=d.getElementsByTagNameNS("*","*");for(int i=0;i<all.getLength();i++){Element e=(Element)all.item(i);if(e.hasAttributeNS(GML,"id"))e.setAttributeNS(GML,"gml:id","id_"+UUID.randomUUID());}
-        d.getDocumentElement().setAttributeNS(GML,"gml:id","DN_AD.CLS_"+UUID.randomUUID());
+        d.getDocumentElement().setAttributeNS(GML,"gml:id","DN_"+scenario+"_"+UUID.randomUUID());
         String eventUuid=UUID.randomUUID().toString();Element event=one(d,EVENT,"Event");event.setAttributeNS(GML,"gml:id","uuid."+eventUuid);one(event,GML,"identifier").setTextContent(eventUuid);
         Element airport=one(d,AIXM,"AirportHeliport");airport.setAttributeNS(GML,"gml:id","uuid."+airportUuid);one(airport,GML,"identifier").setTextContent(airportUuid);
-        for(Element link:all(d,EVENT,"theEvent")){link.setAttributeNS(XLINK,"xlink:href","urn:uuid:"+eventUuid);link.setAttributeNS(XLINK,"xlink:title",designator+" "+name+" DNOTAM AD.CLS");}
+        for(Element link:all(d,EVENT,"theEvent")){link.setAttributeNS(XLINK,"xlink:href","urn:uuid:"+eventUuid);link.setAttributeNS(XLINK,"xlink:title",designator+" "+name+" DNOTAM "+scenario);}
     }
 
     static Document parse(String xml)throws Exception{DocumentBuilderFactory f=DocumentBuilderFactory.newInstance();f.setNamespaceAware(true);f.setFeature("http://apache.org/xml/features/disallow-doctype-decl",true);f.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD,"");return f.newDocumentBuilder().parse(new InputSource(new StringReader(xml)));}

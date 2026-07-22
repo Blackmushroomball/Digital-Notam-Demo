@@ -4,6 +4,7 @@ import com.example.digitalnotam.baseline.BaselineAirportHeliportCatalog;
 import com.example.digitalnotam.baseline.BaselineRunwayCatalog;
 import com.example.digitalnotam.baseline.BaselineTaxiwayCatalog;
 import com.example.digitalnotam.domain.Notam;
+import com.example.digitalnotam.domain.AdLimRestriction;
 import com.example.digitalnotam.persistence.AixmXmlStore;
 import com.example.digitalnotam.persistence.NotamRepository;
 import com.example.digitalnotam.workflow.DigitalNotamPipeline;
@@ -70,11 +71,16 @@ public final class DigitalNotamApplication {
                 send(ex, 200, "application/json", Json.list(result)); return;
             }
             if ("POST".equals(ex.getRequestMethod()) && parts.length == 3) {
-                Map<String, String> v = Json.parseObject(new String(ex.getRequestBody().readAllBytes(), StandardCharsets.UTF_8));
+                String body=new String(ex.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);Map<String, String> v = Json.parseObject(body);List<AdLimRestriction> restrictions=parseAdLimRestrictions(body);
+                if("AD.LIM".equals(v.get("scenario"))&&!restrictions.isEmpty()){
+                    String commonType=v.getOrDefault("limitationType",restrictions.get(0).limitationType());
+                    if(commonType.isBlank()||restrictions.stream().anyMatch(r->!commonType.equals(r.limitationType()))){send(ex,400,"application/json",Json.message("一次 AD.LIM 通告中的所有限制条件必须使用相同的限制类型"));return;}
+                }
                 for (String key : List.of("scenario", "fir", "title", "airport", "featureType", "effectiveStart", "effectiveEnd", "numberSeries", "qCode", "traffic", "purpose", "scope", "latitudeHemisphere", "longitudeHemisphere", "scheduleMode"))
                     if (v.getOrDefault(key, "").isBlank()) { send(ex, 400, "application/json", Json.message("缺少必填字段: " + key)); return; }
                 if(v.getOrDefault("eventDescription","").isBlank()){send(ex,400,"application/json",Json.message("必须填写E项事件"));return;}
-                if(!"AD.CLS".equals(v.get("scenario"))&&v.getOrDefault("reason","").isBlank()){send(ex,400,"application/json",Json.message("当前场景必须填写E项原因"));return;}
+                if(!Set.of("AD.CLS","AD.LIM").contains(v.get("scenario"))&&v.getOrDefault("reason","").isBlank()){send(ex,400,"application/json",Json.message("当前场景必须填写E项原因"));return;}
+                if("AD.LIM".equals(v.get("scenario"))&&restrictions.isEmpty()&&(v.getOrDefault("limitationType","").isBlank()||v.getOrDefault("operation","").isBlank())){send(ex,400,"application/json",Json.message("AD.LIM 必须至少包含一个限制条件"));return;}
                 if("RWY.CLS".equals(v.get("scenario"))&&v.getOrDefault("selectedRunways","").isBlank()){send(ex,400,"application/json",Json.message("RWY.CLS必须选择跑道"));return;}
                 if("TWY.CLS".equals(v.get("scenario"))&&v.getOrDefault("selectedTaxiways","").isBlank()){send(ex,400,"application/json",Json.message("TWY.CLS必须选择至少一条滑行道"));return;}
                 if("SCHEDULED".equals(v.get("scheduleMode"))&&(v.getOrDefault("scheduleDay","").isBlank()||v.getOrDefault("scheduleStart","").isBlank()||v.getOrDefault("scheduleEnd","").isBlank())){send(ex,400,"application/json",Json.message("计划生效模式必须填写D项日期和时间"));return;}
@@ -82,18 +88,21 @@ public final class DigitalNotamApplication {
                 try { number = REPO.assignNumber(v.get("numberSeries"), v.getOrDefault("numberDigits", "")); }
                 catch (IllegalArgumentException e) { send(ex, 400, "application/json", Json.message(e.getMessage())); return; }
                 catch (IllegalStateException e) { send(ex, 409, "application/json", Json.message(e.getMessage())); return; }
-                Notam n = new Notam(UUID.randomUUID().toString(), number, v.get("scenario"), v.get("title"), v.get("airport").toUpperCase(), v.get("featureType"),
-                        structuredCondition(v), v.getOrDefault("selectedRunways",""),v.getOrDefault("selectedTaxiways",""),v.getOrDefault("eventDescription",""),v.getOrDefault("reason",""),v.getOrDefault("remarks",""), v.get("effectiveStart"), v.get("effectiveEnd"), v.getOrDefault("latitude", ""),
-                        v.getOrDefault("longitude", ""), v.getOrDefault("radiusNm", ""), v.get("latitudeHemisphere"), v.get("longitudeHemisphere"),
-                        v.get("qCode").toUpperCase(), v.get("traffic"), v.get("purpose"), v.get("scope"), v.getOrDefault("lowerMeters", ""), v.getOrDefault("upperMeters", ""),
-                        v.get("scheduleMode"),v.getOrDefault("scheduleDay","ANY"),v.getOrDefault("scheduleStart","00:00"),v.getOrDefault("scheduleEnd","00:00"), "DRAFT", Instant.now().toString(), "",
-                        v.get("fir"),v.getOrDefault("scheduleStartDate",""),v.getOrDefault("scheduleEndDate",""),v.getOrDefault("qOverrideReason",""),v.getOrDefault("qOverrideOperator",""),v.getOrDefault("qOverrideAt",""));
+                Notam n = draftFrom(v,restrictions,UUID.randomUUID().toString(),number,Instant.now().toString());
                 try { validateQFields(n); }
                 catch (IllegalArgumentException e) { send(ex,400,"application/json",Json.message(e.getMessage())); return; }
                 send(ex, 201, "application/json", Json.notam(REPO.save(n))); return;
             }
             if (parts.length >= 4) {
                 Optional<Notam> found = REPO.find(parts[3]);
+                if (found.isPresent() && "PUT".equals(ex.getRequestMethod()) && parts.length == 4) {
+                    Notam current=found.get();
+                    if(!"DRAFT".equals(current.status())){send(ex,409,"application/json",Json.message("已发布通告不能编辑"));return;}
+                    String body=new String(ex.getRequestBody().readAllBytes(),StandardCharsets.UTF_8);Map<String,String> v=Json.parseObject(body);List<AdLimRestriction> restrictions=parseAdLimRestrictions(body);
+                    try{Notam updated=draftFrom(v,restrictions,current.id(),current.number(),current.createdAt());validateDraft(updated);validateQFields(updated);send(ex,200,"application/json",Json.notam(REPO.save(updated)));}
+                    catch(IllegalArgumentException e){send(ex,400,"application/json",Json.message(e.getMessage()));}
+                    return;
+                }
                 if (found.isEmpty()) { send(ex, 404, "application/json", Json.message("通告不存在")); return; }
                 if ("GET".equals(ex.getRequestMethod()) && parts.length == 4) { send(ex, 200, "application/json", Json.notam(found.get())); return; }
                 if ("DELETE".equals(ex.getRequestMethod()) && parts.length == 4) {
@@ -171,6 +180,10 @@ public final class DigitalNotamApplication {
         String schedule="SCHEDULED".equals(v.get("scheduleMode"))?" "+v.getOrDefault("scheduleDay","").replace(',',' ')+" "+v.getOrDefault("scheduleStart","").replace(":","")+"-"+v.getOrDefault("scheduleEnd","").replace(":","")+" UTC":"";
         return (subject+" "+event+schedule+" DUE TO "+reason+(remarks.isBlank()?"":". "+remarks)).trim();
     }
+
+    private static Notam draftFrom(Map<String,String> v,List<AdLimRestriction> restrictions,String id,String number,String createdAt){return new Notam(id,number,v.getOrDefault("scenario",""),v.getOrDefault("title",""),v.getOrDefault("airport","").toUpperCase(),v.getOrDefault("featureType",""),structuredCondition(v),v.getOrDefault("selectedRunways",""),v.getOrDefault("selectedTaxiways",""),v.getOrDefault("eventDescription",""),v.getOrDefault("reason",""),v.getOrDefault("remarks",""),v.getOrDefault("effectiveStart",""),v.getOrDefault("effectiveEnd",""),v.getOrDefault("latitude",""),v.getOrDefault("longitude",""),v.getOrDefault("radiusNm",""),v.getOrDefault("latitudeHemisphere",""),v.getOrDefault("longitudeHemisphere",""),v.getOrDefault("qCode","").toUpperCase(),v.getOrDefault("traffic",""),v.getOrDefault("purpose",""),v.getOrDefault("scope",""),v.getOrDefault("lowerMeters",""),v.getOrDefault("upperMeters",""),v.getOrDefault("scheduleMode",""),v.getOrDefault("scheduleDay","ANY"),v.getOrDefault("scheduleStart","00:00"),v.getOrDefault("scheduleEnd","00:00"),"DRAFT",createdAt,"",v.getOrDefault("fir",""),v.getOrDefault("scheduleStartDate",""),v.getOrDefault("scheduleEndDate",""),v.getOrDefault("qOverrideReason",""),v.getOrDefault("qOverrideOperator",""),v.getOrDefault("qOverrideAt",""),v.getOrDefault("limitationType",""),v.getOrDefault("operation",""),v.getOrDefault("flightType",""),v.getOrDefault("flightRule",""),v.getOrDefault("flightStatus",""),v.getOrDefault("flightMilitary",""),v.getOrDefault("flightOrigin",""),v.getOrDefault("flightPurpose",""),v.getOrDefault("aircraftType",""),v.getOrDefault("aircraftEngine",""),v.getOrDefault("aircraftWingSpan",""),v.getOrDefault("aircraftWingSpanUom",""),v.getOrDefault("aircraftWingSpanInterpretation",""),v.getOrDefault("aircraftWeight",""),v.getOrDefault("aircraftWeightUom",""),v.getOrDefault("aircraftWeightInterpretation",""),v.getOrDefault("pprValue",""),v.getOrDefault("pprUnit",""),v.getOrDefault("pprDetails",""),restrictions);}
+    private static void validateDraft(Notam n){for(String value:List.of(n.scenario(),n.fir(),n.title(),n.airport(),n.featureType(),n.effectiveStart(),n.effectiveEnd(),n.qCode(),n.traffic(),n.purpose(),n.scope(),n.latitudeHemisphere(),n.longitudeHemisphere(),n.scheduleMode()))if(value==null||value.isBlank())throw new IllegalArgumentException("草稿缺少必填字段");if("AD.LIM".equals(n.scenario())){if(n.adLimRestrictions().isEmpty())throw new IllegalArgumentException("AD.LIM 必须至少包含一个限制条件");String type=n.limitationType();if(type.isBlank()||n.adLimRestrictions().stream().anyMatch(r->!type.equals(r.limitationType())))throw new IllegalArgumentException("一次 AD.LIM 通告中的所有限制条件必须使用相同的限制类型");}}
+    private static List<AdLimRestriction> parseAdLimRestrictions(String body){return Json.parseObjectArray(body,"restrictions").stream().map(v->new AdLimRestriction(v.get("limitationType"),v.get("operation"),v.get("flightType"),v.get("flightRule"),v.get("flightStatus"),v.get("flightMilitary"),v.get("flightOrigin"),v.get("flightPurpose"),v.get("aircraftType"),v.get("aircraftEngine"),v.get("aircraftWingSpan"),v.get("aircraftWingSpanUom"),v.get("aircraftWingSpanInterpretation"),v.get("aircraftWeight"),v.get("aircraftWeightUom"),v.get("aircraftWeightInterpretation"),v.get("pprValue"),v.get("pprUnit"),v.get("pprDetails"))).toList();}
 
     private static void baselineRunways(HttpExchange ex)throws IOException{
         if(!"GET".equals(ex.getRequestMethod())){send(ex,405,"application/json",Json.message("仅支持GET"));return;}
