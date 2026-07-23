@@ -10,6 +10,7 @@ import com.example.digitalnotam.scenario.rwycls.RwyClsScenarioBuilder;
 import com.example.digitalnotam.scenario.rwylim.RwyLimNotamProducer;
 import com.example.digitalnotam.scenario.rwylim.RwyLimScenarioBuilder;
 import com.example.digitalnotam.scenario.atsaact.AtsaActScenarioBuilder;
+import com.example.digitalnotam.scenario.navuns.NavUnsScenarioBuilder;
 import com.example.digitalnotam.xml.XmlCommentPolicy;
 
 import org.w3c.dom.*;
@@ -28,19 +29,20 @@ import java.time.*;
 import java.util.*;
 
 public final class DigitalNotamPipeline {
-    private static final Set<String> SCENARIOS = Set.of("AD.CLS", "AD.LIM", "RWY.CLS", "RWY.LIM", "ATSA.ACT");
+    private static final Set<String> SCENARIOS = Set.of("AD.CLS", "AD.LIM", "RWY.CLS", "RWY.LIM", "ATSA.ACT", "NAV.UNS");
     private static final Path SAMPLES = Path.of("data", "virtual data", "Donlon_2025", "Donlon", "Digital NOTAM");
     private static final Map<String, String> BLUEPRINT = Map.of(
             "AD.CLS", "DN_AD.CLS_1_ad_closed.xml", "AD.LIM", "DN_AD.LIM_1_closed_except_for.xml",
             "RWY.CLS", "DN_RWY.CLS_1_full_runway_closure.xml", "RWY.LIM", "DN_RWY.LIM_1_closed_except_for_takeoff.xml");
     private final Path store = Path.of("data", "notams").toAbsolutePath().normalize();
-    private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder(), "AD.LIM", new AdLimScenarioBuilder(), "RWY.CLS", new RwyClsScenarioBuilder(), "RWY.LIM", new RwyLimScenarioBuilder(), "ATSA.ACT", new AtsaActScenarioBuilder());
+    private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder(), "AD.LIM", new AdLimScenarioBuilder(), "RWY.CLS", new RwyClsScenarioBuilder(), "RWY.LIM", new RwyLimScenarioBuilder(), "ATSA.ACT", new AtsaActScenarioBuilder(), "NAV.UNS", new NavUnsScenarioBuilder());
     private final AdClsNotamProducer adClsNotamProducer = new AdClsNotamProducer();
     private final AdLimNotamProducer adLimNotamProducer = new AdLimNotamProducer();
     private final RwyClsNotamProducer rwyClsNotamProducer = new RwyClsNotamProducer();
     private final RwyLimNotamProducer rwyLimNotamProducer = new RwyLimNotamProducer();
     private final AtsaActScenarioBuilder atsaActBuilder = (AtsaActScenarioBuilder) scenarioBuilders.get("ATSA.ACT");
-    public int notificationCount(Notam n){return "ATSA.ACT".equals(n.scenario())?atsaActBuilder.notificationCount(n):1;}
+    private final NavUnsScenarioBuilder navUnsBuilder = (NavUnsScenarioBuilder) scenarioBuilders.get("NAV.UNS");
+    public int notificationCount(Notam n){return "ATSA.ACT".equals(n.scenario())?atsaActBuilder.notificationCount(n):"NAV.UNS".equals(n.scenario())?navUnsBuilder.notificationCount(n):1;}
 
     public List<Notam> restorePublished() {
         if (!Files.isDirectory(store)) return List.of();
@@ -192,7 +194,7 @@ public final class DigitalNotamPipeline {
 
     public String transform(String xml, String scenario) throws Exception {
         Document d = parse(xml);
-        if ("ATSA.ACT".equals(scenario)) return transformAtsaAct(d);
+        if ("ATSA.ACT".equals(scenario)||"NAV.UNS".equals(scenario)) return transformEmbeddedNotifications(d,scenario);
         if ("AD.LIM".equals(scenario)) { normalizeLegacyAdLimAvailabilities(d); xml = serialize(d); }
         TransformerFactory f = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", getClass().getClassLoader());
         f.setURIResolver(new DonlonResolver());
@@ -218,8 +220,11 @@ public final class DigitalNotamPipeline {
     }
 
     private static String transformAtsaAct(Document d) {
+        return transformEmbeddedNotifications(d,"ATSA.ACT");
+    }
+    private static String transformEmbeddedNotifications(Document d,String scenario) {
         NodeList nodes=d.getElementsByTagNameNS("http://www.aixm.aero/schema/5.1.1/event","NOTAM");
-        if(nodes.getLength()==0)throw new IllegalArgumentException("ATSA.ACT XML has no NOTAM notification");
+        if(nodes.getLength()==0)throw new IllegalArgumentException(scenario+" XML has no NOTAM notification");
         List<String> messages=new ArrayList<>();
         for(int i=0;i<nodes.getLength();i++){
             Element n=(Element)nodes.item(i);String number=childText(n,"series","")+String.format("%04d",Integer.parseInt(childText(n,"number","0")))+"/"+childText(n,"year","").substring(2)+" NOTAMN";
