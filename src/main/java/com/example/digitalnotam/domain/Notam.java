@@ -19,7 +19,8 @@ public record Notam(
         String aircraftType, String aircraftEngine, String aircraftWingSpan, String aircraftWingSpanUom, String aircraftWingSpanInterpretation,
         String aircraftWeight, String aircraftWeightUom, String aircraftWeightInterpretation,
         String pprValue, String pprUnit, String pprDetails,
-        List<AdLimRestriction> adLimRestrictions) {
+        List<AdLimRestriction> adLimRestrictions,
+        String rwyTargetType, String runwayUuid, String runwayDirectionUuid) {
 
     public Notam(String id, String number, String scenario, String title, String airport, String featureType,
                  String condition, String selectedRunways, String selectedTaxiways, String eventDescription,
@@ -33,7 +34,7 @@ public record Notam(
                 latitudeHemisphere, longitudeHemisphere, qCode, traffic, purpose, scope, lowerMeters, upperMeters,
                 scheduleMode, scheduleDay, scheduleStart, scheduleEnd, status, createdAt, publishedAt,
                 "", "", "", "", "", "",
-                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", List.of());
+                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", List.of(),"","","");
     }
 
     public Notam(String id, String number, String scenario, String title, String airport, String featureType,
@@ -46,7 +47,7 @@ public record Notam(
         this(id,number,scenario,title,airport,featureType,condition,selectedRunways,selectedTaxiways,eventDescription,reason,remarks,
                 effectiveStart,effectiveEnd,latitude,longitude,radiusNm,latitudeHemisphere,longitudeHemisphere,qCode,traffic,purpose,scope,
                 lowerMeters,upperMeters,scheduleMode,scheduleDay,scheduleStart,scheduleEnd,status,createdAt,publishedAt,fir,scheduleStartDate,scheduleEndDate,
-                qOverrideReason,qOverrideOperator,qOverrideAt,"","","","","","","","","","","","","","","","","","","",List.of());
+                qOverrideReason,qOverrideOperator,qOverrideAt,"","","","","","","","","","","","","","","","","","","",List.of(),"","","");
     }
 
     public Notam publish() {
@@ -57,10 +58,11 @@ public record Notam(
                 qOverrideReason, qOverrideOperator, qOverrideAt,
                 limitationType, operation, flightType, flightRule, flightStatus, flightMilitary, flightOrigin, flightPurpose,
                 aircraftType, aircraftEngine, aircraftWingSpan, aircraftWingSpanUom, aircraftWingSpanInterpretation, aircraftWeight, aircraftWeightUom, aircraftWeightInterpretation,
-                pprValue, pprUnit, pprDetails, adLimRestrictions);
+                pprValue, pprUnit, pprDetails, adLimRestrictions,rwyTargetType,runwayUuid,runwayDirectionUuid);
     }
 
     public String minimumFl() { return FlightLevelConverter.toFl(lowerMeters, false); }
     public String maximumFl() { return FlightLevelConverter.toFl(upperMeters, true); }
-    public Notam withAdLimRestrictions(List<AdLimRestriction> values){return new Notam(id,number,scenario,title,airport,featureType,condition,selectedRunways,selectedTaxiways,eventDescription,reason,remarks,effectiveStart,effectiveEnd,latitude,longitude,radiusNm,latitudeHemisphere,longitudeHemisphere,qCode,traffic,purpose,scope,lowerMeters,upperMeters,scheduleMode,scheduleDay,scheduleStart,scheduleEnd,status,createdAt,publishedAt,fir,scheduleStartDate,scheduleEndDate,qOverrideReason,qOverrideOperator,qOverrideAt,limitationType,operation,flightType,flightRule,flightStatus,flightMilitary,flightOrigin,flightPurpose,aircraftType,aircraftEngine,aircraftWingSpan,aircraftWingSpanUom,aircraftWingSpanInterpretation,aircraftWeight,aircraftWeightUom,aircraftWeightInterpretation,pprValue,pprUnit,pprDetails,List.copyOf(values));}
+    public Notam withAdLimRestrictions(List<AdLimRestriction> values){return new Notam(id,number,scenario,title,airport,featureType,condition,selectedRunways,selectedTaxiways,eventDescription,reason,remarks,effectiveStart,effectiveEnd,latitude,longitude,radiusNm,latitudeHemisphere,longitudeHemisphere,qCode,traffic,purpose,scope,lowerMeters,upperMeters,scheduleMode,scheduleDay,scheduleStart,scheduleEnd,status,createdAt,publishedAt,fir,scheduleStartDate,scheduleEndDate,qOverrideReason,qOverrideOperator,qOverrideAt,limitationType,operation,flightType,flightRule,flightStatus,flightMilitary,flightOrigin,flightPurpose,aircraftType,aircraftEngine,aircraftWingSpan,aircraftWingSpanUom,aircraftWingSpanInterpretation,aircraftWeight,aircraftWeightUom,aircraftWeightInterpretation,pprValue,pprUnit,pprDetails,List.copyOf(values),rwyTargetType,runwayUuid,runwayDirectionUuid);}
+    public Notam withRwyClsTarget(String targetType,String runway,String direction){return new Notam(id,number,scenario,title,airport,featureType,condition,selectedRunways,selectedTaxiways,eventDescription,reason,remarks,effectiveStart,effectiveEnd,latitude,longitude,radiusNm,latitudeHemisphere,longitudeHemisphere,qCode,traffic,purpose,scope,lowerMeters,upperMeters,scheduleMode,scheduleDay,scheduleStart,scheduleEnd,status,createdAt,publishedAt,fir,scheduleStartDate,scheduleEndDate,qOverrideReason,qOverrideOperator,qOverrideAt,limitationType,operation,flightType,flightRule,flightStatus,flightMilitary,flightOrigin,flightPurpose,aircraftType,aircraftEngine,aircraftWingSpan,aircraftWingSpanUom,aircraftWingSpanInterpretation,aircraftWeight,aircraftWeightUom,aircraftWeightInterpretation,pprValue,pprUnit,pprDetails,adLimRestrictions,targetType,runway,direction);}
 }

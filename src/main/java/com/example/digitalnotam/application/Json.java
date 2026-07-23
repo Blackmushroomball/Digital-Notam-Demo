@@ -41,7 +41,7 @@ final class Json {
                 field("limitationType",n.limitationType()) + "," + field("operation",n.operation()) + "," +
                 field("flightType",n.flightType()) + "," + field("flightRule",n.flightRule()) + "," + field("flightStatus",n.flightStatus()) + "," + field("flightMilitary",n.flightMilitary()) + "," + field("flightOrigin",n.flightOrigin()) + "," + field("flightPurpose",n.flightPurpose()) + "," +
                 field("aircraftType",n.aircraftType()) + "," + field("aircraftEngine",n.aircraftEngine()) + "," + field("aircraftWingSpan",n.aircraftWingSpan()) + "," + field("aircraftWingSpanUom",n.aircraftWingSpanUom()) + "," + field("aircraftWingSpanInterpretation",n.aircraftWingSpanInterpretation()) + "," +
-                field("aircraftWeight",n.aircraftWeight()) + "," + field("aircraftWeightUom",n.aircraftWeightUom()) + "," + field("aircraftWeightInterpretation",n.aircraftWeightInterpretation()) + "," + field("pprValue",n.pprValue()) + "," + field("pprUnit",n.pprUnit()) + "," + field("pprDetails",n.pprDetails()) + ",\"restrictions\":" + restrictions(n.adLimRestrictions()) + "}";
+                field("aircraftWeight",n.aircraftWeight()) + "," + field("aircraftWeightUom",n.aircraftWeightUom()) + "," + field("aircraftWeightInterpretation",n.aircraftWeightInterpretation()) + "," + field("pprValue",n.pprValue()) + "," + field("pprUnit",n.pprUnit()) + "," + field("pprDetails",n.pprDetails()) + "," + field("rwyTargetType",n.rwyTargetType()) + "," + field("runwayUuid",n.runwayUuid()) + "," + field("runwayDirectionUuid",n.runwayDirectionUuid()) + ",\"restrictions\":" + restrictions(n.adLimRestrictions()) + "}";
     }
 
     static String list(Collection<Notam> items) {

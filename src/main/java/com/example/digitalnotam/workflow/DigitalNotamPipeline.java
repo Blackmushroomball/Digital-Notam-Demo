@@ -6,6 +6,10 @@ import com.example.digitalnotam.scenario.adcls.AdClsNotamProducer;
 import com.example.digitalnotam.scenario.adcls.AdClsScenarioBuilder;
 import com.example.digitalnotam.scenario.adlim.AdLimNotamProducer;
 import com.example.digitalnotam.scenario.adlim.AdLimScenarioBuilder;
+import com.example.digitalnotam.scenario.rwycls.RwyClsNotamProducer;
+import com.example.digitalnotam.scenario.rwycls.RwyClsScenarioBuilder;
+import com.example.digitalnotam.scenario.rwylim.RwyLimNotamProducer;
+import com.example.digitalnotam.scenario.rwylim.RwyLimScenarioBuilder;
 
 import org.w3c.dom.*;
 import org.xml.sax.InputSource;
@@ -29,11 +33,12 @@ public final class DigitalNotamPipeline {
             "AD.CLS", "DN_AD.CLS_1_ad_closed.xml", "AD.LIM", "DN_AD.LIM_1_closed_except_for.xml",
             "RWY.CLS", "DN_RWY.CLS_1_full_runway_closure.xml", "RWY.LIM", "DN_RWY.LIM_1_closed_except_for_takeoff.xml",
             "TWY.CLS", "DN_TWY.CLS_1_single_twy_closure.xml", "TWY.LIM", "DN_TWY.LIM_1_closed_except_for.xml");
-    private static final Map<String, String> RUNWAY_DIRECTION_BY_ID = Map.of("uuid.5d6513d4-a62a-49e1-9e26-0b8cbf320daf", "09R", "uuid.ee6019d6-29f7-404d-8cee-b6819f325aed", "27L");
     private final Path store = Path.of("data", "notams").toAbsolutePath().normalize();
-    private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder(), "AD.LIM", new AdLimScenarioBuilder());
+    private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder(), "AD.LIM", new AdLimScenarioBuilder(), "RWY.CLS", new RwyClsScenarioBuilder(), "RWY.LIM", new RwyLimScenarioBuilder());
     private final AdClsNotamProducer adClsNotamProducer = new AdClsNotamProducer();
     private final AdLimNotamProducer adLimNotamProducer = new AdLimNotamProducer();
+    private final RwyClsNotamProducer rwyClsNotamProducer = new RwyClsNotamProducer();
+    private final RwyLimNotamProducer rwyLimNotamProducer = new RwyLimNotamProducer();
 
     public List<Notam> restorePublished() {
         if (!Files.isDirectory(store)) return List.of();
@@ -123,6 +128,8 @@ public final class DigitalNotamPipeline {
             Document d = dedicatedBuilder.build(n);
             if ("AD.CLS".equals(n.scenario())) adClsNotamProducer.produce(d, n);
             if ("AD.LIM".equals(n.scenario())) adLimNotamProducer.produce(d, n);
+            if ("RWY.CLS".equals(n.scenario())) rwyClsNotamProducer.produce(d, n);
+            if ("RWY.LIM".equals(n.scenario())) rwyLimNotamProducer.produce(d, n);
             replaceHeaderComments(d, n.scenario());
             validateRules(d);
             dedicatedBuilder.validate(d, n);
@@ -153,8 +160,7 @@ public final class DigitalNotamPipeline {
         setNotamField(d, "maximumFL", n.maximumFl());
         setNotamField(d, "coordinates", formatCoordinates(n.latitude(), n.latitudeHemisphere(), n.longitude(), n.longitudeHemisphere()));
         setNotamField(d, "radius", String.format("%03d", Integer.parseInt(n.radiusNm())));
-        if ("RWY.CLS".equals(n.scenario())) applyRunwayClosure(d, n);
-        else if ("TWY.CLS".equals(n.scenario())) applyTaxiwayClosure(d, n);
+        if ("TWY.CLS".equals(n.scenario())) applyTaxiwayClosure(d, n);
         else if ("SCHEDULED".equals(n.scheduleMode()))
             applySchedule(d, n.scheduleDay(), n.scheduleStart(), n.scheduleEnd());
         else removeGenericEventSchedule(d);
@@ -279,30 +285,6 @@ public final class DigitalNotamPipeline {
         }
         if (availability == null) throw new IllegalArgumentException("场景XML缺少事件可用性结构");
         replaceTimesheets(d, availability, days, start, end);
-    }
-
-    private static void applyRunwayClosure(Document d, Notam n) {
-        Set<String> selected = new HashSet<>(Arrays.asList(n.selectedRunways().split("/")));
-        List<Element> targets = new ArrayList<>();
-        NodeList directions = d.getElementsByTagNameNS("http://www.aixm.aero/schema/5.1.1", "RunwayDirection");
-        for (int i = 0; i < directions.getLength(); i++) {
-            Element direction = (Element) directions.item(i);
-            String designator = RUNWAY_DIRECTION_BY_ID.get(direction.getAttributeNS("http://www.opengis.net/gml/3.2", "id"));
-            if (!selected.contains(designator)) continue;
-            Element found = null;
-            NodeList states = direction.getElementsByTagNameNS("http://www.aixm.aero/schema/5.1.1", "operationalStatus");
-            for (int j = 0; j < states.getLength(); j++)
-                if ("CLOSED".equals(states.item(j).getTextContent().trim()))
-                    found = (Element) states.item(j).getParentNode();
-            if (found != null) targets.add(found);
-        }
-        if (targets.size() != selected.size()) throw new IllegalArgumentException("所选跑道方向与RWY.CLS蓝图不匹配");
-        for (Element target : targets) {
-            if ("SCHEDULED".equals(n.scheduleMode()))
-                replaceTimesheets(d, target, parseScheduleDays(n.scheduleDay()), n.scheduleStart(), n.scheduleEnd());
-            else removeDirectTimeIntervals(target);
-            replaceClosureNotes(target, n.reason(), n.remarks());
-        }
     }
 
     private static void applyTaxiwayClosure(Document d, Notam n) throws Exception {
