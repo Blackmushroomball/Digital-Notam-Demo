@@ -9,6 +9,8 @@ import com.example.digitalnotam.scenario.rwycls.RwyClsNotamProducer;
 import com.example.digitalnotam.scenario.rwycls.RwyClsScenarioBuilder;
 import com.example.digitalnotam.scenario.rwylim.RwyLimNotamProducer;
 import com.example.digitalnotam.scenario.rwylim.RwyLimScenarioBuilder;
+import com.example.digitalnotam.scenario.atsaact.AtsaActScenarioBuilder;
+import com.example.digitalnotam.xml.XmlCommentPolicy;
 
 import org.w3c.dom.*;
 import org.xml.sax.InputSource;
@@ -26,17 +28,19 @@ import java.time.*;
 import java.util.*;
 
 public final class DigitalNotamPipeline {
-    private static final Set<String> SCENARIOS = Set.of("AD.CLS", "AD.LIM", "RWY.CLS", "RWY.LIM");
+    private static final Set<String> SCENARIOS = Set.of("AD.CLS", "AD.LIM", "RWY.CLS", "RWY.LIM", "ATSA.ACT");
     private static final Path SAMPLES = Path.of("data", "virtual data", "Donlon_2025", "Donlon", "Digital NOTAM");
     private static final Map<String, String> BLUEPRINT = Map.of(
             "AD.CLS", "DN_AD.CLS_1_ad_closed.xml", "AD.LIM", "DN_AD.LIM_1_closed_except_for.xml",
             "RWY.CLS", "DN_RWY.CLS_1_full_runway_closure.xml", "RWY.LIM", "DN_RWY.LIM_1_closed_except_for_takeoff.xml");
     private final Path store = Path.of("data", "notams").toAbsolutePath().normalize();
-    private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder(), "AD.LIM", new AdLimScenarioBuilder(), "RWY.CLS", new RwyClsScenarioBuilder(), "RWY.LIM", new RwyLimScenarioBuilder());
+    private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder(), "AD.LIM", new AdLimScenarioBuilder(), "RWY.CLS", new RwyClsScenarioBuilder(), "RWY.LIM", new RwyLimScenarioBuilder(), "ATSA.ACT", new AtsaActScenarioBuilder());
     private final AdClsNotamProducer adClsNotamProducer = new AdClsNotamProducer();
     private final AdLimNotamProducer adLimNotamProducer = new AdLimNotamProducer();
     private final RwyClsNotamProducer rwyClsNotamProducer = new RwyClsNotamProducer();
     private final RwyLimNotamProducer rwyLimNotamProducer = new RwyLimNotamProducer();
+    private final AtsaActScenarioBuilder atsaActBuilder = (AtsaActScenarioBuilder) scenarioBuilders.get("ATSA.ACT");
+    public int notificationCount(Notam n){return "ATSA.ACT".equals(n.scenario())?atsaActBuilder.notificationCount(n):1;}
 
     public List<Notam> restorePublished() {
         if (!Files.isDirectory(store)) return List.of();
@@ -126,6 +130,7 @@ public final class DigitalNotamPipeline {
             if ("RWY.CLS".equals(n.scenario())) rwyClsNotamProducer.produce(d, n);
             if ("RWY.LIM".equals(n.scenario())) rwyLimNotamProducer.produce(d, n);
             replaceHeaderComments(d, n.scenario());
+            XmlCommentPolicy.validate(d);
             validateRules(d);
             dedicatedBuilder.validate(d, n);
             validateXsd(d);
@@ -187,6 +192,7 @@ public final class DigitalNotamPipeline {
 
     public String transform(String xml, String scenario) throws Exception {
         Document d = parse(xml);
+        if ("ATSA.ACT".equals(scenario)) return transformAtsaAct(d);
         if ("AD.LIM".equals(scenario)) { normalizeLegacyAdLimAvailabilities(d); xml = serialize(d); }
         TransformerFactory f = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", getClass().getClassLoader());
         f.setURIResolver(new DonlonResolver());
@@ -209,6 +215,21 @@ public final class DigitalNotamPipeline {
         boolean warningOrRestriction = qCode.startsWith("QW") || qCode.startsWith("QR");
         String fItem = warningOrRestriction ? "FL" + minimum : "-", gItem = warningOrRestriction ? "FL" + maximum : "-";
         return result + System.lineSeparator() + "F) " + fItem + System.lineSeparator() + "G) " + gItem;
+    }
+
+    private static String transformAtsaAct(Document d) {
+        NodeList nodes=d.getElementsByTagNameNS("http://www.aixm.aero/schema/5.1.1/event","NOTAM");
+        if(nodes.getLength()==0)throw new IllegalArgumentException("ATSA.ACT XML has no NOTAM notification");
+        List<String> messages=new ArrayList<>();
+        for(int i=0;i<nodes.getLength();i++){
+            Element n=(Element)nodes.item(i);String number=childText(n,"series","")+String.format("%04d",Integer.parseInt(childText(n,"number","0")))+"/"+childText(n,"year","").substring(2)+" NOTAMN";
+            String q="Q) "+String.join("/",childText(n,"affectedFIR",""),childText(n,"selectionCode",""),childText(n,"traffic",""),childText(n,"purpose",""),childText(n,"scope",""),childText(n,"minimumFL",""),childText(n,"maximumFL",""),childText(n,"coordinates","")+childText(n,"radius",""));
+            StringBuilder out=new StringBuilder(number).append(System.lineSeparator()).append(q).append(System.lineSeparator())
+                    .append("A) ").append(childText(n,"location","")).append(" B) ").append(childText(n,"effectiveStart","")).append(" C) ").append(childText(n,"effectiveEnd","")).append(System.lineSeparator());
+            out.append("E) ").append(childText(n,"text","")).append(System.lineSeparator()).append("F) -").append(System.lineSeparator()).append("G) -");
+            messages.add(out.toString());
+        }
+        return String.join(System.lineSeparator()+System.lineSeparator(),messages);
     }
 
     private static void normalizeLegacyAdLimAvailabilities(Document d) {
@@ -727,7 +748,9 @@ public final class DigitalNotamPipeline {
                         root.resolve("DONLON International/Donlon_EADD_RunwayDirection.xml");
                 case "Dataset_Taxiway.xml" -> root.resolve("DONLON International/Donlon_EADD_Taxiway.xml");
                 case "Dataset_Airspace_simplified_geometry.xml" -> root.resolve("Common/Donlon_Airspace.xml");
+                case "Dataset_GeoBorder.xml" -> root.resolve("Common/Donlon_GeoBorder.xml");
                 case "Dataset_OrganisationAuthority.xml" -> root.resolve("Common/Donlon_OrganisationAuthority.xml");
+                case "Dataset_Unit.xml" -> root.resolve("Common/Donlon_Unit.xml");
                 default -> null;
             };
             return p == null ? null : new StreamSource(p.toFile());

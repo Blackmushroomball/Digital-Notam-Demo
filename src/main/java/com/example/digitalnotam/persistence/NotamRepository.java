@@ -11,6 +11,7 @@ import java.time.ZoneOffset;
 public final class NotamRepository {
     public NotamRepository() {}
     private final Map<String, Notam> data = new ConcurrentHashMap<>();
+    private final Set<String> batchReservations = ConcurrentHashMap.newKeySet();
     private static final Set<String> SERIES = Set.of("A", "C", "D");
 
     public void seedIfEmpty() {
@@ -48,7 +49,13 @@ public final class NotamRepository {
         }
         throw new IllegalStateException(normalizedSeries + " 系列本年度编号已用完");
     }
+    public synchronized void reserveConsecutive(String base,int count){
+        if(count<1||batchReservations.contains(base))return;String[] p=base.split("/");String series=p[0].substring(0,1);int start=Integer.parseInt(p[0].substring(1)),year=Integer.parseInt(p[1]);
+        List<String> requested=new ArrayList<>();for(int i=0;i<count;i++){if(start+i>9999)throw new IllegalStateException("连续编号段超过9999");requested.add(formatNumber(series,start+i,year));}
+        for(int i=1;i<requested.size();i++)if(numberExists(requested.get(i))||batchReservations.contains(requested.get(i)))throw new IllegalStateException("连续编号 "+requested.get(i)+" 已被占用");
+        batchReservations.addAll(requested);
+    }
 
-    private boolean numberExists(String number) { return data.values().stream().anyMatch(n -> number.equals(n.number())); }
+    private boolean numberExists(String number) { return batchReservations.contains(number)||data.values().stream().anyMatch(n -> number.equals(n.number())); }
     private static String formatNumber(String series, int value, int year) { return "%s%04d/%02d".formatted(series, value, year); }
 }

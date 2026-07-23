@@ -1,6 +1,7 @@
 package com.example.digitalnotam.application;
 
 import com.example.digitalnotam.baseline.BaselineAirportHeliportCatalog;
+import com.example.digitalnotam.baseline.BaselineAirspaceCatalog;
 import com.example.digitalnotam.baseline.BaselineRunwayCatalog;
 import com.example.digitalnotam.domain.Notam;
 import com.example.digitalnotam.domain.AdLimRestriction;
@@ -8,6 +9,7 @@ import com.example.digitalnotam.persistence.AixmXmlStore;
 import com.example.digitalnotam.persistence.NotamRepository;
 import com.example.digitalnotam.workflow.DigitalNotamPipeline;
 import com.example.digitalnotam.xml.AixmXml;
+import com.example.digitalnotam.scenario.atsaact.AtsaActActivationComposer;
 
 import com.sun.net.httpserver.*;
 import java.io.*;
@@ -24,6 +26,8 @@ public final class DigitalNotamApplication {
     private static final AixmXmlStore XML_STORE = new AixmXmlStore(Path.of("data", "notams"));
     private static final BaselineRunwayCatalog BASELINE_RUNWAYS = new BaselineRunwayCatalog();
     private static final BaselineAirportHeliportCatalog BASELINE_AIRPORTS = new BaselineAirportHeliportCatalog();
+    private static final BaselineAirspaceCatalog BASELINE_AIRSPACES = new BaselineAirspaceCatalog();
+    private static final AtsaActActivationComposer ATSA_ACTIVATION = new AtsaActActivationComposer();
     private static final Path PUBLIC = Path.of("src", "main", "resources", "public").toAbsolutePath().normalize();
 
     static {
@@ -39,6 +43,8 @@ public final class DigitalNotamApplication {
         server.createContext("/api/import", DigitalNotamApplication::importXml);
         server.createContext("/api/baseline/runways", DigitalNotamApplication::baselineRunways);
         server.createContext("/api/baseline/airports", DigitalNotamApplication::baselineAirports);
+        server.createContext("/api/baseline/airspaces", DigitalNotamApplication::baselineAirspaces);
+        server.createContext("/api/scenarios/atsa-act/activation-preview", DigitalNotamApplication::atsaActivationPreview);
         server.createContext("/", DigitalNotamApplication::staticFile);
         server.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
         server.start();
@@ -73,10 +79,10 @@ public final class DigitalNotamApplication {
                     String commonType=v.getOrDefault("limitationType",restrictions.get(0).limitationType());
                     if(commonType.isBlank()||restrictions.stream().anyMatch(r->!commonType.equals(r.limitationType()))){send(ex,400,"application/json",Json.message("一次 AD.LIM 通告中的所有限制条件必须使用相同的限制类型"));return;}
                 }
-                for (String key : List.of("scenario", "fir", "title", "airport", "featureType", "effectiveStart", "effectiveEnd", "numberSeries", "qCode", "traffic", "purpose", "scope", "latitudeHemisphere", "longitudeHemisphere", "scheduleMode"))
+                for (String key : List.of("scenario", "fir", "title", "featureType", "effectiveStart", "effectiveEnd", "numberSeries", "qCode", "traffic", "purpose", "scope", "latitudeHemisphere", "longitudeHemisphere", "scheduleMode"))
                     if (v.getOrDefault(key, "").isBlank()) { send(ex, 400, "application/json", Json.message("缺少必填字段: " + key)); return; }
-                if(v.getOrDefault("eventDescription","").isBlank()){send(ex,400,"application/json",Json.message("必须填写E项事件"));return;}
-                if(!Set.of("AD.CLS","AD.LIM","RWY.CLS","RWY.LIM").contains(v.get("scenario"))&&v.getOrDefault("reason","").isBlank()){send(ex,400,"application/json",Json.message("当前场景必须填写E项原因"));return;}
+                if(v.getOrDefault("eventDescription","").isBlank()&&!"ATSA.ACT".equals(v.get("scenario"))){send(ex,400,"application/json",Json.message("必须填写E项事件"));return;}
+                if(!Set.of("AD.CLS","AD.LIM","RWY.CLS","RWY.LIM","ATSA.ACT").contains(v.get("scenario"))&&v.getOrDefault("reason","").isBlank()){send(ex,400,"application/json",Json.message("当前场景必须填写E项原因"));return;}
                 if(Set.of("AD.LIM","RWY.LIM").contains(v.get("scenario"))&&restrictions.isEmpty()&&(v.getOrDefault("limitationType","").isBlank()||v.getOrDefault("operation","").isBlank())){send(ex,400,"application/json",Json.message(v.get("scenario")+" 必须至少包含一个限制条件"));return;}
                 if("RWY.CLS".equals(v.get("scenario"))&&v.getOrDefault("selectedRunways","").isBlank()){send(ex,400,"application/json",Json.message("RWY.CLS必须选择跑道"));return;}
                 if("RWY.LIM".equals(v.get("scenario"))&&v.getOrDefault("selectedRunways","").isBlank()){send(ex,400,"application/json",Json.message("RWY.LIM必须选择跑道"));return;}
@@ -109,6 +115,7 @@ public final class DigitalNotamApplication {
                 if ("POST".equals(ex.getRequestMethod()) && parts.length == 5 && "publish".equals(parts[4])) {
                     if ("PUBLISHED".equals(found.get().status())) { send(ex, 409, "application/json", Json.message("通告已发布")); return; }
                     Notam published = found.get().publish();
+                    REPO.reserveConsecutive(published.number(),PIPELINE.notificationCount(published));
                     PIPELINE.publish(published);
                     send(ex, 200, "application/json", Json.notam(REPO.save(published))); return;
                 }
@@ -145,6 +152,12 @@ public final class DigitalNotamApplication {
 
     private static void validateQFields(Notam n) {
         if(Set.of("RWY.CLS","RWY.LIM").contains(n.scenario()))try{if(!"EADD".equals(n.airport()))throw new IllegalArgumentException(n.scenario()+" 第一版仅支持 EADD");BASELINE_RUNWAYS.resolve(n.airport(),n.runwayUuid(),n.rwyTargetType(),n.runwayDirectionUuid(),Instant.parse(n.effectiveStart()),Instant.parse(n.effectiveEnd()));}catch(IllegalArgumentException e){throw e;}catch(Exception e){throw new IllegalArgumentException("读取跑道基线失败: "+e.getMessage(),e);}
+        if("ATSA.ACT".equals(n.scenario())){
+            var selectedAirspaces=BASELINE_AIRSPACES.resolve(n.airspaceGroupId(),n.selectedAirspaces());
+            ATSA_ACTIVATION.composeForPublication(n,selectedAirspaces);
+            if(!Set.of("ACTIVE","INACTIVE").contains(n.activationStatus()))throw new IllegalArgumentException("ATSA.ACT状态必须为ACTIVE或INACTIVE");
+            return;
+        }
         String expectedEvent=n.scenario().endsWith(".CLS")?"CLSD":"LIMITED";
         if(!expectedEvent.equals(n.eventDescription())) throw new IllegalArgumentException(n.scenario()+" 的E项事件必须为 "+expectedEvent);
         if(!n.qCode().matches("Q[A-Z]{4}")) throw new IllegalArgumentException("Q-CODE必须为Q开头的5位英文字母");
@@ -170,6 +183,7 @@ public final class DigitalNotamApplication {
 
     private static String structuredCondition(Map<String,String> v){
         String scenario=v.getOrDefault("scenario","");
+        if("ATSA.ACT".equals(scenario))return v.getOrDefault("activationStatus","")+" "+v.getOrDefault("remarks","");
         String subject=scenario.startsWith("AD.")?"AD":"RWY "+v.getOrDefault("selectedRunways","").trim();
         String event=v.getOrDefault("eventDescription","").trim().toUpperCase();
         String reason=v.getOrDefault("reason","").trim().toUpperCase(), remarks=v.getOrDefault("remarks","").trim().toUpperCase();
@@ -177,8 +191,8 @@ public final class DigitalNotamApplication {
         return (subject+" "+event+schedule+" DUE TO "+reason+(remarks.isBlank()?"":". "+remarks)).trim();
     }
 
-    private static Notam draftFrom(Map<String,String> v,List<AdLimRestriction> restrictions,String id,String number,String createdAt){return new Notam(id,number,v.getOrDefault("scenario",""),v.getOrDefault("title",""),v.getOrDefault("airport","").toUpperCase(),v.getOrDefault("featureType",""),structuredCondition(v),v.getOrDefault("selectedRunways",""),v.getOrDefault("selectedTaxiways",""),v.getOrDefault("eventDescription",""),v.getOrDefault("reason",""),v.getOrDefault("remarks",""),v.getOrDefault("effectiveStart",""),v.getOrDefault("effectiveEnd",""),v.getOrDefault("latitude",""),v.getOrDefault("longitude",""),v.getOrDefault("radiusNm",""),v.getOrDefault("latitudeHemisphere",""),v.getOrDefault("longitudeHemisphere",""),v.getOrDefault("qCode","").toUpperCase(),v.getOrDefault("traffic",""),v.getOrDefault("purpose",""),v.getOrDefault("scope",""),v.getOrDefault("lowerMeters",""),v.getOrDefault("upperMeters",""),v.getOrDefault("scheduleMode",""),v.getOrDefault("scheduleDay","ANY"),v.getOrDefault("scheduleStart","00:00"),v.getOrDefault("scheduleEnd","00:00"),"DRAFT",createdAt,"",v.getOrDefault("fir",""),v.getOrDefault("scheduleStartDate",""),v.getOrDefault("scheduleEndDate",""),v.getOrDefault("qOverrideReason",""),v.getOrDefault("qOverrideOperator",""),v.getOrDefault("qOverrideAt",""),v.getOrDefault("limitationType",""),v.getOrDefault("operation",""),v.getOrDefault("flightType",""),v.getOrDefault("flightRule",""),v.getOrDefault("flightStatus",""),v.getOrDefault("flightMilitary",""),v.getOrDefault("flightOrigin",""),v.getOrDefault("flightPurpose",""),v.getOrDefault("aircraftType",""),v.getOrDefault("aircraftEngine",""),v.getOrDefault("aircraftWingSpan",""),v.getOrDefault("aircraftWingSpanUom",""),v.getOrDefault("aircraftWingSpanInterpretation",""),v.getOrDefault("aircraftWeight",""),v.getOrDefault("aircraftWeightUom",""),v.getOrDefault("aircraftWeightInterpretation",""),v.getOrDefault("pprValue",""),v.getOrDefault("pprUnit",""),v.getOrDefault("pprDetails",""),restrictions,v.getOrDefault("rwyTargetType",""),v.getOrDefault("runwayUuid",""),v.getOrDefault("runwayDirectionUuid",""));}
-    private static void validateDraft(Notam n){for(String value:List.of(n.scenario(),n.fir(),n.title(),n.airport(),n.featureType(),n.effectiveStart(),n.effectiveEnd(),n.qCode(),n.traffic(),n.purpose(),n.scope(),n.latitudeHemisphere(),n.longitudeHemisphere(),n.scheduleMode()))if(value==null||value.isBlank())throw new IllegalArgumentException("草稿缺少必填字段");if(Set.of("AD.LIM","RWY.LIM").contains(n.scenario())){if(n.adLimRestrictions().isEmpty())throw new IllegalArgumentException(n.scenario()+" 必须至少包含一个限制条件");String type=n.limitationType();if(type.isBlank()||n.adLimRestrictions().stream().anyMatch(r->!type.equals(r.limitationType())))throw new IllegalArgumentException("一次 "+n.scenario()+" 通告中的所有限制条件必须使用相同的限制类型");}}
+    private static Notam draftFrom(Map<String,String> v,List<AdLimRestriction> restrictions,String id,String number,String createdAt){return new Notam(id,number,v.getOrDefault("scenario",""),v.getOrDefault("title",""),v.getOrDefault("airport","").toUpperCase(),v.getOrDefault("featureType",""),structuredCondition(v),v.getOrDefault("selectedRunways",""),v.getOrDefault("selectedTaxiways",""),v.getOrDefault("eventDescription",""),v.getOrDefault("reason",""),v.getOrDefault("remarks",""),v.getOrDefault("effectiveStart",""),v.getOrDefault("effectiveEnd",""),v.getOrDefault("latitude",""),v.getOrDefault("longitude",""),v.getOrDefault("radiusNm",""),v.getOrDefault("latitudeHemisphere",""),v.getOrDefault("longitudeHemisphere",""),v.getOrDefault("qCode","").toUpperCase(),v.getOrDefault("traffic",""),v.getOrDefault("purpose",""),v.getOrDefault("scope",""),v.getOrDefault("lowerMeters",""),v.getOrDefault("upperMeters",""),v.getOrDefault("scheduleMode",""),v.getOrDefault("scheduleDay","ANY"),v.getOrDefault("scheduleStart","00:00"),v.getOrDefault("scheduleEnd","00:00"),"DRAFT",createdAt,"",v.getOrDefault("fir",""),v.getOrDefault("scheduleStartDate",""),v.getOrDefault("scheduleEndDate",""),v.getOrDefault("qOverrideReason",""),v.getOrDefault("qOverrideOperator",""),v.getOrDefault("qOverrideAt",""),v.getOrDefault("limitationType",""),v.getOrDefault("operation",""),v.getOrDefault("flightType",""),v.getOrDefault("flightRule",""),v.getOrDefault("flightStatus",""),v.getOrDefault("flightMilitary",""),v.getOrDefault("flightOrigin",""),v.getOrDefault("flightPurpose",""),v.getOrDefault("aircraftType",""),v.getOrDefault("aircraftEngine",""),v.getOrDefault("aircraftWingSpan",""),v.getOrDefault("aircraftWingSpanUom",""),v.getOrDefault("aircraftWingSpanInterpretation",""),v.getOrDefault("aircraftWeight",""),v.getOrDefault("aircraftWeightUom",""),v.getOrDefault("aircraftWeightInterpretation",""),v.getOrDefault("pprValue",""),v.getOrDefault("pprUnit",""),v.getOrDefault("pprDetails",""),restrictions,v.getOrDefault("rwyTargetType",""),v.getOrDefault("runwayUuid",""),v.getOrDefault("runwayDirectionUuid",""),v.getOrDefault("airspaceGroupId",""),v.getOrDefault("selectedAirspaces",""),v.getOrDefault("activationStatus",""),v.getOrDefault("affectedAirports",""),v.getOrDefault("additionalFirs",""));}
+    private static void validateDraft(Notam n){List<String> required=new ArrayList<>(List.of(n.scenario(),n.fir(),n.title(),n.featureType(),n.effectiveStart(),n.effectiveEnd(),n.qCode(),n.traffic(),n.purpose(),n.scope(),n.latitudeHemisphere(),n.longitudeHemisphere(),n.scheduleMode()));if(!"ATSA.ACT".equals(n.scenario()))required.add(n.airport());for(String value:required)if(value==null||value.isBlank())throw new IllegalArgumentException("草稿缺少必填字段");if(Set.of("AD.LIM","RWY.LIM").contains(n.scenario())){if(n.adLimRestrictions().isEmpty())throw new IllegalArgumentException(n.scenario()+" 必须至少包含一个限制条件");String type=n.limitationType();if(type.isBlank()||n.adLimRestrictions().stream().anyMatch(r->!type.equals(r.limitationType())))throw new IllegalArgumentException("一次 "+n.scenario()+" 通告中的所有限制条件必须使用相同的限制类型");}}
     private static List<AdLimRestriction> parseAdLimRestrictions(String body){return Json.parseObjectArray(body,"restrictions").stream().map(v->new AdLimRestriction(v.get("limitationType"),v.get("operation"),v.get("flightType"),v.get("flightRule"),v.get("flightStatus"),v.get("flightMilitary"),v.get("flightOrigin"),v.get("flightPurpose"),v.get("aircraftType"),v.get("aircraftEngine"),v.get("aircraftWingSpan"),v.get("aircraftWingSpanUom"),v.get("aircraftWingSpanInterpretation"),v.get("aircraftWeight"),v.get("aircraftWeightUom"),v.get("aircraftWeightInterpretation"),v.get("pprValue"),v.get("pprUnit"),v.get("pprDetails"))).toList();}
 
     private static void baselineRunways(HttpExchange ex)throws IOException{
@@ -191,6 +205,45 @@ public final class DigitalNotamApplication {
         if(!"GET".equals(ex.getRequestMethod())){send(ex,405,"application/json",Json.message("仅支持GET"));return;}
         try{send(ex,200,"application/json",BASELINE_AIRPORTS.json());}catch(Exception e){send(ex,400,"application/json",Json.message(e.getMessage()));}
     }
+
+    private static void baselineAirspaces(HttpExchange ex)throws IOException{
+        if(!"GET".equals(ex.getRequestMethod())){send(ex,405,"application/json",Json.message("仅支持GET"));return;}
+        try{send(ex,200,"application/json",BASELINE_AIRSPACES.json());}catch(Exception e){send(ex,400,"application/json",Json.message(e.getMessage()));}
+    }
+
+    private static void atsaActivationPreview(HttpExchange ex)throws IOException{
+        if(!"POST".equals(ex.getRequestMethod())){send(ex,405,"application/json",Json.message("Only POST is supported"));return;}
+        try{
+            String body=new String(ex.getRequestBody().readAllBytes(),StandardCharsets.UTF_8);
+            Map<String,String> values=Json.parseObject(body);
+            values.put("scenario","ATSA.ACT");values.putIfAbsent("fir","EAAD");values.putIfAbsent("title","ATSA.ACT preview");
+            values.putIfAbsent("featureType","AIRSPACE");values.putIfAbsent("numberSeries","A");
+            values.putIfAbsent("qCode","QATCA");values.putIfAbsent("traffic","IV");values.putIfAbsent("purpose","BO");
+            values.putIfAbsent("scope","E");values.putIfAbsent("latitudeHemisphere","N");values.putIfAbsent("longitudeHemisphere","E");
+            Notam draft=draftFrom(values,List.of(),"preview","A0001/26",Instant.now().toString());
+            var targets=BASELINE_AIRSPACES.resolve(draft.airspaceGroupId(),draft.selectedAirspaces());
+            Instant viewStart=instant(values.get("viewStart"),Instant.parse(draft.effectiveStart()));
+            Instant viewEnd=instant(values.get("viewEnd"),Instant.parse(draft.effectiveEnd()));
+            send(ex,200,"application/json",activationJson(ATSA_ACTIVATION.compose(draft,targets,viewStart,viewEnd)));
+        }catch(Exception e){send(ex,400,"application/json",Json.message(e.getMessage()));}
+    }
+
+    private static Instant instant(String value,Instant fallback){return value==null||value.isBlank()?fallback:Instant.parse(value);}
+    private static String activationJson(AtsaActActivationComposer.Composition c){
+        StringBuilder out=new StringBuilder("{\"viewStart\":\"").append(c.viewStart()).append("\",\"viewEnd\":\"").append(c.viewEnd())
+                .append("\",\"compositionHash\":\"").append(c.compositionHash()).append("\",\"publishable\":").append(c.publishable()).append(",\"airspaces\":[");
+        for(int i=0;i<c.airspaces().size();i++){if(i>0)out.append(',');var a=c.airspaces().get(i);
+            out.append("{\"uuid\":\"").append(jsonEsc(a.uuid())).append("\",\"label\":\"").append(jsonEsc(a.label())).append("\",\"lowerFl\":").append(a.lowerFl()).append(",\"upperFl\":").append(a.upperFl()).append(",\"intervals\":[");
+            for(int j=0;j<a.intervals().size();j++){if(j>0)out.append(',');var x=a.intervals().get(j);
+                out.append("{\"start\":\"").append(x.start()).append("\",\"end\":\"").append(x.end()).append("\",\"status\":\"").append(jsonEsc(x.status())).append("\",\"source\":\"").append(x.source()).append("\",\"lowerFl\":").append(x.lowerFl()).append(",\"upperFl\":").append(x.upperFl()).append(",\"conflict\":").append(x.conflict()).append('}');
+            }out.append("]}");
+        }out.append("],\"issues\":[");
+        for(int i=0;i<c.issues().size();i++){if(i>0)out.append(',');var x=c.issues().get(i);
+            out.append("{\"code\":\"").append(jsonEsc(x.code())).append("\",\"airspaceUuid\":\"").append(jsonEsc(x.airspaceUuid())).append("\",\"start\":\"").append(x.start()).append("\",\"end\":\"").append(x.end()).append("\",\"message\":\"").append(jsonEsc(x.message())).append("\",\"blocking\":").append(x.blocking()).append('}');
+        }
+        return out.append("]}").toString();
+    }
+    private static String jsonEsc(String value){return value==null?"":value.replace("\\","\\\\").replace("\"","\\\"").replace("\r","\\r").replace("\n","\\n");}
 
     private static void send(HttpExchange ex, int status, String type, String body) throws IOException {
         byte[] bytes = body.getBytes(StandardCharsets.UTF_8); ex.getResponseHeaders().set("Content-Type", type + "; charset=utf-8");
