@@ -1,6 +1,5 @@
 package com.example.digitalnotam.workflow;
 
-import com.example.digitalnotam.baseline.BaselineTaxiwayCatalog;
 import com.example.digitalnotam.domain.Notam;
 import com.example.digitalnotam.scenario.adcls.AdClsNotamProducer;
 import com.example.digitalnotam.scenario.adcls.AdClsScenarioBuilder;
@@ -27,12 +26,11 @@ import java.time.*;
 import java.util.*;
 
 public final class DigitalNotamPipeline {
-    private static final Set<String> SCENARIOS = Set.of("AD.CLS", "AD.LIM", "RWY.CLS", "RWY.LIM", "TWY.CLS", "TWY.LIM");
+    private static final Set<String> SCENARIOS = Set.of("AD.CLS", "AD.LIM", "RWY.CLS", "RWY.LIM");
     private static final Path SAMPLES = Path.of("data", "virtual data", "Donlon_2025", "Donlon", "Digital NOTAM");
     private static final Map<String, String> BLUEPRINT = Map.of(
             "AD.CLS", "DN_AD.CLS_1_ad_closed.xml", "AD.LIM", "DN_AD.LIM_1_closed_except_for.xml",
-            "RWY.CLS", "DN_RWY.CLS_1_full_runway_closure.xml", "RWY.LIM", "DN_RWY.LIM_1_closed_except_for_takeoff.xml",
-            "TWY.CLS", "DN_TWY.CLS_1_single_twy_closure.xml", "TWY.LIM", "DN_TWY.LIM_1_closed_except_for.xml");
+            "RWY.CLS", "DN_RWY.CLS_1_full_runway_closure.xml", "RWY.LIM", "DN_RWY.LIM_1_closed_except_for_takeoff.xml");
     private final Path store = Path.of("data", "notams").toAbsolutePath().normalize();
     private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder(), "AD.LIM", new AdLimScenarioBuilder(), "RWY.CLS", new RwyClsScenarioBuilder(), "RWY.LIM", new RwyLimScenarioBuilder());
     private final AdClsNotamProducer adClsNotamProducer = new AdClsNotamProducer();
@@ -84,7 +82,7 @@ public final class DigitalNotamPipeline {
         String featureType = scenario.startsWith("AD.") ? "AIRPORT_HELIPORT" : scenario.startsWith("RWY.") ? "RUNWAY" : "TAXIWAY";
         return new Notam(UUID.nameUUIDFromBytes(number.getBytes(StandardCharsets.UTF_8)).toString(), number, scenario,
                 defaultIfBlank(text(d, "name"), number), defaultIfBlank(text(d, "location"), "EADD"), featureType,
-                text(d, "text"), runwayFromTitle(d), taxiwaysFromText(text(d, "text")), "", "", "", start, end, coordinateParts[0], coordinateParts[1], defaultIfBlank(text(d, "radius"), "0"), coordinateParts[2], coordinateParts[3],
+                text(d, "text"), runwayFromTitle(d), "", "", "", "", start, end, coordinateParts[0], coordinateParts[1], defaultIfBlank(text(d, "radius"), "0"), coordinateParts[2], coordinateParts[3],
                 defaultIfBlank(text(d, "selectionCode"), "QXXXX"), defaultIfBlank(text(d, "traffic"), "IV"), defaultIfBlank(text(d, "purpose"), "NBO"), defaultIfBlank(text(d, "scope"), "A"),
                 metersOfFl(minimum, false), metersOfFl(maximum, true), scheduleMode, scheduleDay, scheduleStart, scheduleEnd,
                 "PUBLISHED", modified, modified);
@@ -103,9 +101,6 @@ public final class DigitalNotamPipeline {
         } else if (d.getElementsByTagNameNS("*", "Runway").getLength() > 0) {
             feature = "RUNWAY";
             scenario = "RWY.CLS";
-        } else if (d.getElementsByTagNameNS("*", "Taxiway").getLength() > 0) {
-            feature = "TAXIWAY";
-            scenario = "TWY.CLS";
         } else throw new IllegalArgumentException("无法识别旧格式航空要素");
         String start = firstIso(d, "beginPosition"), end = firstIso(d, "endPosition");
         String note = text(d, "note"), title = number, condition = note;
@@ -160,8 +155,7 @@ public final class DigitalNotamPipeline {
         setNotamField(d, "maximumFL", n.maximumFl());
         setNotamField(d, "coordinates", formatCoordinates(n.latitude(), n.latitudeHemisphere(), n.longitude(), n.longitudeHemisphere()));
         setNotamField(d, "radius", String.format("%03d", Integer.parseInt(n.radiusNm())));
-        if ("TWY.CLS".equals(n.scenario())) applyTaxiwayClosure(d, n);
-        else if ("SCHEDULED".equals(n.scheduleMode()))
+        if ("SCHEDULED".equals(n.scheduleMode()))
             applySchedule(d, n.scheduleDay(), n.scheduleStart(), n.scheduleEnd());
         else removeGenericEventSchedule(d);
         replaceHeaderComments(d, n.scenario());
@@ -285,45 +279,6 @@ public final class DigitalNotamPipeline {
         }
         if (availability == null) throw new IllegalArgumentException("场景XML缺少事件可用性结构");
         replaceTimesheets(d, availability, days, start, end);
-    }
-
-    private static void applyTaxiwayClosure(Document d, Notam n) throws Exception {
-        Map<String, String> baseline = new BaselineTaxiwayCatalog().identifiers(n.airport());
-        List<String> selected = Arrays.stream(n.selectedTaxiways().split(",")).map(String::trim).filter(s -> !s.isBlank()).distinct().toList();
-        if (selected.isEmpty() || !baseline.keySet().containsAll(selected))
-            throw new IllegalArgumentException("所选滑行道与机场基线不匹配");
-        Element root = d.getDocumentElement(), templateMember = null;
-        List<Node> remove = new ArrayList<>();
-        for (Node p = root.getFirstChild(); p != null; p = p.getNextSibling())
-            if (p instanceof Element member && "hasMember".equals(member.getLocalName())) {
-                Element feature = firstElementChild(member);
-                if (feature != null && ("Taxiway".equals(feature.getLocalName()) || "TaxiwayElement".equals(feature.getLocalName()))) {
-                    if ("Taxiway".equals(feature.getLocalName()) && templateMember == null) templateMember = member;
-                    remove.add(member);
-                }
-            }
-        if (templateMember == null) throw new IllegalArgumentException("TWY.CLS蓝图缺少Taxiway结构");
-        Element template = (Element) templateMember.cloneNode(true);
-        for (Node node : remove) root.removeChild(node);
-        for (String designator : selected) {
-            Element member = (Element) template.cloneNode(true);
-            Element taxiway = firstElementChild(member);
-            regenerateGmlIds(taxiway);
-            String uuid = baseline.get(designator);
-            taxiway.setAttributeNS("http://www.opengis.net/gml/3.2", "gml:id", "uuid." + uuid);
-            NodeList identifiers = taxiway.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "identifier");
-            if (identifiers.getLength() > 0) identifiers.item(0).setTextContent(uuid);
-            NodeList links = taxiway.getElementsByTagNameNS("http://www.aixm.aero/schema/5.1.1/event", "theEvent");
-            for (int i = 0; i < links.getLength(); i++)
-                ((Element) links.item(i)).setAttributeNS("http://www.w3.org/1999/xlink", "xlink:title", n.airport() + " " + designator + " DNOTAM TWY.CLS");
-            Element closed = closedAvailability(taxiway);
-            if (closed == null) throw new IllegalArgumentException("TWY.CLS蓝图缺少关闭状态");
-            if ("SCHEDULED".equals(n.scheduleMode()))
-                replaceTimesheets(d, closed, parseScheduleDays(n.scheduleDay()), n.scheduleStart(), n.scheduleEnd());
-            else removeDirectTimeIntervals(closed);
-            replaceClosureNotes(closed, n.reason(), n.remarks());
-            root.appendChild(member);
-        }
     }
 
     private static Element firstElementChild(Element parent) {
@@ -472,11 +427,6 @@ public final class DigitalNotamPipeline {
         String title = text(d, "name");
         var m = java.util.regex.Pattern.compile("(?:^|\\s)(\\d{2}[LRC]?/\\d{2}[LRC]?)(?:\\s|$)").matcher(title);
         return m.find() ? m.group(1) : "";
-    }
-
-    private static String taxiwaysFromText(String value) {
-        var m = java.util.regex.Pattern.compile("^TWY\\s+([A-Z0-9 ]+)\\s+(?:CLSD|LIMITED)").matcher(value.toUpperCase(Locale.ROOT));
-        return m.find() ? m.group(1).trim().replace(' ', ',') : "";
     }
 
     private static void replaceHeaderComments(Document d, String scenario) {

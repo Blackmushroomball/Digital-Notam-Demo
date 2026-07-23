@@ -19,10 +19,6 @@ public final class NotamRepository {
                 "RWY 09R/27L CLSD DUE TO MAINT", "09R/27L", "", "跑道关闭", "MAINT", "", "2026-07-14T01:00:00Z", "2026-07-14T05:00:00Z",
                 "40.0801", "116.5846", "2", "N", "E", "QMRLC", "IV", "NBO", "A", "", "", "CONTINUOUS", "ANY", "01:00", "05:00", "DRAFT", Instant.now().toString(), "");
         data.put(draft.id(), draft);
-        Notam published = new Notam(UUID.randomUUID().toString(), assignNumber("C", "1001"), "TWY.CLS", "DONLON 滑行道 B 关闭", "EADD", "TAXIWAY",
-                "TWY B BTN B3 AND B5 CLSD", "", "B", "", "", "", "2026-07-13T16:00:00Z", "2026-07-20T16:00:00Z",
-                "31.1443", "121.8083", "1", "N", "E", "QMXLC", "IV", "NBO", "A", "", "", "SCHEDULED", "ANY", "16:00", "20:00", "PUBLISHED", Instant.now().toString(), Instant.now().toString());
-        data.put(published.id(), published);
     }
 
     public void restore(Collection<Notam> notams) {

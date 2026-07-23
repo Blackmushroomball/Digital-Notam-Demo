@@ -2,7 +2,6 @@ package com.example.digitalnotam.application;
 
 import com.example.digitalnotam.baseline.BaselineAirportHeliportCatalog;
 import com.example.digitalnotam.baseline.BaselineRunwayCatalog;
-import com.example.digitalnotam.baseline.BaselineTaxiwayCatalog;
 import com.example.digitalnotam.domain.Notam;
 import com.example.digitalnotam.domain.AdLimRestriction;
 import com.example.digitalnotam.persistence.AixmXmlStore;
@@ -24,7 +23,6 @@ public final class DigitalNotamApplication {
     private static final NotamRepository REPO = new NotamRepository();
     private static final AixmXmlStore XML_STORE = new AixmXmlStore(Path.of("data", "notams"));
     private static final BaselineRunwayCatalog BASELINE_RUNWAYS = new BaselineRunwayCatalog();
-    private static final BaselineTaxiwayCatalog BASELINE_TAXIWAYS = new BaselineTaxiwayCatalog();
     private static final BaselineAirportHeliportCatalog BASELINE_AIRPORTS = new BaselineAirportHeliportCatalog();
     private static final Path PUBLIC = Path.of("src", "main", "resources", "public").toAbsolutePath().normalize();
 
@@ -40,7 +38,6 @@ public final class DigitalNotamApplication {
         server.createContext("/api/notams", DigitalNotamApplication::api);
         server.createContext("/api/import", DigitalNotamApplication::importXml);
         server.createContext("/api/baseline/runways", DigitalNotamApplication::baselineRunways);
-        server.createContext("/api/baseline/taxiways", DigitalNotamApplication::baselineTaxiways);
         server.createContext("/api/baseline/airports", DigitalNotamApplication::baselineAirports);
         server.createContext("/", DigitalNotamApplication::staticFile);
         server.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
@@ -83,7 +80,6 @@ public final class DigitalNotamApplication {
                 if(Set.of("AD.LIM","RWY.LIM").contains(v.get("scenario"))&&restrictions.isEmpty()&&(v.getOrDefault("limitationType","").isBlank()||v.getOrDefault("operation","").isBlank())){send(ex,400,"application/json",Json.message(v.get("scenario")+" 必须至少包含一个限制条件"));return;}
                 if("RWY.CLS".equals(v.get("scenario"))&&v.getOrDefault("selectedRunways","").isBlank()){send(ex,400,"application/json",Json.message("RWY.CLS必须选择跑道"));return;}
                 if("RWY.LIM".equals(v.get("scenario"))&&v.getOrDefault("selectedRunways","").isBlank()){send(ex,400,"application/json",Json.message("RWY.LIM必须选择跑道"));return;}
-                if("TWY.CLS".equals(v.get("scenario"))&&v.getOrDefault("selectedTaxiways","").isBlank()){send(ex,400,"application/json",Json.message("TWY.CLS必须选择至少一条滑行道"));return;}
                 if("SCHEDULED".equals(v.get("scheduleMode"))&&(v.getOrDefault("scheduleDay","").isBlank()||v.getOrDefault("scheduleStart","").isBlank()||v.getOrDefault("scheduleEnd","").isBlank())){send(ex,400,"application/json",Json.message("计划生效模式必须填写D项日期和时间"));return;}
                 String number;
                 try { number = REPO.assignNumber(v.get("numberSeries"), v.getOrDefault("numberDigits", "")); }
@@ -149,7 +145,6 @@ public final class DigitalNotamApplication {
 
     private static void validateQFields(Notam n) {
         if(Set.of("RWY.CLS","RWY.LIM").contains(n.scenario()))try{if(!"EADD".equals(n.airport()))throw new IllegalArgumentException(n.scenario()+" 第一版仅支持 EADD");BASELINE_RUNWAYS.resolve(n.airport(),n.runwayUuid(),n.rwyTargetType(),n.runwayDirectionUuid(),Instant.parse(n.effectiveStart()),Instant.parse(n.effectiveEnd()));}catch(IllegalArgumentException e){throw e;}catch(Exception e){throw new IllegalArgumentException("读取跑道基线失败: "+e.getMessage(),e);}
-        if("TWY.CLS".equals(n.scenario()))try{Set<String> selected=new LinkedHashSet<>(Arrays.asList(n.selectedTaxiways().split(",")));if(selected.contains("")||!BASELINE_TAXIWAYS.identifiers(n.airport()).keySet().containsAll(selected))throw new IllegalArgumentException("所选滑行道不属于机场基线数据");}catch(IllegalArgumentException e){throw e;}catch(Exception e){throw new IllegalArgumentException("读取机场滑行道基线失败: "+e.getMessage());}
         String expectedEvent=n.scenario().endsWith(".CLS")?"CLSD":"LIMITED";
         if(!expectedEvent.equals(n.eventDescription())) throw new IllegalArgumentException(n.scenario()+" 的E项事件必须为 "+expectedEvent);
         if(!n.qCode().matches("Q[A-Z]{4}")) throw new IllegalArgumentException("Q-CODE必须为Q开头的5位英文字母");
@@ -175,7 +170,7 @@ public final class DigitalNotamApplication {
 
     private static String structuredCondition(Map<String,String> v){
         String scenario=v.getOrDefault("scenario","");
-        String subject=scenario.startsWith("AD.")?"AD":scenario.equals("RWY.CLS")?"RWY "+v.getOrDefault("selectedRunways","").trim():scenario.startsWith("RWY.")?"RWY":scenario.equals("TWY.CLS")?"TWY "+v.getOrDefault("selectedTaxiways","").replace(',',' '):"TWY";
+        String subject=scenario.startsWith("AD.")?"AD":"RWY "+v.getOrDefault("selectedRunways","").trim();
         String event=v.getOrDefault("eventDescription","").trim().toUpperCase();
         String reason=v.getOrDefault("reason","").trim().toUpperCase(), remarks=v.getOrDefault("remarks","").trim().toUpperCase();
         String schedule="SCHEDULED".equals(v.get("scheduleMode"))?" "+v.getOrDefault("scheduleDay","").replace(',',' ')+" "+v.getOrDefault("scheduleStart","").replace(":","")+"-"+v.getOrDefault("scheduleEnd","").replace(":","")+" UTC":"";
@@ -190,12 +185,6 @@ public final class DigitalNotamApplication {
         if(!"GET".equals(ex.getRequestMethod())){send(ex,405,"application/json",Json.message("仅支持GET"));return;}
         String airport=query(ex.getRequestURI().getRawQuery()).getOrDefault("airport","");
         try{send(ex,200,"application/json",BASELINE_RUNWAYS.json(airport));}catch(Exception e){send(ex,400,"application/json",Json.message(e.getMessage()));}
-    }
-
-    private static void baselineTaxiways(HttpExchange ex)throws IOException{
-        if(!"GET".equals(ex.getRequestMethod())){send(ex,405,"application/json",Json.message("仅支持GET"));return;}
-        String airport=query(ex.getRequestURI().getRawQuery()).getOrDefault("airport","");
-        try{send(ex,200,"application/json",BASELINE_TAXIWAYS.json(airport));}catch(Exception e){send(ex,400,"application/json",Json.message(e.getMessage()));}
     }
 
     private static void baselineAirports(HttpExchange ex)throws IOException{
