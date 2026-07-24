@@ -2,6 +2,7 @@ package com.example.digitalnotam.scenario.navuns;
 
 import com.example.digitalnotam.baseline.BaselineNavaidCatalog;
 import com.example.digitalnotam.domain.Notam;
+import com.example.digitalnotam.scenario.common.schedule.EventScheduleSupport;
 import java.time.*;
 import java.util.*;
 
@@ -21,9 +22,7 @@ public final class NavUnsPreviewService {
     }
     private static Row row(String id,String label,String kind,String baseline,String eventStatus,List<Span> events,Instant start,Instant end){List<Interval> out=new ArrayList<>();Instant cursor=start;for(Span s:events){if(s.start.isAfter(cursor))out.add(new Interval(cursor,s.start,baseline,"BASELINE"));out.add(new Interval(s.start,s.end,eventStatus,"EVENT"));cursor=s.end;}if(cursor.isBefore(end))out.add(new Interval(cursor,end,baseline,"BASELINE"));return new Row(id,label,kind,List.copyOf(out));}
     private static List<Span> eventSpans(Notam n,Instant start,Instant end){
-        if("CONTINUOUS".equals(n.scheduleMode()))return List.of(new Span(start,end));Set<DayOfWeek> days=new LinkedHashSet<>();if("WEEKDAYS".equals(n.scheduleMode()))for(String x:n.scheduleDay().split(",")){DayOfWeek d=DAYS.get(x.trim());if(d!=null)days.add(d);}else days.addAll(Arrays.asList(DayOfWeek.values()));
-        LocalDate from="DATES".equals(n.scheduleMode())?LocalDate.parse(n.scheduleStartDate()):start.atZone(ZoneOffset.UTC).toLocalDate(),to="DATES".equals(n.scheduleMode())?LocalDate.parse(n.scheduleEndDate()):end.atZone(ZoneOffset.UTC).toLocalDate();LocalTime a=LocalTime.parse(n.scheduleStart()),b=LocalTime.parse(n.scheduleEnd());List<Span> out=new ArrayList<>();
-        for(LocalDate date=from;!date.isAfter(to);date=date.plusDays(1)){if(!days.contains(date.getDayOfWeek()))continue;Instant x=date.atTime(a).toInstant(ZoneOffset.UTC),y=(b.isAfter(a)?date:date.plusDays(1)).atTime(b).toInstant(ZoneOffset.UTC);x=max(x,start);y=min(y,end);if(y.isAfter(x))out.add(new Span(x,y));}return out;
+        return EventScheduleSupport.occurrences(n,start,end).stream().map(x->new Span(x.start(),x.end())).toList();
     }
     public String json(Preview p){StringBuilder out=new StringBuilder("{\"viewStart\":\"").append(p.start).append("\",\"viewEnd\":\"").append(p.end).append("\",\"temporaryNavaidType\":\"").append(esc(p.temporaryNavaidType)).append("\",\"eventCount\":").append(p.eventCount).append(",\"rows\":[");for(int i=0;i<p.rows.size();i++){if(i>0)out.append(',');Row r=p.rows.get(i);out.append("{\"id\":\"").append(esc(r.id)).append("\",\"label\":\"").append(esc(r.label)).append("\",\"kind\":\"").append(r.kind).append("\",\"intervals\":[");for(int j=0;j<r.intervals.size();j++){if(j>0)out.append(',');Interval x=r.intervals.get(j);out.append("{\"start\":\"").append(x.start).append("\",\"end\":\"").append(x.end).append("\",\"status\":\"").append(esc(x.status)).append("\",\"source\":\"").append(x.source).append("\"}");}out.append("]}");}return out.append("]}").toString();}
     private static String display(BaselineNavaidCatalog.Navaid n){return(n.designator()+" "+n.type().replace('_','/')+" "+n.name()).trim();}

@@ -1,6 +1,6 @@
 package com.example.digitalnotam.scenario.atsaact;
 
-import com.example.digitalnotam.domain.Notam;
+import com.example.digitalnotam.domain.*;
 import com.example.digitalnotam.baseline.BaselineAirspaceCatalog;
 import org.w3c.dom.Document;
 import java.time.Instant;
@@ -11,19 +11,22 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.SchemaFactory;
 import org.w3c.dom.*;
+import java.util.List;
 
 public final class AtsaActScenarioBuilderTest {
     public static void main(String[] args)throws Exception{
         String now=Instant.now().toString();
         Notam n=new Notam("atsa-test","D0900/26","ATSA.ACT","MAGNETO TMA ACTIVATION","","AIRSPACE",
-                "ACTIVE","","","","","", "2026-08-01T00:00:00Z","2026-08-01T05:00:00Z",
+                "ACTIVE","","","","","GENERAL NOTE", "2026-08-01T00:00:00Z","2026-08-01T05:00:00Z",
                 "54","36","1","N","W","QATCA","IV","BO","E","","",
                 "DAILY","ANY","01:00","03:00","DRAFT",now,now)
-                .withAtsaAct("MAGNETO_TMA","0df377fe-dd53-4d60-b6c4-6546ef31d26b,010d8451-d751-4abb-9c71-f48ad024045b","ACTIVE","EAMN,EADD","");
+                .withAtsaAct("MAGNETO_TMA","0df377fe-dd53-4d60-b6c4-6546ef31d26b,010d8451-d751-4abb-9c71-f48ad024045b","ACTIVE","EAMN,EADD","")
+                .withScheduleData(new ScheduleData("DAILY",List.of(new ScheduleEntry("","","ANY","","01:00","03:00",false)),List.of(),"SCHEDULE NOTE"));
         AtsaActScenarioBuilder builder=new AtsaActScenarioBuilder();Document d=builder.build(n);builder.validate(d,n);
         check(d.getElementsByTagNameNS("*","NOTAM").getLength()==2,"one AE and one A notification expected");
         check(d.getElementsByTagNameNS("*","Airspace").getLength()==2,"two sector TEMPDELTAs expected");
         check(d.getElementsByTagNameNS("*","AirspaceActivation").getLength()>=2,"activation blocks expected");
+        check(text(d,"text").contains("SCHEDULE NOTE"),"ATSA.ACT E item must contain the schedule note");
         assertCommentPlacement(d);
         SchemaFactory schema=SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         schema.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD,"");schema.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA,"file,http,https");

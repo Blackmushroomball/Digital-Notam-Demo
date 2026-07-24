@@ -7,12 +7,15 @@ import com.example.digitalnotam.baseline.BaselineRunwayCatalog;
 import com.example.digitalnotam.domain.Notam;
 import com.example.digitalnotam.domain.AdLimRestriction;
 import com.example.digitalnotam.domain.NavUnsData;
+import com.example.digitalnotam.domain.ScheduleData;
+import com.example.digitalnotam.domain.ScheduleEntry;
 import com.example.digitalnotam.persistence.AixmXmlStore;
 import com.example.digitalnotam.persistence.NotamRepository;
 import com.example.digitalnotam.workflow.DigitalNotamPipeline;
 import com.example.digitalnotam.xml.AixmXml;
 import com.example.digitalnotam.scenario.atsaact.AtsaActActivationComposer;
 import com.example.digitalnotam.scenario.navuns.NavUnsPreviewService;
+import com.example.digitalnotam.scenario.common.schedule.EventScheduleSupport;
 
 import com.sun.net.httpserver.*;
 import java.io.*;
@@ -98,8 +101,8 @@ public final class DigitalNotamApplication {
                 try { number = REPO.assignNumber(v.get("numberSeries"), v.getOrDefault("numberDigits", "")); }
                 catch (IllegalArgumentException e) { send(ex, 400, "application/json", Json.message(e.getMessage())); return; }
                 catch (IllegalStateException e) { send(ex, 409, "application/json", Json.message(e.getMessage())); return; }
-                Notam n = draftFrom(v,restrictions,UUID.randomUUID().toString(),number,Instant.now().toString());
-                try { validateQFields(n); }
+                Notam n = draftFrom(v,restrictions,UUID.randomUUID().toString(),number,Instant.now().toString()).withScheduleData(parseScheduleData(body,v));
+                try { EventScheduleSupport.validate(n);validateQFields(n); }
                 catch (IllegalArgumentException e) { send(ex,400,"application/json",Json.message(e.getMessage())); return; }
                 send(ex, 201, "application/json", Json.notam(REPO.save(n))); return;
             }
@@ -109,7 +112,7 @@ public final class DigitalNotamApplication {
                     Notam current=found.get();
                     if(!"DRAFT".equals(current.status())){send(ex,409,"application/json",Json.message("已发布通告不能编辑"));return;}
                     String body=new String(ex.getRequestBody().readAllBytes(),StandardCharsets.UTF_8);Map<String,String> v=Json.parseObject(body);List<AdLimRestriction> restrictions=parseAdLimRestrictions(body);
-                    try{Notam updated=draftFrom(v,restrictions,current.id(),current.number(),current.createdAt());validateDraft(updated);validateQFields(updated);send(ex,200,"application/json",Json.notam(REPO.save(updated)));}
+                    try{Notam updated=draftFrom(v,restrictions,current.id(),current.number(),current.createdAt()).withScheduleData(parseScheduleData(body,v));validateDraft(updated);EventScheduleSupport.validate(updated);validateQFields(updated);send(ex,200,"application/json",Json.notam(REPO.save(updated)));}
                     catch(IllegalArgumentException e){send(ex,400,"application/json",Json.message(e.getMessage()));}
                     return;
                 }
@@ -206,9 +209,14 @@ public final class DigitalNotamApplication {
         return (subject+" "+event+schedule+" DUE TO "+reason+(remarks.isBlank()?"":". "+remarks)).trim();
     }
 
-    private static Notam draftFrom(Map<String,String> v,List<AdLimRestriction> restrictions,String id,String number,String createdAt){return new Notam(id,number,v.getOrDefault("scenario",""),v.getOrDefault("title",""),v.getOrDefault("airport","").toUpperCase(),v.getOrDefault("featureType",""),structuredCondition(v),v.getOrDefault("selectedRunways",""),v.getOrDefault("selectedTaxiways",""),v.getOrDefault("eventDescription",""),v.getOrDefault("reason",""),v.getOrDefault("remarks",""),v.getOrDefault("effectiveStart",""),v.getOrDefault("effectiveEnd",""),v.getOrDefault("latitude",""),v.getOrDefault("longitude",""),v.getOrDefault("radiusNm",""),v.getOrDefault("latitudeHemisphere",""),v.getOrDefault("longitudeHemisphere",""),v.getOrDefault("qCode","").toUpperCase(),v.getOrDefault("traffic",""),v.getOrDefault("purpose",""),v.getOrDefault("scope",""),v.getOrDefault("lowerMeters",""),v.getOrDefault("upperMeters",""),v.getOrDefault("scheduleMode",""),v.getOrDefault("scheduleDay","ANY"),v.getOrDefault("scheduleStart","00:00"),v.getOrDefault("scheduleEnd","00:00"),"DRAFT",createdAt,"",v.getOrDefault("fir",""),v.getOrDefault("scheduleStartDate",""),v.getOrDefault("scheduleEndDate",""),v.getOrDefault("qOverrideReason",""),v.getOrDefault("qOverrideOperator",""),v.getOrDefault("qOverrideAt",""),v.getOrDefault("limitationType",""),v.getOrDefault("operation",""),v.getOrDefault("flightType",""),v.getOrDefault("flightRule",""),v.getOrDefault("flightStatus",""),v.getOrDefault("flightMilitary",""),v.getOrDefault("flightOrigin",""),v.getOrDefault("flightPurpose",""),v.getOrDefault("aircraftType",""),v.getOrDefault("aircraftEngine",""),v.getOrDefault("aircraftWingSpan",""),v.getOrDefault("aircraftWingSpanUom",""),v.getOrDefault("aircraftWingSpanInterpretation",""),v.getOrDefault("aircraftWeight",""),v.getOrDefault("aircraftWeightUom",""),v.getOrDefault("aircraftWeightInterpretation",""),v.getOrDefault("pprValue",""),v.getOrDefault("pprUnit",""),v.getOrDefault("pprDetails",""),restrictions,v.getOrDefault("rwyTargetType",""),v.getOrDefault("runwayUuid",""),v.getOrDefault("runwayDirectionUuid",""),v.getOrDefault("airspaceGroupId",""),v.getOrDefault("selectedAirspaces",""),v.getOrDefault("activationStatus",""),v.getOrDefault("affectedAirports",""),v.getOrDefault("additionalFirs",""),new NavUnsData(v.getOrDefault("navaidUuid",""),v.getOrDefault("impactMode",""),v.getOrDefault("equipmentUuid",""),v.getOrDefault("signalType",""),v.getOrDefault("operationalStatus",""),Boolean.parseBoolean(v.getOrDefault("signalStillEmitted","false"))));}
+    private static Notam draftFrom(Map<String,String> v,List<AdLimRestriction> restrictions,String id,String number,String createdAt){return new Notam(id,number,v.getOrDefault("scenario",""),v.getOrDefault("title",""),v.getOrDefault("airport","").toUpperCase(),v.getOrDefault("featureType",""),structuredCondition(v),v.getOrDefault("selectedRunways",""),v.getOrDefault("selectedTaxiways",""),v.getOrDefault("eventDescription",""),v.getOrDefault("reason",""),v.getOrDefault("remarks",""),v.getOrDefault("effectiveStart",""),v.getOrDefault("effectiveEnd",""),v.getOrDefault("latitude",""),v.getOrDefault("longitude",""),v.getOrDefault("radiusNm",""),v.getOrDefault("latitudeHemisphere",""),v.getOrDefault("longitudeHemisphere",""),v.getOrDefault("qCode","").toUpperCase(),v.getOrDefault("traffic",""),v.getOrDefault("purpose",""),v.getOrDefault("scope",""),v.getOrDefault("lowerMeters",""),v.getOrDefault("upperMeters",""),v.getOrDefault("scheduleMode",""),v.getOrDefault("scheduleDay","ANY"),v.getOrDefault("scheduleStart","00:00"),v.getOrDefault("scheduleEnd","00:00"),"DRAFT",createdAt,"",v.getOrDefault("fir",""),v.getOrDefault("scheduleStartDate",""),v.getOrDefault("scheduleEndDate",""),v.getOrDefault("qOverrideReason",""),v.getOrDefault("qOverrideOperator",""),v.getOrDefault("qOverrideAt",""),v.getOrDefault("limitationType",""),v.getOrDefault("operation",""),v.getOrDefault("flightType",""),v.getOrDefault("flightRule",""),v.getOrDefault("flightStatus",""),v.getOrDefault("flightMilitary",""),v.getOrDefault("flightOrigin",""),v.getOrDefault("flightPurpose",""),v.getOrDefault("aircraftType",""),v.getOrDefault("aircraftEngine",""),v.getOrDefault("aircraftWingSpan",""),v.getOrDefault("aircraftWingSpanUom",""),v.getOrDefault("aircraftWingSpanInterpretation",""),v.getOrDefault("aircraftWeight",""),v.getOrDefault("aircraftWeightUom",""),v.getOrDefault("aircraftWeightInterpretation",""),v.getOrDefault("pprValue",""),v.getOrDefault("pprUnit",""),v.getOrDefault("pprDetails",""),restrictions,v.getOrDefault("rwyTargetType",""),v.getOrDefault("runwayUuid",""),v.getOrDefault("runwayDirectionUuid",""),v.getOrDefault("airspaceGroupId",""),v.getOrDefault("selectedAirspaces",""),v.getOrDefault("activationStatus",""),v.getOrDefault("affectedAirports",""),v.getOrDefault("additionalFirs",""),new NavUnsData(v.getOrDefault("navaidUuid",""),v.getOrDefault("impactMode",""),v.getOrDefault("equipmentUuid",""),v.getOrDefault("signalType",""),v.getOrDefault("operationalStatus",""),Boolean.parseBoolean(v.getOrDefault("signalStillEmitted","false"))),ScheduleData.empty());}
     private static void validateDraft(Notam n){List<String> required=new ArrayList<>(List.of(n.scenario(),n.fir(),n.title(),n.featureType(),n.effectiveStart(),n.effectiveEnd(),n.qCode(),n.traffic(),n.purpose(),n.scope(),n.latitudeHemisphere(),n.longitudeHemisphere(),n.scheduleMode()));if(!Set.of("ATSA.ACT","NAV.UNS").contains(n.scenario()))required.add(n.airport());for(String value:required)if(value==null||value.isBlank())throw new IllegalArgumentException("草稿缺少必填字段");if(Set.of("AD.LIM","RWY.LIM").contains(n.scenario())){if(n.adLimRestrictions().isEmpty())throw new IllegalArgumentException(n.scenario()+" 必须至少包含一个限制条件");String type=n.limitationType();if(type.isBlank()||n.adLimRestrictions().stream().anyMatch(r->!type.equals(r.limitationType())))throw new IllegalArgumentException("一次 "+n.scenario()+" 通告中的所有限制条件必须使用相同的限制类型");}}
     private static List<AdLimRestriction> parseAdLimRestrictions(String body){return Json.parseObjectArray(body,"restrictions").stream().map(v->new AdLimRestriction(v.get("limitationType"),v.get("operation"),v.get("flightType"),v.get("flightRule"),v.get("flightStatus"),v.get("flightMilitary"),v.get("flightOrigin"),v.get("flightPurpose"),v.get("aircraftType"),v.get("aircraftEngine"),v.get("aircraftWingSpan"),v.get("aircraftWingSpanUom"),v.get("aircraftWingSpanInterpretation"),v.get("aircraftWeight"),v.get("aircraftWeightUom"),v.get("aircraftWeightInterpretation"),v.get("pprValue"),v.get("pprUnit"),v.get("pprDetails"))).toList();}
+    private static ScheduleData parseScheduleData(String body,Map<String,String> values){
+        List<ScheduleEntry> entries=Json.parseObjectArray(body,"entries").stream().map(v->new ScheduleEntry(v.get("startDate"),v.get("endDate"),v.get("day"),v.get("dayTil"),v.get("startTime"),v.get("endTime"),Boolean.parseBoolean(v.getOrDefault("endOfDay","false")))).toList();
+        if(entries.isEmpty()&&!"CONTINUOUS".equals(values.get("scheduleMode")))return ScheduleData.empty();
+        return new ScheduleData(values.getOrDefault("scheduleMode",""),entries,Json.parseStringArray(body,"excludedDates"),values.getOrDefault("scheduleNote",values.getOrDefault("note","")));
+    }
 
     private static void baselineRunways(HttpExchange ex)throws IOException{
         if(!"GET".equals(ex.getRequestMethod())){send(ex,405,"application/json",Json.message("仅支持GET"));return;}
@@ -240,7 +248,7 @@ public final class DigitalNotamApplication {
             values.putIfAbsent("featureType","AIRSPACE");values.putIfAbsent("numberSeries","A");
             values.putIfAbsent("qCode","QATCA");values.putIfAbsent("traffic","IV");values.putIfAbsent("purpose","BO");
             values.putIfAbsent("scope","E");values.putIfAbsent("latitudeHemisphere","N");values.putIfAbsent("longitudeHemisphere","E");
-            Notam draft=draftFrom(values,List.of(),"preview","A0001/26",Instant.now().toString());
+            Notam draft=draftFrom(values,List.of(),"preview","A0001/26",Instant.now().toString()).withScheduleData(parseScheduleData(body,values));
             var targets=BASELINE_AIRSPACES.resolve(draft.airspaceGroupId(),draft.selectedAirspaces());
             Instant viewStart=instant(values.get("viewStart"),Instant.parse(draft.effectiveStart()));
             Instant viewEnd=instant(values.get("viewEnd"),Instant.parse(draft.effectiveEnd()));
@@ -251,9 +259,9 @@ public final class DigitalNotamApplication {
     private static void navUnsPreview(HttpExchange ex)throws IOException{
         if(!"POST".equals(ex.getRequestMethod())){send(ex,405,"application/json",Json.message("Only POST is supported"));return;}
         try{
-            Map<String,String> values=Json.parseObject(new String(ex.getRequestBody().readAllBytes(),StandardCharsets.UTF_8));
+            String body=new String(ex.getRequestBody().readAllBytes(),StandardCharsets.UTF_8);Map<String,String> values=Json.parseObject(body);
             values.put("scenario","NAV.UNS");values.putIfAbsent("fir","EAAD");values.putIfAbsent("title","NAV.UNS preview");values.putIfAbsent("featureType","NAVAID");values.putIfAbsent("numberSeries","A");values.putIfAbsent("qCode","QXXXX");values.putIfAbsent("traffic","IV");values.putIfAbsent("purpose","BO");values.putIfAbsent("scope","E");values.putIfAbsent("latitudeHemisphere","N");values.putIfAbsent("longitudeHemisphere","E");
-            Notam draft=draftFrom(values,List.of(),"preview","A0001/26",Instant.now().toString());
+            Notam draft=draftFrom(values,List.of(),"preview","A0001/26",Instant.now().toString()).withScheduleData(parseScheduleData(body,values));
             Instant start=instant(values.get("viewStart"),Instant.parse(draft.effectiveStart())),end=instant(values.get("viewEnd"),Instant.parse(draft.effectiveEnd()));
             send(ex,200,"application/json",NAV_UNS_PREVIEW.json(NAV_UNS_PREVIEW.compose(draft,start,end)));
         }catch(Exception e){send(ex,400,"application/json",Json.message(e.getMessage()));}

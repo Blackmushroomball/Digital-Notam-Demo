@@ -2,12 +2,15 @@ package com.example.digitalnotam.scenario.adcls;
 
 import com.example.digitalnotam.baseline.BaselineAirportHeliportCatalog;
 import com.example.digitalnotam.domain.Notam;
+import com.example.digitalnotam.domain.ScheduleData;
+import com.example.digitalnotam.domain.ScheduleEntry;
 import com.example.digitalnotam.workflow.DigitalNotamPipeline;
 import com.example.digitalnotam.xml.CommonDigitalNotamBuilder;
 
 import org.w3c.dom.*;
 import java.lang.reflect.Method;
 import java.time.Instant;
+import java.util.List;
 
 public final class AdClsScenarioBuilderTest {
     public static void main(String[] args) throws Exception {
@@ -50,12 +53,20 @@ public final class AdClsScenarioBuilderTest {
         if(airportCatalog.list().size()!=5)throw new AssertionError("Expected five supported airports");
         String airportJson=airportCatalog.json();if(!airportJson.startsWith("[{\"designator\":")||airportJson.contains("\\\""))throw new AssertionError("Airport endpoint must return valid JSON without escaped object quotes");
         Document daily=new AdClsScenarioBuilder().build(notam("DAILY","","",""));producer.produce(daily,notam("DAILY","","",""));
+        Notam multiDaily=notam("DAILY","","SURFACE MAINTENANCE","").withScheduleData(new ScheduleData("DAILY",List.of(
+                new ScheduleEntry("","","ANY","","08:00","11:00",false),
+                new ScheduleEntry("","","ANY","","13:00","17:00",false)),List.of(),"TEXT"));
+        Document multiDailyDocument=new AdClsScenarioBuilder().build(multiDaily);
+        Element multiClosed=closed(multiDailyDocument);if(BaselineAirportHeliportCatalog.directChildren(multiClosed,"timeInterval").size()!=2)throw new AssertionError("Expected two Daily Timesheets");
+        long operationalNotes=BaselineAirportHeliportCatalog.directChildren(multiClosed,"annotation").stream().filter(x->"operationalStatus".equals(BaselineAirportHeliportCatalog.text(x,"propertyName"))).count();
+        long scheduleNotes=BaselineAirportHeliportCatalog.directChildren(multiClosed,"annotation").stream().filter(x->"timeInterval".equals(BaselineAirportHeliportCatalog.text(x,"propertyName"))).count();
+        if(operationalNotes!=1||scheduleNotes!=1)throw new AssertionError("Closure reason and schedule note associations are incorrect");
         Notam dates=withDates(notam("DATES","","",""),"2026-08-01","2026-08-02");Document datesDocument=new AdClsScenarioBuilder().build(dates);producer.produce(datesDocument,dates);
         Method xsd = DigitalNotamPipeline.class.getDeclaredMethod("validateXsd", Document.class);
         xsd.setAccessible(true);
         xsd.invoke(null, minimal);
         xsd.invoke(null, scheduled);
-        xsd.invoke(null,daily);xsd.invoke(null,datesDocument);xsd.invoke(null,hpDocument);
+        xsd.invoke(null,daily);xsd.invoke(null,multiDailyDocument);xsd.invoke(null,datesDocument);xsd.invoke(null,hpDocument);
         Method header=DigitalNotamPipeline.class.getDeclaredMethod("replaceHeaderComments",Document.class,String.class);header.setAccessible(true);header.invoke(null,scheduled,"AD.CLS");Method serialize=DigitalNotamPipeline.class.getDeclaredMethod("serialize",Document.class);serialize.setAccessible(true);String xml=(String)serialize.invoke(null,scheduled);
         var blank=java.util.regex.Pattern.compile("(?:\\r?\\n)[ \\t]*(?:\\r?\\n)").matcher(xml);if(blank.find())throw new AssertionError("Serialized XML must not contain blank lines near: "+xml.substring(Math.max(0,blank.start()-60),Math.min(xml.length(),blank.end()+60)).replace("\r","\\r").replace("\n","\\n"));
         if(!xml.contains("<!-- Schedule -->")||!xml.contains("<!-- Closure Reason -->")||!xml.contains("<!-- Note -->")||xml.contains("Digital NOTAM module:"))throw new AssertionError("AD.CLS comments must follow the virtual-data template");

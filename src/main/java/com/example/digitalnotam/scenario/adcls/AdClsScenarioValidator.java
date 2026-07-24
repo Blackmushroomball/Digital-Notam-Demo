@@ -20,11 +20,17 @@ final class AdClsScenarioValidator {
         Element availability=BaselineAirportHeliportCatalog.first(closedWrapper,"AirportHeliportAvailability");
         boolean scheduled=!BaselineAirportHeliportCatalog.directChildren(availability,"timeInterval").isEmpty();
         if(scheduled=="CONTINUOUS".equals(n.scheduleMode()))throw new IllegalArgumentException("CLOSED availability 的 schedule 与输入不一致");
+        int reasonAnnotations=0,scheduleAnnotations=0;
         for(Element annotation:BaselineAirportHeliportCatalog.directChildren(availability,"annotation")){
             Element note=BaselineAirportHeliportCatalog.first(annotation,"Note");
             if(note==null||!"REMARK".equals(BaselineAirportHeliportCatalog.text(note,"purpose")))throw new IllegalArgumentException("AD.CLS annotation 必须使用 purpose=REMARK");
-            String property=BaselineAirportHeliportCatalog.text(note,"propertyName");if(!property.isBlank()&&!"operationalStatus".equals(property))throw new IllegalArgumentException("closure reason 必须关联 operationalStatus");
+            String property=BaselineAirportHeliportCatalog.text(note,"propertyName");
+            if("operationalStatus".equals(property))reasonAnnotations++;
+            else if("timeInterval".equals(property))scheduleAnnotations++;
+            else if(!property.isBlank())throw new IllegalArgumentException("AD.CLS annotation propertyName 不受支持: "+property);
         }
+        if(!n.reason().isBlank()&&reasonAnnotations!=1)throw new IllegalArgumentException("closure reason 必须关联 operationalStatus");
+        if(n.scheduleData()!=null&&!n.scheduleData().note().isBlank()&&scheduleAnnotations!=1)throw new IllegalArgumentException("schedule note 必须关联 timeInterval");
         Element feature=CommonDigitalNotamBuilder.one(d,CommonDigitalNotamBuilder.EVENT,"Event");
         String eventId=feature.getAttributeNS(CommonDigitalNotamBuilder.GML,"id").replaceFirst("^uuid\\.","");
         String href=CommonDigitalNotamBuilder.one(d,CommonDigitalNotamBuilder.EVENT,"theEvent").getAttributeNS(CommonDigitalNotamBuilder.XLINK,"href");

@@ -3,6 +3,8 @@ package com.example.digitalnotam.application;
 import com.example.digitalnotam.domain.Notam;
 import com.example.digitalnotam.domain.AdLimRestriction;
 import com.example.digitalnotam.domain.NavUnsData;
+import com.example.digitalnotam.domain.ScheduleData;
+import com.example.digitalnotam.domain.ScheduleEntry;
 import java.util.*;
 import java.util.regex.*;
 
@@ -21,6 +23,10 @@ final class Json {
         List<Map<String,String>> result=new ArrayList<>();int depth=0,start=-1;boolean string=false,escape=false;
         for(int i=keyMatcher.end();i<body.length();i++){char c=body.charAt(i);if(string){if(escape)escape=false;else if(c=='\\')escape=true;else if(c=='\"')string=false;continue;}if(c=='\"'){string=true;continue;}if(c=='{'){if(depth++==0)start=i;}else if(c=='}'&&--depth==0&&start>=0){result.add(parseObject(body.substring(start,i+1)));start=-1;}else if(c==']'&&depth==0)break;}
         return result;
+    }
+    static List<String> parseStringArray(String body,String key){
+        Matcher keyMatcher=Pattern.compile("\\\""+Pattern.quote(key)+"\\\"\\s*:\\s*\\[([^\\]]*)\\]").matcher(body);if(!keyMatcher.find())return List.of();
+        List<String> values=new ArrayList<>();Matcher item=Pattern.compile("\\\"((?:\\\\.|[^\\\"])*)\\\"").matcher(keyMatcher.group(1));while(item.find())values.add(unescape(item.group(1)));return List.copyOf(values);
     }
 
     static String notam(Notam n) {
@@ -42,7 +48,7 @@ final class Json {
                 field("limitationType",n.limitationType()) + "," + field("operation",n.operation()) + "," +
                 field("flightType",n.flightType()) + "," + field("flightRule",n.flightRule()) + "," + field("flightStatus",n.flightStatus()) + "," + field("flightMilitary",n.flightMilitary()) + "," + field("flightOrigin",n.flightOrigin()) + "," + field("flightPurpose",n.flightPurpose()) + "," +
                 field("aircraftType",n.aircraftType()) + "," + field("aircraftEngine",n.aircraftEngine()) + "," + field("aircraftWingSpan",n.aircraftWingSpan()) + "," + field("aircraftWingSpanUom",n.aircraftWingSpanUom()) + "," + field("aircraftWingSpanInterpretation",n.aircraftWingSpanInterpretation()) + "," +
-                field("aircraftWeight",n.aircraftWeight()) + "," + field("aircraftWeightUom",n.aircraftWeightUom()) + "," + field("aircraftWeightInterpretation",n.aircraftWeightInterpretation()) + "," + field("pprValue",n.pprValue()) + "," + field("pprUnit",n.pprUnit()) + "," + field("pprDetails",n.pprDetails()) + "," + field("rwyTargetType",n.rwyTargetType()) + "," + field("runwayUuid",n.runwayUuid()) + "," + field("runwayDirectionUuid",n.runwayDirectionUuid()) + "," + field("airspaceGroupId",n.airspaceGroupId()) + "," + field("selectedAirspaces",n.selectedAirspaces()) + "," + field("activationStatus",n.activationStatus()) + "," + field("affectedAirports",n.affectedAirports()) + "," + field("additionalFirs",n.additionalFirs()) + ",\"navUnsData\":" + navUns(n.navUnsData()) + ",\"restrictions\":" + restrictions(n.adLimRestrictions()) + "}";
+                field("aircraftWeight",n.aircraftWeight()) + "," + field("aircraftWeightUom",n.aircraftWeightUom()) + "," + field("aircraftWeightInterpretation",n.aircraftWeightInterpretation()) + "," + field("pprValue",n.pprValue()) + "," + field("pprUnit",n.pprUnit()) + "," + field("pprDetails",n.pprDetails()) + "," + field("rwyTargetType",n.rwyTargetType()) + "," + field("runwayUuid",n.runwayUuid()) + "," + field("runwayDirectionUuid",n.runwayDirectionUuid()) + "," + field("airspaceGroupId",n.airspaceGroupId()) + "," + field("selectedAirspaces",n.selectedAirspaces()) + "," + field("activationStatus",n.activationStatus()) + "," + field("affectedAirports",n.affectedAirports()) + "," + field("additionalFirs",n.additionalFirs()) + ",\"navUnsData\":" + navUns(n.navUnsData()) + ",\"scheduleData\":" + schedule(n.scheduleData()) + ",\"restrictions\":" + restrictions(n.adLimRestrictions()) + "}";
     }
 
     static String list(Collection<Notam> items) {
@@ -52,6 +58,8 @@ final class Json {
     static String message(String value) { return "{" + field("message", value) + "}"; }
     private static String restrictions(List<AdLimRestriction> values){return values.stream().map(r->"{"+field("limitationType",r.limitationType())+","+field("operation",r.operation())+","+field("flightType",r.flightType())+","+field("flightRule",r.flightRule())+","+field("flightStatus",r.flightStatus())+","+field("flightMilitary",r.flightMilitary())+","+field("flightOrigin",r.flightOrigin())+","+field("flightPurpose",r.flightPurpose())+","+field("aircraftType",r.aircraftType())+","+field("aircraftEngine",r.aircraftEngine())+","+field("aircraftWingSpan",r.aircraftWingSpan())+","+field("aircraftWingSpanUom",r.aircraftWingSpanUom())+","+field("aircraftWingSpanInterpretation",r.aircraftWingSpanInterpretation())+","+field("aircraftWeight",r.aircraftWeight())+","+field("aircraftWeightUom",r.aircraftWeightUom())+","+field("aircraftWeightInterpretation",r.aircraftWeightInterpretation())+","+field("pprValue",r.pprValue())+","+field("pprUnit",r.pprUnit())+","+field("pprDetails",r.pprDetails())+"}").reduce((a,b)->a+","+b).map(x->"["+x+"]").orElse("[]");}
     private static String navUns(NavUnsData value){NavUnsData v=value==null?NavUnsData.empty():value;return "{"+field("navaidUuid",v.navaidUuid())+","+field("impactMode",v.impactMode())+","+field("equipmentUuid",v.equipmentUuid())+","+field("signalType",v.signalType())+","+field("operationalStatus",v.operationalStatus())+",\"signalStillEmitted\":"+v.signalStillEmitted()+"}";}
+    private static String schedule(ScheduleData value){ScheduleData v=value==null?ScheduleData.empty():value;String entries=v.entries().stream().map(Json::scheduleEntry).reduce((a,b)->a+","+b).orElse("");String dates=v.excludedDates().stream().map(x->"\""+escape(x)+"\"").reduce((a,b)->a+","+b).orElse("");return "{"+field("type",v.type())+",\"entries\":["+entries+"],\"excludedDates\":["+dates+"],"+field("note",v.note())+"}";}
+    private static String scheduleEntry(ScheduleEntry e){return "{"+field("startDate",e.startDate())+","+field("endDate",e.endDate())+","+field("day",e.day())+","+field("dayTil",e.dayTil())+","+field("startTime",e.startTime())+","+field("endTime",e.endTime())+",\"endOfDay\":"+e.endOfDay()+"}";}
     private static String field(String key, String value) { return "\"" + key + "\":\"" + escape(value == null ? "" : value) + "\""; }
     private static String escape(String s) { return s.replace("\\", "\\\\").replace("\"", "\\\"").replace("\r", "\\r").replace("\n", "\\n"); }
     private static String unescape(String s) { return s.replace("\\n", "\n").replace("\\r", "\r").replace("\\\"", "\"").replace("\\\\", "\\"); }

@@ -3,6 +3,7 @@ package com.example.digitalnotam.scenario.atsaact;
 import com.example.digitalnotam.baseline.AirspaceGeometryService;
 import com.example.digitalnotam.baseline.BaselineAirspaceCatalog;
 import com.example.digitalnotam.domain.Notam;
+import com.example.digitalnotam.scenario.common.schedule.EventScheduleSupport;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -124,19 +125,7 @@ public final class AtsaActActivationComposer {
     }
 
     private List<Raw> event(Notam n,Instant start,Instant end){
-        if("CONTINUOUS".equals(n.scheduleMode()))return List.of(new Raw(start,end,n.activationStatus()));
-        Set<DayOfWeek> days=new LinkedHashSet<>();
-        if("WEEKDAYS".equals(n.scheduleMode()))for(String x:csv(n.scheduleDay())){DayOfWeek d=DAY.get(x);if(d!=null)days.add(d);}
-        else days.addAll(Arrays.asList(DayOfWeek.values()));
-        LocalDate rangeStart="DATES".equals(n.scheduleMode())?LocalDate.parse(n.scheduleStartDate()):start.atZone(ZoneOffset.UTC).toLocalDate();
-        LocalDate rangeEnd="DATES".equals(n.scheduleMode())?LocalDate.parse(n.scheduleEndDate()):end.atZone(ZoneOffset.UTC).toLocalDate();
-        LocalTime from=time(n.scheduleStart(),LocalTime.MIN),to=time(n.scheduleEnd(),LocalTime.MIDNIGHT);List<Raw> result=new ArrayList<>();
-        for(LocalDate date=rangeStart.minusDays(1);!date.isAfter(rangeEnd);date=date.plusDays(1)){
-            if(!days.contains(date.getDayOfWeek())||date.isBefore(rangeStart)||date.isAfter(rangeEnd))continue;
-            Instant a=date.atTime(from).toInstant(ZoneOffset.UTC),b=(to.isAfter(from)?date:date.plusDays(1)).atTime(to).toInstant(ZoneOffset.UTC);
-            a=max(a,start);b=min(b,end);if(b.isAfter(a))result.add(new Raw(a,b,n.activationStatus()));
-        }
-        return result;
+        return EventScheduleSupport.occurrences(n,start,end).stream().map(x->new Raw(x.start(),x.end(),n.activationStatus())).toList();
     }
 
     private static List<Raw> subtract(List<Raw> input,Raw cut){List<Raw> out=new ArrayList<>();for(Raw x:input){if(!x.end.isAfter(cut.start)||!cut.end.isAfter(x.start)){out.add(x);continue;}if(cut.start.isAfter(x.start))out.add(new Raw(x.start,min(x.end,cut.start),x.status));if(x.end.isAfter(cut.end))out.add(new Raw(max(x.start,cut.end),x.end,x.status));}return out;}

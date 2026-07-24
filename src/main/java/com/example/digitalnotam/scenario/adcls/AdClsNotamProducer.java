@@ -2,6 +2,7 @@ package com.example.digitalnotam.scenario.adcls;
 
 import com.example.digitalnotam.baseline.BaselineAirportHeliportCatalog;
 import com.example.digitalnotam.domain.Notam;
+import com.example.digitalnotam.scenario.common.schedule.EventScheduleSupport;
 import com.example.digitalnotam.xml.CommonDigitalNotamBuilder;
 
 import org.w3c.dom.*;
@@ -24,7 +25,7 @@ public final class AdClsNotamProducer {
         String itemA=b.locationIndicatorIcao().isBlank()?b.designator().substring(0,2)+"XX":b.locationIndicatorIcao();
         Element eventSlice=CommonDigitalNotamBuilder.one(d,CommonDigitalNotamBuilder.EVENT,"EventTimeSlice");
         String begin=BaselineAirportHeliportCatalog.text(eventSlice,"beginPosition"),end=BaselineAirportHeliportCatalog.text(eventSlice,"endPosition");
-        String itemB=notamTime(begin),itemC=endTime(end),itemD=schedule(d),itemE=itemE(d,b);
+        String itemB=notamTime(begin),itemC=endTime(end),itemD=EventScheduleSupport.formatItemD(n),itemE=itemE(d,b);
         for(String[] field:new String[][]{{"affectedFIR",b.firDesignator()},{"selectionCode",q},{"traffic",traffic},{"purpose",purpose},{"scope",scope},{"minimumFL",lower},{"maximumFL",upper},{"coordinates",coordinates},{"radius",radius},{"location",itemA},{"effectiveStart",itemB},{"effectiveEnd",itemC},{"estimatedEnd","NO"},{"permanent","NO"},{"text",itemE}})CommonDigitalNotamBuilder.setNotam(d,field[0],field[1]);
         return new NotamFields(b.firDesignator(),q,traffic,purpose,scope,lower,upper,coordinates,radius,itemA,itemB,itemC,itemD,itemE,"","");
     }

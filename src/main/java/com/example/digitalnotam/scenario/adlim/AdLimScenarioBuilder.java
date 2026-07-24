@@ -3,6 +3,7 @@ package com.example.digitalnotam.scenario.adlim;
 import com.example.digitalnotam.baseline.BaselineAirportHeliportCatalog;
 import com.example.digitalnotam.domain.Notam;
 import com.example.digitalnotam.domain.AdLimRestriction;
+import com.example.digitalnotam.scenario.common.schedule.EventScheduleSupport;
 import com.example.digitalnotam.workflow.ScenarioBuilder;
 import com.example.digitalnotam.xml.CommonDigitalNotamBuilder;
 import org.w3c.dom.*;
@@ -51,7 +52,7 @@ public final class AdLimScenarioBuilder implements ScenarioBuilder {
         for(Element e:remove)slice.removeChild(e);
         removeGeneratedComments(slice);
         Node firstNormal=null;
-        for(Element normal:baseline.normalAvailabilities()){Node imported=d.importNode(normal,true);slice.insertBefore(imported,eventWrapper);if(firstNormal==null)firstNormal=imported;}
+        for(Element normal:baseline.normalAvailabilities()){Element imported=(Element)d.importNode(normal,true);EventScheduleSupport.excludeEventFromBaseline(d,imported,n);slice.insertBefore(imported,eventWrapper);if(firstNormal==null)firstNormal=imported;}
         if(firstNormal!=null)slice.insertBefore(d.createComment(" The baseline status of the airport "),firstNormal);
         slice.insertBefore(d.createComment(" The availability status of the airport during the event "),eventWrapper);Element availability=BaselineAirportHeliportCatalog.first(eventWrapper,"AirportHeliportAvailability");clearChildren(availability,"timeInterval","annotation","usage");removeLimitationComments(availability);boolean permit=restrictions.stream().allMatch(x->"PERMIT".equals(x.limitationType()));if(!permit&&restrictions.stream().anyMatch(x->"PERMIT".equals(x.limitationType())))throw new IllegalArgumentException("PERMIT 不能与 CONDITIONAL/RESERV/FORBID 混合在同一次 AD.LIM 事件中");BaselineAirportHeliportCatalog.first(availability,"operationalStatus").setTextContent(permit?"OTHER:EXTENDED":"LIMITED");if(!"CONTINUOUS".equals(n.scheduleMode()))addSchedule(d,availability,n);addAnnotation(d,availability,n.reason(),true);addAnnotation(d,availability,n.remarks(),false);for(AdLimRestriction restriction:restrictions)availability.appendChild(buildUsage(d,restriction));
         common.regenerateIds(d,baseline.uuid(),baseline.designator(),baseline.name(),scenario());
@@ -102,7 +103,7 @@ public final class AdLimScenarioBuilder implements ScenarioBuilder {
     private static boolean has(String... values){return Arrays.stream(values).anyMatch(v->v!=null&&!v.isBlank());}
     private static Element note(Document d,String value,String property){Element wrapper=e(d,"annotation"),note=id(d,"Note");wrapper.appendChild(note);if(property!=null)add(d,note,"propertyName",property);add(d,note,"purpose","REMARK");Element translated=e(d,"translatedNote"),ling=id(d,"LinguisticNote"),text=add(d,ling,"note",value.trim());text.setAttribute("lang","ENG");translated.appendChild(ling);note.appendChild(translated);return wrapper;}
     private static void addAnnotation(Document d,Element a,String value,boolean reason){if(value==null||value.isBlank())return;Element status=BaselineAirportHeliportCatalog.first(a,"operationalStatus");a.insertBefore(d.createComment(reason?" Limitation Reason ":" Note "),status);a.insertBefore(note(d,value,reason?"operationalStatus":null),status);}
-    private static void addSchedule(Document d,Element a,Notam n){List<String> days=switch(n.scheduleMode()){case "DAILY","DATES"->List.of("ANY");case "WEEKDAYS"->Arrays.stream(n.scheduleDay().split(",")).map(String::trim).filter(x->!x.isBlank()).toList();default->throw new IllegalArgumentException("不支持的 AD.LIM schedule: "+n.scheduleMode());};Element before=BaselineAirportHeliportCatalog.first(a,"operationalStatus");a.insertBefore(d.createComment(" Schedule "),before);for(String day:days){Element interval=e(d,"timeInterval"),sheet=id(d,"Timesheet");interval.appendChild(sheet);add(d,sheet,"timeReference","UTC");if("DATES".equals(n.scheduleMode())){add(d,sheet,"startDate",date(n.scheduleStartDate()));add(d,sheet,"endDate",date(n.scheduleEndDate()));}add(d,sheet,"day",day);add(d,sheet,"startTime",n.scheduleStart());add(d,sheet,"endTime",n.scheduleEnd());add(d,sheet,"daylightSavingAdjust","NO");add(d,sheet,"excluded","NO");a.insertBefore(interval,before);}}
+    private static void addSchedule(Document d,Element a,Notam n){Element before=BaselineAirportHeliportCatalog.first(a,"operationalStatus");a.insertBefore(d.createComment(" Schedule "),before);EventScheduleSupport.append(d,a,before,n,false);}
     private static String date(String iso){return LocalDate.parse(iso).format(DateTimeFormatter.ofPattern("dd-MM"));}
     private static void clearChildren(Element p,String... names){Set<String>s=Set.of(names);for(Node n=p.getFirstChild();n!=null;){Node next=n.getNextSibling();if(n instanceof Element e&&s.contains(e.getLocalName()))p.removeChild(n);n=next;}}
     private static void removeLimitationComments(Element p){for(Node n=p.getFirstChild();n!=null;){Node next=n.getNextSibling();if(n.getNodeType()==Node.COMMENT_NODE&&n.getNodeValue().trim().toLowerCase(Locale.ROOT).startsWith("limitation"))p.removeChild(n);n=next;}}
