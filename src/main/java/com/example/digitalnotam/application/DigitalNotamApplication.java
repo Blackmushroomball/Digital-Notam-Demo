@@ -1,5 +1,6 @@
 package com.example.digitalnotam.application;
 
+import com.example.aixm.geometry.api.DefaultAixmGeometryService;
 import com.example.digitalnotam.baseline.BaselineAirportHeliportCatalog;
 import com.example.digitalnotam.baseline.BaselineAirspaceCatalog;
 import com.example.digitalnotam.baseline.BaselineNavaidCatalog;
@@ -36,6 +37,7 @@ public final class DigitalNotamApplication {
     private static final BaselineNavaidCatalog BASELINE_NAVAIDS = new BaselineNavaidCatalog();
     private static final AtsaActActivationComposer ATSA_ACTIVATION = new AtsaActActivationComposer();
     private static final NavUnsPreviewService NAV_UNS_PREVIEW = new NavUnsPreviewService(BASELINE_NAVAIDS);
+    private static final DefaultAixmGeometryService AIXM_GEOMETRY = new DefaultAixmGeometryService();
     private static final Path PUBLIC = Path.of("src", "main", "resources", "public").toAbsolutePath().normalize();
 
     static {
@@ -55,6 +57,7 @@ public final class DigitalNotamApplication {
         server.createContext("/api/baseline/navaids", DigitalNotamApplication::baselineNavaids);
         server.createContext("/api/scenarios/atsa-act/activation-preview", DigitalNotamApplication::atsaActivationPreview);
         server.createContext("/api/scenarios/nav-uns/preview", DigitalNotamApplication::navUnsPreview);
+        server.createContext("/api/aixm/geometry", DigitalNotamApplication::aixmGeometry);
         server.createContext("/", DigitalNotamApplication::staticFile);
         server.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
         server.start();
@@ -69,6 +72,37 @@ public final class DigitalNotamApplication {
             Notam n=new Notam(UUID.randomUUID().toString(),i.number(),i.scenario(),i.title(),i.airport(),i.scenario().split("\\.")[0],i.condition(),"","","","","",i.start(),i.end(),i.latitude(),i.longitude(),i.radiusNm(),i.latitudeHemisphere(),i.longitudeHemisphere(),i.qCode(),i.traffic(),i.purpose(),i.scope(),i.lowerMeters(),i.upperMeters(),i.scheduleMode(),i.scheduleDay(),i.scheduleStart(),i.scheduleEnd(),"PUBLISHED",i.issued(),i.issued());
             REPO.save(n); send(ex,201,"application/json",Json.notam(n));
         } catch(Exception e){send(ex,400,"application/json",Json.message(e.getMessage()));}
+    }
+
+    /**
+     * Reusable geometry encoder exposed by the demo.
+     *
+     * <p>A successful request returns the standalone AIXM 5.1.1 fragment. A
+     * rejected request returns structured JSON issues so a future form can bind
+     * each error to its JSON path.</p>
+     */
+    private static void aixmGeometry(HttpExchange ex) throws IOException {
+        if (!"POST".equals(ex.getRequestMethod())) {
+            send(ex, 405, "application/json", Json.message("Only POST is supported"));
+            return;
+        }
+        String body = new String(ex.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
+        var result = AIXM_GEOMETRY.encode(body);
+        if (result.valid()) {
+            send(ex, 200, "application/xml", result.aixmXml());
+            return;
+        }
+        StringBuilder json = new StringBuilder("{\"valid\":false,\"issues\":[");
+        for (int i = 0; i < result.issues().size(); i++) {
+            if (i > 0) json.append(',');
+            var issue = result.issues().get(i);
+            json.append("{\"severity\":\"").append(issue.severity())
+                    .append("\",\"rule\":\"").append(jsonEsc(issue.rule()))
+                    .append("\",\"path\":\"").append(jsonEsc(issue.path()))
+                    .append("\",\"message\":\"").append(jsonEsc(issue.message()))
+                    .append("\"}");
+        }
+        send(ex, 400, "application/json", json.append("]}").toString());
     }
 
     private static void api(HttpExchange ex) throws IOException {

@@ -1,8 +1,15 @@
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
-$out = Join-Path $root 'target\classes'
 Set-Location $root
-New-Item -ItemType Directory -Force $out | Out-Null
-$sources = Get-ChildItem (Join-Path $root 'src\main\java') -Recurse -Filter *.java | ForEach-Object FullName
-javac --release 21 -encoding UTF-8 -cp (Join-Path $root 'lib\*') -d $out $sources
-java -cp "$out;$root\lib\*" com.example.digitalnotam.application.DigitalNotamApplication
+
+# The geometry module uses managed Maven dependencies (Jackson, JTS and
+# GeographicLib). Prefer the checked-in wrapper so callers do not need a global
+# Maven installation.
+$wrapper = Join-Path $root 'mvnw.cmd'
+if (Test-Path -LiteralPath $wrapper) {
+    & $wrapper -q -DskipTests compile exec:java
+} elseif (Get-Command mvn -ErrorAction SilentlyContinue) {
+    & mvn -q -DskipTests compile exec:java
+} else {
+    throw 'Maven is required. Run mvnw.cmd after the Maven wrapper is generated, or install Maven.'
+}
