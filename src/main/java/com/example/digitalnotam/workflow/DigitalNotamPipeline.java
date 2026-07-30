@@ -10,6 +10,7 @@ import com.example.digitalnotam.scenario.rwycls.RwyClsScenarioBuilder;
 import com.example.digitalnotam.scenario.rwylim.RwyLimNotamProducer;
 import com.example.digitalnotam.scenario.rwylim.RwyLimScenarioBuilder;
 import com.example.digitalnotam.scenario.atsaact.AtsaActScenarioBuilder;
+import com.example.digitalnotam.scenario.atsanew.AtsaNewScenarioBuilder;
 import com.example.digitalnotam.scenario.navuns.NavUnsScenarioBuilder;
 import com.example.digitalnotam.xml.XmlCommentPolicy;
 
@@ -29,20 +30,21 @@ import java.time.*;
 import java.util.*;
 
 public final class DigitalNotamPipeline {
-    private static final Set<String> SCENARIOS = Set.of("AD.CLS", "AD.LIM", "RWY.CLS", "RWY.LIM", "ATSA.ACT", "NAV.UNS");
+    private static final Set<String> SCENARIOS = Set.of("AD.CLS", "AD.LIM", "RWY.CLS", "RWY.LIM", "ATSA.ACT", "ATSA.NEW", "NAV.UNS");
     private static final Path SAMPLES = Path.of("data", "virtual data", "Donlon_2025", "Donlon", "Digital NOTAM");
     private static final Map<String, String> BLUEPRINT = Map.of(
             "AD.CLS", "DN_AD.CLS_1_ad_closed.xml", "AD.LIM", "DN_AD.LIM_1_closed_except_for.xml",
             "RWY.CLS", "DN_RWY.CLS_1_full_runway_closure.xml", "RWY.LIM", "DN_RWY.LIM_1_closed_except_for_takeoff.xml");
     private final Path store = Path.of("data", "notams").toAbsolutePath().normalize();
-    private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder(), "AD.LIM", new AdLimScenarioBuilder(), "RWY.CLS", new RwyClsScenarioBuilder(), "RWY.LIM", new RwyLimScenarioBuilder(), "ATSA.ACT", new AtsaActScenarioBuilder(), "NAV.UNS", new NavUnsScenarioBuilder());
+    private final Map<String, ScenarioBuilder> scenarioBuilders = Map.of("AD.CLS", new AdClsScenarioBuilder(), "AD.LIM", new AdLimScenarioBuilder(), "RWY.CLS", new RwyClsScenarioBuilder(), "RWY.LIM", new RwyLimScenarioBuilder(), "ATSA.ACT", new AtsaActScenarioBuilder(), "ATSA.NEW", new AtsaNewScenarioBuilder(), "NAV.UNS", new NavUnsScenarioBuilder());
     private final AdClsNotamProducer adClsNotamProducer = new AdClsNotamProducer();
     private final AdLimNotamProducer adLimNotamProducer = new AdLimNotamProducer();
     private final RwyClsNotamProducer rwyClsNotamProducer = new RwyClsNotamProducer();
     private final RwyLimNotamProducer rwyLimNotamProducer = new RwyLimNotamProducer();
     private final AtsaActScenarioBuilder atsaActBuilder = (AtsaActScenarioBuilder) scenarioBuilders.get("ATSA.ACT");
+    private final AtsaNewScenarioBuilder atsaNewBuilder = (AtsaNewScenarioBuilder) scenarioBuilders.get("ATSA.NEW");
     private final NavUnsScenarioBuilder navUnsBuilder = (NavUnsScenarioBuilder) scenarioBuilders.get("NAV.UNS");
-    public int notificationCount(Notam n){return "ATSA.ACT".equals(n.scenario())?atsaActBuilder.notificationCount(n):"NAV.UNS".equals(n.scenario())?navUnsBuilder.notificationCount(n):1;}
+    public int notificationCount(Notam n){return "ATSA.ACT".equals(n.scenario())?atsaActBuilder.notificationCount(n):"ATSA.NEW".equals(n.scenario())?atsaNewBuilder.notificationCount(n):"NAV.UNS".equals(n.scenario())?navUnsBuilder.notificationCount(n):1;}
 
     public List<Notam> restorePublished() {
         if (!Files.isDirectory(store)) return List.of();
@@ -194,7 +196,7 @@ public final class DigitalNotamPipeline {
 
     public String transform(String xml, String scenario) throws Exception {
         Document d = parse(xml);
-        if ("ATSA.ACT".equals(scenario)||"NAV.UNS".equals(scenario)) return transformEmbeddedNotifications(d,scenario);
+        if ("ATSA.ACT".equals(scenario)||"ATSA.NEW".equals(scenario)||"NAV.UNS".equals(scenario)) return transformEmbeddedNotifications(d,scenario);
         if ("AD.LIM".equals(scenario)) { normalizeLegacyAdLimAvailabilities(d); xml = serialize(d); }
         TransformerFactory f = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", getClass().getClassLoader());
         f.setURIResolver(new DonlonResolver());

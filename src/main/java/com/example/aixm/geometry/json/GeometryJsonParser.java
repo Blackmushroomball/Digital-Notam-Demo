@@ -170,8 +170,17 @@ public final class GeometryJsonParser {
             issues.add(error("JSON-011", path, "坐标对象不能为空"));
             return null;
         }
-        return new Position(decimal(n, "x", path + "/x", issues),
-                decimal(n, "y", path + "/y", issues));
+        return new Position(coordinate(n, "x", path + "/x", CoordinateParser.Axis.LONGITUDE, issues),
+                coordinate(n, "y", path + "/y", CoordinateParser.Axis.LATITUDE, issues));
+    }
+
+    private BigDecimal coordinate(JsonNode n,String field,String path,CoordinateParser.Axis axis,
+                                  List<GeometryIssue> issues){
+        JsonNode value=n==null?null:n.get(field);
+        if(value!=null&&value.isNumber())return value.decimalValue();
+        if(value!=null&&value.isTextual())try{return CoordinateParser.parse(value.textValue(),axis);}
+        catch(IllegalArgumentException e){issues.add(error("JSON-014",path,e.getMessage()));return null;}
+        issues.add(error("JSON-014",path,"必须是十进制度数值或度分秒字符串"));return null;
     }
 
     private Elevation elevation(JsonNode n, String path, List<GeometryIssue> issues) {

@@ -32,6 +32,8 @@ public final class BaselineAirspaceCatalog {
         }catch(Exception e){throw new IllegalStateException("Unable to read Airspace baseline: "+e.getMessage(),e);}
     }
     public Airspace get(String uuid){Airspace a=airspaces.get(uuid);if(a==null)throw new IllegalArgumentException("Airspace baseline not found: "+uuid);return a;}
+    /** All resolved baseline airspaces, used by spatial association services. */
+    public Collection<Airspace> all(){return airspaces.values();}
     public Group group(String id){return groups.stream().filter(g->g.id().equals(id)).findFirst().orElseThrow(()->new IllegalArgumentException("Unknown ATSA.ACT airspace group: "+id));}
     public List<Airspace> resolve(String groupId,String selected){
         Group g=group(groupId);Set<String> ids=new LinkedHashSet<>(Arrays.stream(selected.split(",")).map(String::trim).filter(x->!x.isBlank()).toList());

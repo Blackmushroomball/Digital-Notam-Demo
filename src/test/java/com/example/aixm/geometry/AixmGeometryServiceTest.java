@@ -1,6 +1,7 @@
 package com.example.aixm.geometry;
 
 import com.example.aixm.geometry.api.DefaultAixmGeometryService;
+import com.example.aixm.geometry.json.CoordinateParser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,6 +35,37 @@ final class AixmGeometryServiceTest {
         assertTrue(result.aixmXml().contains("<gml:pos>52.18556 5.20833</gml:pos>"));
         assertTrue(result.aixmXml().contains("<aixm:ElevatedPoint"));
         assertTrue(result.aixmXml().contains("<aixm:elevation uom=\"M\">30</aixm:elevation>"));
+    }
+
+    @Test
+    void coordinatesAutomaticallyAcceptDecimalAndDmsForms() {
+        var compactDms=service.encode("""
+                {"schemaVersion":"1.0","geometry":{
+                  "type":"POINT","crs":"EPSG:4326",
+                  "position":{"x":"0051230E","y":"521108N"}
+                }}
+                """);
+        assertValid(compactDms);
+        assertEquals(5.2083333333,CoordinateParser.parse("0051230E",CoordinateParser.Axis.LONGITUDE).doubleValue(),1e-10);
+        assertEquals(52.1855555556,CoordinateParser.parse("521108N",CoordinateParser.Axis.LATITUDE).doubleValue(),1e-10);
+
+        var symbolicDms=service.encode("""
+                {"schemaVersion":"1.0","geometry":{
+                  "type":"POINT","crs":"EPSG:4326",
+                  "position":{"x":"27°23'57.3\\"W","y":"53 37 11.3 N"}
+                }}
+                """);
+        assertValid(symbolicDms);
+        assertEquals(-27.39925,CoordinateParser.parse("27°23'57.3\"W",CoordinateParser.Axis.LONGITUDE).doubleValue(),1e-10);
+        assertEquals(53.6198055556,CoordinateParser.parse("53 37 11.3 N",CoordinateParser.Axis.LATITUDE).doubleValue(),1e-10);
+
+        var decimalText=service.encode("""
+                {"schemaVersion":"1.0","geometry":{
+                  "type":"POINT","crs":"EPSG:4326",
+                  "position":{"x":"-27.39925","y":"53.619805555555555"}
+                }}
+                """);
+        assertValid(decimalText);
     }
 
     @Test
