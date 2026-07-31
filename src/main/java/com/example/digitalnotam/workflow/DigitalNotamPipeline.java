@@ -198,7 +198,12 @@ public final class DigitalNotamPipeline {
         Document d = parse(xml);
         if ("ATSA.ACT".equals(scenario)||"ATSA.NEW".equals(scenario)||"NAV.UNS".equals(scenario)) return transformEmbeddedNotifications(d,scenario);
         if ("AD.LIM".equals(scenario)) { normalizeLegacyAdLimAvailabilities(d); xml = serialize(d); }
-        TransformerFactory f = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", getClass().getClassLoader());
+        TransformerFactory f;
+        try {
+            f = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", getClass().getClassLoader());
+        } catch (TransformerFactoryConfigurationError e) {
+            throw new IllegalStateException("CNOTAM 转换组件 Saxon 初始化失败，请检查运行时依赖", e);
+        }
         f.setURIResolver(new DonlonResolver());
         Path xsl = Path.of("utils", "NOTAM-Production-Templates", "xslt-scenarios", scenario + "_CNOTAM_text_generation.xslt").toAbsolutePath();
         Transformer t = f.newTransformer(new StreamSource(xsl.toFile()));

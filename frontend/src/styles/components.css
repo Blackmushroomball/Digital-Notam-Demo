@@ -1,0 +1,99 @@
+.link.delete {
+  color: #d33b45;
+}
+.summary-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.danger {
+  border: 1px solid #e0a3a8;
+  background: #fff;
+  color: #c52d39;
+  padding: 10px 18px;
+  border-radius: 7px;
+}
+.danger:hover {
+  background: #fff1f2;
+}
+.grid label small {
+  color: #8894a6;
+  font-size: 11px;
+}
+.batch-delete:disabled {
+  opacity: 0.45;
+  background: #f5f5f5;
+}
+.select-col {
+  width: 44px;
+  padding-left: 16px;
+  padding-right: 4px;
+}
+.select-col input {
+  width: auto;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.select-col input:disabled {
+  cursor: not-allowed;
+}
+.notam-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin: 0 0 24px;
+}
+.field-row {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  align-items: start;
+  border: 1px solid #e3e8f0;
+  border-radius: 7px;
+  background: #f8fafc;
+  padding: 10px 12px;
+  font:
+    13px/1.5 Consolas,
+    "Microsoft YaHei",
+    sans-serif;
+}
+.field-row.q,
+.field-row:nth-child(6) {
+  grid-column: 1/-1;
+}
+.field-row b {
+  color: var(--color-primary);
+}
+.field-row span {
+  overflow-wrap: anywhere;
+}
+.notam-card {
+  padding: 20px;
+  margin-bottom: 18px;
+}
+.notam-card h3 {
+  margin: 0 0 16px;
+}
+.notam-card .notam-fields {
+  margin: 0;
+}
+.cnotam {
+  white-space: pre-wrap;
+  background: #eef4ff;
+  color: #18365d;
+  border-radius: 7px;
+  padding: 12px;
+  font:
+    12px/1.6 Consolas,
+    monospace;
+  overflow: auto;
+}
+@media (max-width: 700px) {
+  .notam-fields {
+    grid-template-columns: 1fr;
+  }
+  .field-row.q,
+  .field-row:nth-child(6) {
+    grid-column: auto;
+  }
+}
