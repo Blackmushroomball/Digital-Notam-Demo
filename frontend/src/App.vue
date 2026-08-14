@@ -49,6 +49,11 @@ const items = ref([]),
   cnotam = ref(""),
   notice = ref(""),
   editingId = ref(null);
+
+// 通告列表分页，从第一页开始展示，每页显示5条
+const currentPage = ref(1);
+const pageSize = 5;
+
 const form = reactive({
   scenario: "AD.CLS",
   fir: "EAAD",
@@ -412,8 +417,8 @@ const filteredBaselineAirspaces = computed(() => {
   const query = excludedAirspaceQuery.value.trim().toLowerCase();
   return query
     ? baselineAirspaces.value.filter((a) =>
-        `${a.designator} ${a.name} ${a.type}`.toLowerCase().includes(query),
-      )
+      `${a.designator} ${a.name} ${a.type}`.toLowerCase().includes(query),
+    )
     : baselineAirspaces.value;
 });
 const selectedExcludedAirspaces = () =>
@@ -649,10 +654,29 @@ const filtered = computed(() =>
         .includes(query.value.toLowerCase()),
   ),
 );
+
+// 通告列表分页计算：计算一共需要多少页
+const totalPages = computed(() =>
+  Math.max(1, Math.ceil(filtered.value.length / pageSize)),
+);
+
+// 通告列表分页计算：每页的内容
+const paginatedItems = computed(() => {
+  const start = (currentPage.value - 1) * pageSize;
+  return filtered.value.slice(start, start + pageSize);
+});
+
+// 切换页码函数
+function changePage(page) {
+  const target = Math.min(Math.max(page, 1), totalPages.value);
+  currentPage.value = target;
+}
+
+// 判断当前页的通告是否已经全部选中
 const allFilteredSelected = computed(
   () =>
-    filtered.value.length > 0 &&
-    filtered.value.every((n) => checkedIds.value.includes(n.id)),
+    paginatedItems.value.length > 0 &&
+    paginatedItems.value.every((n) => checkedIds.value.includes(n.id)),
 );
 const stats = computed(() => ({
   all: items.value.length,
@@ -664,6 +688,11 @@ async function load() {
   checkedIds.value = checkedIds.value.filter((id) =>
     items.value.some((n) => n.id === id),
   );
+
+  // 删除或刷新数据后，避免停留在已经不存在的页码
+  if (currentPage.value > totalPages.value) {
+    currentPage.value = totalPages.value;
+  }
 }
 const otherValue = (value, other) =>
   value === "OTHER"
@@ -951,19 +980,19 @@ const expandedScheduleEntries = () =>
   form.scheduleMode !== "WEEKDAYS"
     ? scheduleEntries.value.map((x) => ({ ...x }))
     : scheduleEntries.value.flatMap((entry) => {
-        if (!entry.weekdayContinuous)
-          return [{ ...entry, dayTil: "", weekdayContinuous: undefined }];
-        const from = weekdays.findIndex((x) => x[0] === entry.day),
-          to = weekdays.findIndex((x) => x[0] === entry.dayTil);
-        if (from < 0 || to <= from)
-          throw new Error("连续星期的结束日必须晚于开始日，例如星期二至星期四");
-        return weekdays.slice(from, to + 1).map(([day]) => ({
-          ...entry,
-          day,
-          dayTil: "",
-          weekdayContinuous: undefined,
-        }));
-      });
+      if (!entry.weekdayContinuous)
+        return [{ ...entry, dayTil: "", weekdayContinuous: undefined }];
+      const from = weekdays.findIndex((x) => x[0] === entry.day),
+        to = weekdays.findIndex((x) => x[0] === entry.dayTil);
+      if (from < 0 || to <= from)
+        throw new Error("连续星期的结束日必须晚于开始日，例如星期二至星期四");
+      return weekdays.slice(from, to + 1).map(([day]) => ({
+        ...entry,
+        day,
+        dayTil: "",
+        weekdayContinuous: undefined,
+      }));
+    });
 const currentScheduleData = () => ({
   type: form.scheduleMode,
   entries: form.scheduleMode === "CONTINUOUS" ? [] : expandedScheduleEntries(),
@@ -1021,7 +1050,8 @@ async function remove(n) {
   await load();
 }
 function toggleAllFiltered(e) {
-  const visible = filtered.value.map((n) => n.id);
+  // 表头复选框只选中或取消当前页的通告
+  const visible = paginatedItems.value.map((n) => n.id);
   checkedIds.value = e.target.checked
     ? [...new Set([...checkedIds.value, ...visible])]
     : checkedIds.value.filter((id) => !visible.includes(id));
@@ -1129,7 +1159,7 @@ const sameWeekdaySchedule = (a, b) =>
   !b.endDate;
 function compactWeekdayEntries(entries) {
   const result = [];
-  for (let i = 0; i < entries.length; ) {
+  for (let i = 0; i < entries.length;) {
     let j = i;
     while (
       j + 1 < entries.length &&
@@ -1232,7 +1262,7 @@ const cursorStates = computed(() => {
     ((new Date(activationPreview.value.viewEnd) -
       new Date(activationPreview.value.viewStart)) *
       activationCursor.value) /
-      1000;
+    1000;
   return activationAirspaces.value
     .map((a) => ({
       label: a.label,
@@ -1343,6 +1373,12 @@ watch(
   ],
   queueActivationPreview,
 );
+
+// 筛选条件变化时回到第一页
+watch([query, status], () => {
+  currentPage.value = 1;
+});
+
 function navPreviewPayload() {
   const status =
     form.operationalStatus === "OTHER" && form.operationalStatusOther.trim()
@@ -1427,33 +1463,16 @@ onMounted(() => {
   <div class="shell">
     <AppSidebar :view="view" @show-list="view = 'list'" @create="startNew" />
     <main>
-      <AppHeader
-        :view="view"
-        :editing="!!editingId"
-        @import-xml="importXml"
-        @create="startNew"
-      />
+      <AppHeader :view="view" :editing="!!editingId" @import-xml="importXml" @create="startNew" />
       <div v-if="notice" class="notice" @click="notice = ''">
         {{ notice }} <span>×</span>
       </div>
-      <NotamList
-        v-if="view === 'list'"
-        :stats="stats"
-        :items="filtered"
-        :query="query"
-        :status="status"
-        :checked-ids="checkedIds"
-        :all-filtered-selected="allFilteredSelected"
-        :format-date-time="dt"
-        @update:query="query = $event"
-        @update:status="status = $event"
-        @update:checked-ids="checkedIds = $event"
-        @toggle-all="toggleAllFiltered"
-        @remove-selected="removeSelected"
-        @detail="detail"
-        @publish="publish"
-        @remove="remove"
-      />
+      <NotamList v-if="view === 'list'" :stats="stats" :items="paginatedItems" :query="query" :status="status"
+        :checked-ids="checkedIds" :all-filtered-selected="allFilteredSelected" :format-date-time="dt"
+        :current-page="currentPage" :total-pages="totalPages" :total-items="filtered.length"
+        @update:query="query = $event" @update:status="status = $event" @update:checked-ids="checkedIds = $event"
+        @toggle-all="toggleAllFiltered" @remove-selected="removeSelected" @detail="detail" @publish="publish"
+        @remove="remove" @change-page="changePage" />
       <section v-else-if="view === 'create'" class="panel form">
         <div class="section-title">
           <b>Digital NOTAM</b><span>按ICAO NOTAM的Q行及A–G项填写和预览</span>
@@ -1462,75 +1481,39 @@ onMounted(() => {
           <div class="field-group wide">
             <h3>通告业务设置</h3>
             <div class="group-grid business-grid">
-              <label
-                >业务场景 *<select
-                  v-model="form.scenario"
-                  @change="scenarioChanged"
-                >
+              <label>业务场景 *<select v-model="form.scenario" @change="scenarioChanged">
                   <option v-for="s in scenarios" :key="s[0]" :value="s[0]">
                     {{ s[0] }} — {{ s[1] }}
                   </option>
-                </select></label
-              ><label
-                >编号系列 *<select
-                  v-model="form.numberSeries"
-                  :disabled="!!editingId"
-                >
+                </select></label><label>编号系列 *<select v-model="form.numberSeries" :disabled="!!editingId">
                   <option value="A">A — 国际分发</option>
                   <option value="C">C — 国内分发</option>
                   <option value="D">D — 地区内分发</option>
-                </select></label
-              ><label
-                >编号数字<input
-                  v-model="form.numberDigits"
-                  maxlength="4"
-                  placeholder="留空自动分配"
-                  :disabled="!!editingId" /></label
-              ><label>通告标题 *<input v-model="form.title" /></label>
+                </select></label><label>编号数字<input v-model="form.numberDigits" maxlength="4" placeholder="留空自动分配"
+                  :disabled="!!editingId" /></label><label>通告标题 *<input v-model="form.title" /></label>
             </div>
           </div>
           <div class="field-group wide">
             <h3>Q 行</h3>
             <div class="group-grid q-grid">
-              <label
-                >FIR *<select v-model="form.fir">
+              <label>FIR *<select v-model="form.fir">
                   <option value="EAAD">EAAD</option>
-                </select></label
-              ><label
-                >Q-CODE *<input
-                  v-model="form.qCode"
-                  maxlength="5"
-                  placeholder="例如 QFALC"
-                  :readonly="
-                    ['AD.CLS', 'AD.LIM', 'RWY.CLS', 'RWY.LIM'].includes(
-                      form.scenario,
-                    )
-                  "
-                  :title="
-                    ['AD.CLS', 'AD.LIM', 'RWY.CLS', 'RWY.LIM'].includes(
-                      form.scenario,
-                    )
+                </select></label><label>Q-CODE *<input v-model="form.qCode" maxlength="5" placeholder="例如 QFALC"
+                  :readonly="['AD.CLS', 'AD.LIM', 'RWY.CLS', 'RWY.LIM'].includes(
+                    form.scenario,
+                  )
+                    " :title="['AD.CLS', 'AD.LIM', 'RWY.CLS', 'RWY.LIM'].includes(
+                    form.scenario,
+                  )
                       ? '发布时依据 XML 自动生成'
                       : ''
-                  " /></label
-              ><label
-                >TRAFFIC *<select
-                  v-model="form.traffic"
-                  :disabled="
-                    ['AD.LIM', 'RWY.CLS', 'RWY.LIM'].includes(form.scenario)
-                  "
-                >
+                    " /></label><label>TRAFFIC *<select v-model="form.traffic" :disabled="['AD.LIM', 'RWY.CLS', 'RWY.LIM'].includes(form.scenario)
+                    ">
                   <option>I</option>
                   <option>V</option>
                   <option>IV</option>
-                </select></label
-              ><label
-                >PURPOSE *<select
-                  v-model="form.purpose"
-                  :disabled="
-                    ['AD.LIM', 'RWY.CLS', 'RWY.LIM'].includes(form.scenario)
-                  "
-                >
+                </select></label><label>PURPOSE *<select v-model="form.purpose" :disabled="['AD.LIM', 'RWY.CLS', 'RWY.LIM'].includes(form.scenario)
+                  ">
                   <option>N</option>
                   <option>B</option>
                   <option>O</option>
@@ -1538,235 +1521,101 @@ onMounted(() => {
                   <option>NO</option>
                   <option>BO</option>
                   <option>NBO</option>
-                </select></label
-              ><label
-                >SCOPE *<select
-                  v-model="form.scope"
-                  :disabled="
-                    ['AD.LIM', 'RWY.CLS', 'RWY.LIM'].includes(form.scenario)
-                  "
-                >
+                </select></label><label>SCOPE *<select v-model="form.scope" :disabled="['AD.LIM', 'RWY.CLS', 'RWY.LIM'].includes(form.scenario)
+                  ">
                   <option>A</option>
                   <option>E</option>
                   <option>AE</option>
-                </select></label
-              ><label
-                >纬度（十进制度）
+                </select></label><label>纬度（十进制度）
                 <div class="inline-input">
-                  <input
-                    v-model="form.latitude"
-                    type="number"
-                    min="0"
-                    max="90"
-                    step="any"
-                  /><select v-model="form.latitudeHemisphere">
+                  <input v-model="form.latitude" type="number" min="0" max="90" step="any" /><select
+                    v-model="form.latitudeHemisphere">
                     <option>N</option>
                     <option>S</option>
                   </select>
-                </div></label
-              ><label
-                >经度（十进制度）
+                </div>
+              </label><label>经度（十进制度）
                 <div class="inline-input">
-                  <input
-                    v-model="form.longitude"
-                    type="number"
-                    min="0"
-                    max="180"
-                    step="any"
-                  /><select v-model="form.longitudeHemisphere">
+                  <input v-model="form.longitude" type="number" min="0" max="180" step="any" /><select
+                    v-model="form.longitudeHemisphere">
                     <option>E</option>
                     <option>W</option>
                   </select>
-                </div></label
-              ><label
-                >影响半径（NM）<input
-                  v-model="form.radiusNm"
-                  type="number"
-                  min="0"
-                  max="999"
-              /></label>
+                </div>
+              </label><label>影响半径（NM）<input v-model="form.radiusNm" type="number" min="0" max="999" /></label>
             </div>
             <div v-if="form.scenario !== 'ATSA.NEW'" class="limit-grid">
-              <label
-                >下限类型<select v-model="form.lowerRestricted">
+              <label>下限类型<select v-model="form.lowerRestricted">
                   <option :value="false">无限制（000）</option>
                   <option :value="true">指定米数</option>
-                </select></label
-              ><label
-                >下限高度（米）<input
-                  v-model="form.lowerMeters"
-                  type="number"
-                  min="0"
-                  max="16000"
-                  :disabled="!form.lowerRestricted"
-                /><small
-                  >换算结果：FL{{
+                </select></label><label>下限高度（米）<input v-model="form.lowerMeters" type="number" min="0" max="16000"
+                  :disabled="!form.lowerRestricted" /><small>换算结果：FL{{
                     fl(form.lowerRestricted ? form.lowerMeters : "", false)
-                  }}</small
-                ></label
-              ><label
-                >上限类型<select v-model="form.upperRestricted">
+                  }}</small></label><label>上限类型<select v-model="form.upperRestricted">
                   <option :value="false">无限制（999）</option>
                   <option :value="true">指定米数</option>
-                </select></label
-              ><label
-                >上限高度（米）<input
-                  v-model="form.upperMeters"
-                  type="number"
-                  min="0"
-                  max="16000"
-                  :disabled="!form.upperRestricted"
-                /><small
-                  >换算结果：FL{{
+                </select></label><label>上限高度（米）<input v-model="form.upperMeters" type="number" min="0" max="16000"
+                  :disabled="!form.upperRestricted" /><small>换算结果：FL{{
                     fl(form.upperRestricted ? form.upperMeters : "", true)
-                  }}</small
-                ></label
-              >
+                  }}</small></label>
             </div>
           </div>
           <div class="field-group wide abc-fields">
-            <label
-              v-if="
-                !['ATSA.ACT', 'ATSA.NEW', 'NAV.UNS'].includes(form.scenario)
-              "
-              >A 项：机场<select
-                v-model="form.airport"
-                :disabled="['RWY.CLS', 'RWY.LIM'].includes(form.scenario)"
-                @change="airportChanged"
-              >
-                <option
-                  v-for="a in airports"
-                  :key="a.designator"
-                  :value="a.designator"
-                >
+            <label v-if="
+              !['ATSA.ACT', 'ATSA.NEW', 'NAV.UNS'].includes(form.scenario)
+            ">A 项：机场<select v-model="form.airport" :disabled="['RWY.CLS', 'RWY.LIM'].includes(form.scenario)"
+                @change="airportChanged">
+                <option v-for="a in airports" :key="a.designator" :value="a.designator">
                   {{ a.designator }} — {{ a.name }} ({{ a.type }})
-                </option></select
-              ><small v-if="['RWY.CLS', 'RWY.LIM'].includes(form.scenario)"
-                >{{ form.scenario }} 第一版仅支持具备完整跑道基线的 EADD</small
-              ><small
-                v-else-if="airports.find((a) => a.designator === form.airport)"
-                >FIR {{ form.fir }} ·
+                </option>
+              </select><small v-if="['RWY.CLS', 'RWY.LIM'].includes(form.scenario)">{{ form.scenario }} 第一版仅支持具备完整跑道基线的
+                EADD</small><small v-else-if="airports.find((a) => a.designator === form.airport)">FIR {{ form.fir }} ·
                 {{
                   airports.find((a) => a.designator === form.airport).firSource
-                }}</small
-              ></label
-            ><label v-else-if="form.scenario === 'NAV.UNS'"
-              >A 项：自动解析结果<input
-                :value="selectedAirportCodes().join(', ') || 'EAAD（Scope E）'"
-                readonly /></label
-            ><label v-else-if="form.scenario === 'ATSA.NEW'"
-              >A 项：空间分析结果<input
-                :value="
-                  atsaNewAssociations?.firs
-                    .map((x) => x.designator)
-                    .join(', ') || '请先分析几何'
-                "
-                readonly /></label
-            ><label v-else
-              >A 项：自动解析结果<input
-                value="EAAD（受影响机场为空时Scope E）"
-                readonly /></label
-            ><label
-              >B 项：开始时间 *<input
-                v-model="form.effectiveStart"
-                type="datetime-local" /></label
-            ><label
-              >C 项：结束时间 *<input
-                v-model="form.effectiveEnd"
-                type="datetime-local"
-            /></label>
+                }}</small></label><label v-else-if="form.scenario === 'NAV.UNS'">A 项：自动解析结果<input
+                :value="selectedAirportCodes().join(', ') || 'EAAD（Scope E）'" readonly /></label><label
+              v-else-if="form.scenario === 'ATSA.NEW'">A 项：空间分析结果<input :value="atsaNewAssociations?.firs
+                  .map((x) => x.designator)
+                  .join(', ') || '请先分析几何'
+                " readonly /></label><label v-else>A 项：自动解析结果<input value="EAAD（受影响机场为空时Scope E）"
+                readonly /></label><label>B 项：开始时间 *<input v-model="form.effectiveStart"
+                type="datetime-local" /></label><label>C 项：结束时间 *<input v-model="form.effectiveEnd"
+                type="datetime-local" /></label>
           </div>
-          <AtsaActFields
-            v-if="form.scenario === 'ATSA.ACT'"
-            :form="form"
-            :groups="airspaceGroups"
-            :airports="airports"
-            :selected-airport-codes="selectedAirportCodes()"
-            :preview="activationPreview"
-            :preview-error="activationPreviewError"
-            :preview-loading="activationPreviewLoading"
-            :view-mode="activationViewMode"
-            :tab="activationTab"
-            :cursor="activationCursor"
-            :cursor-time="activationCursorTime"
-            :cursor-states="cursorStates"
-            :visible-airspaces="activationAirspaces"
-            :format-date-time="dt"
-            :interval-style="intervalStyle"
-            @group-change="airspaceGroupChanged"
-            @activation-change="activationChanged"
-            @toggle-airport="toggleAffectedAirport"
-            @toggle-airspace="toggleSelectedAirspace"
-            @move-view="moveActivationView"
-            @change-mode="changeActivationMode"
-            @load-preview="loadActivationPreview"
-            @update:tab="activationTab = $event"
-            @update:cursor="activationCursor = $event"
-          />
-          <AtsaNewFields
-            v-if="form.scenario === 'ATSA.NEW'"
-            :form="form"
-            :airports="airports"
-            :filtered-baseline-airspaces="filteredBaselineAirspaces"
-            :atsa-new-associations="atsaNewAssociations"
+          <AtsaActFields v-if="form.scenario === 'ATSA.ACT'" :form="form" :groups="airspaceGroups" :airports="airports"
+            :selected-airport-codes="selectedAirportCodes()" :preview="activationPreview"
+            :preview-error="activationPreviewError" :preview-loading="activationPreviewLoading"
+            :view-mode="activationViewMode" :tab="activationTab" :cursor="activationCursor"
+            :cursor-time="activationCursorTime" :cursor-states="cursorStates" :visible-airspaces="activationAirspaces"
+            :format-date-time="dt" :interval-style="intervalStyle" @group-change="airspaceGroupChanged"
+            @activation-change="activationChanged" @toggle-airport="toggleAffectedAirport"
+            @toggle-airspace="toggleSelectedAirspace" @move-view="moveActivationView"
+            @change-mode="changeActivationMode" @load-preview="loadActivationPreview"
+            @update:tab="activationTab = $event" @update:cursor="activationCursor = $event" />
+          <AtsaNewFields v-if="form.scenario === 'ATSA.NEW'" :form="form" :airports="airports"
+            :filtered-baseline-airspaces="filteredBaselineAirspaces" :atsa-new-associations="atsaNewAssociations"
             :atsa-new-association-error="atsaNewAssociationError"
-            :atsa-new-association-loading="atsaNewAssociationLoading"
-            :selected-airport-codes="selectedAirportCodes"
-            :selected-excluded-airspaces="selectedExcludedAirspaces"
-            :analyse-atsa-new-geometry="analyseAtsaNewGeometry"
-            :toggle-affected-airport="toggleAffectedAirport"
-            :toggle-excluded-airspace="toggleExcludedAirspace"
-          />
-          <NavUnsFields
-            v-if="form.scenario === 'NAV.UNS'"
-            :form="form"
-            :navaid-types="navaidTypes"
-            :navaids="filteredNavaids"
-            :selected-navaid="selectedNavaid()"
-            :airports="airports"
-            :selected-airport-codes="selectedAirportCodes()"
-            :preview="navPreview"
-            :preview-error="navPreviewError"
-            :preview-loading="navPreviewLoading"
-            :format-date-time="dt"
-            :interval-style="navIntervalStyle"
-            @navaid-type-change="navaidTypeChanged"
-            @navaid-change="navaidChanged"
-            @impact-mode-change="impactModeChanged"
-            @queue-preview="queueNavPreview"
-            @toggle-airport="toggleAffectedAirport"
-            @load-preview="loadNavPreview"
-          />
+            :atsa-new-association-loading="atsaNewAssociationLoading" :selected-airport-codes="selectedAirportCodes"
+            :selected-excluded-airspaces="selectedExcludedAirspaces" :analyse-atsa-new-geometry="analyseAtsaNewGeometry"
+            :toggle-affected-airport="toggleAffectedAirport" :toggle-excluded-airspace="toggleExcludedAirspace" />
+          <NavUnsFields v-if="form.scenario === 'NAV.UNS'" :form="form" :navaid-types="navaidTypes"
+            :navaids="filteredNavaids" :selected-navaid="selectedNavaid()" :airports="airports"
+            :selected-airport-codes="selectedAirportCodes()" :preview="navPreview" :preview-error="navPreviewError"
+            :preview-loading="navPreviewLoading" :format-date-time="dt" :interval-style="navIntervalStyle"
+            @navaid-type-change="navaidTypeChanged" @navaid-change="navaidChanged"
+            @impact-mode-change="impactModeChanged" @queue-preview="queueNavPreview"
+            @toggle-airport="toggleAffectedAirport" @load-preview="loadNavPreview" />
           <div v-if="form.scenario === 'AD.CLS'" class="field-group wide">
             <h3>Q 行人工修正（可选）</h3>
             <div class="group-grid">
-              <label
-                >修改原因<input
-                  v-model="form.qOverrideReason"
-                  placeholder="留空则采用系统自动值" /></label
-              ><label
-                >操作员<input
-                  v-model="form.qOverrideOperator"
-                  :disabled="!form.qOverrideReason" /></label
-              ><label
-                >修正 Q-code<input
-                  v-model="form.qCode"
-                  maxlength="5"
-                  :disabled="!form.qOverrideReason" /></label
-              ><label
-                >修正 Traffic<select
-                  v-model="form.traffic"
-                  :disabled="!form.qOverrideReason"
-                >
+              <label>修改原因<input v-model="form.qOverrideReason" placeholder="留空则采用系统自动值" /></label><label>操作员<input
+                  v-model="form.qOverrideOperator" :disabled="!form.qOverrideReason" /></label><label>修正 Q-code<input
+                  v-model="form.qCode" maxlength="5" :disabled="!form.qOverrideReason" /></label><label>修正
+                Traffic<select v-model="form.traffic" :disabled="!form.qOverrideReason">
                   <option>I</option>
                   <option>V</option>
                   <option>IV</option>
-                </select></label
-              ><label
-                >修正 Purpose<select
-                  v-model="form.purpose"
-                  :disabled="!form.qOverrideReason"
-                >
+                </select></label><label>修正 Purpose<select v-model="form.purpose" :disabled="!form.qOverrideReason">
                   <option>N</option>
                   <option>B</option>
                   <option>O</option>
@@ -1774,159 +1623,85 @@ onMounted(() => {
                   <option>NO</option>
                   <option>BO</option>
                   <option>NBO</option>
-                </select></label
-              ><label
-                >修正 Scope<select
-                  v-model="form.scope"
-                  :disabled="!form.qOverrideReason"
-                >
+                </select></label><label>修正 Scope<select v-model="form.scope" :disabled="!form.qOverrideReason">
                   <option>A</option>
                   <option>E</option>
                   <option>AE</option>
-                </select></label
-              >
+                </select></label>
             </div>
             <small>人工修正只影响 NOTAM Q 行，不改变 Event/TEMPDELTA。</small>
           </div>
-          <div
-            v-if="['RWY.CLS', 'RWY.LIM'].includes(form.scenario)"
-            class="field-group wide"
-          >
+          <div v-if="['RWY.CLS', 'RWY.LIM'].includes(form.scenario)" class="field-group wide">
             <h3>{{ form.scenario }} 跑道目标</h3>
             <div class="group-grid structured-e">
-              <label
-                >目标对象 *<select v-model="form.rwyTargetType">
+              <label>目标对象 *<select v-model="form.rwyTargetType">
                   <option value="RUNWAY">整条跑道（全部方向）</option>
                   <option value="RUNWAY_DIRECTION">单一跑道方向</option>
-                </select></label
-              ><label
-                >跑道 / FATO *<select
-                  v-model="form.runwayUuid"
-                  @change="runwayChanged"
-                >
+                </select></label><label>跑道 / FATO *<select v-model="form.runwayUuid" @change="runwayChanged">
                   <option v-for="r in runways" :key="r.uuid" :value="r.uuid">
                     {{ r.designator }}
                   </option>
-                </select></label
-              ><label
-                >Runway surface composition *<select
-                  v-model="form.runwaySurfaceComposition"
-                >
-                  <option
-                    v-for="surface in runways.find(
-                      (x) => x.uuid === form.runwayUuid,
-                    )?.surfaceCompositions || []"
-                    :key="surface"
-                    :value="surface"
-                  >
+                </select></label><label>Runway surface composition *<select v-model="form.runwaySurfaceComposition">
+                  <option v-for="surface in runways.find(
+                    (x) => x.uuid === form.runwayUuid,
+                  )?.surfaceCompositions || []" :key="surface" :value="surface">
                     {{ surface }}
                   </option>
-                </select></label
-              ><label v-if="form.rwyTargetType === 'RUNWAY_DIRECTION'"
-                >跑道方向 *<select v-model="form.runwayDirectionUuid">
-                  <option
-                    v-for="d in runways.find((x) => x.uuid === form.runwayUuid)
-                      ?.directions || []"
-                    :key="d.uuid"
-                    :value="d.uuid"
-                  >
+                </select></label><label v-if="form.rwyTargetType === 'RUNWAY_DIRECTION'">跑道方向 *<select
+                  v-model="form.runwayDirectionUuid">
+                  <option v-for="d in runways.find((x) => x.uuid === form.runwayUuid)
+                    ?.directions || []" :key="d.uuid" :value="d.uuid">
                     {{ d.designator }}
                   </option>
-                </select></label
-              >
+                </select></label>
             </div>
-            <small
-              >选择整条跑道时将为所有关联 RunwayDirection 分别生成
-              TEMPDELTA。</small
-            >
+            <small>选择整条跑道时将为所有关联 RunwayDirection 分别生成
+              TEMPDELTA。</small>
           </div>
-          <RestrictionEditor
-            v-if="['AD.LIM', 'RWY.LIM'].includes(form.scenario)"
-            :form="form"
-            :restrictions="restrictions"
-            :add-restriction="addRestriction"
-            :remove-restriction="removeRestriction"
-            :move-restriction="moveRestriction"
-          />
-          <ScheduleEditor
-            :form="form"
-            :entries="scheduleEntries"
-            :excluded-dates="excludedDates"
-            :note="scheduleNote"
-            :draft-text="scheduleDraftText"
-            :weekday-range-starts="weekdayRangeStarts"
-            :weekday-range-ends="weekdayRangeEnds"
-            @mode-change="scheduleModeChanged"
-            @weekday-range-change="weekdayRangeChanged"
-            @weekday-start-change="weekdayStartChanged"
-            @add-entry="addScheduleEntry"
-            @remove-entry="removeScheduleEntry"
-            @add-excluded-date="addExcludedDate"
-            @remove-excluded-date="removeExcludedDate"
-            @update:note="scheduleNote = $event"
-          />
+          <RestrictionEditor v-if="['AD.LIM', 'RWY.LIM'].includes(form.scenario)" :form="form"
+            :restrictions="restrictions" :add-restriction="addRestriction" :remove-restriction="removeRestriction"
+            :move-restriction="moveRestriction" />
+          <ScheduleEditor :form="form" :entries="scheduleEntries" :excluded-dates="excludedDates" :note="scheduleNote"
+            :draft-text="scheduleDraftText" :weekday-range-starts="weekdayRangeStarts"
+            :weekday-range-ends="weekdayRangeEnds" @mode-change="scheduleModeChanged"
+            @weekday-range-change="weekdayRangeChanged" @weekday-start-change="weekdayStartChanged"
+            @add-entry="addScheduleEntry" @remove-entry="removeScheduleEntry" @add-excluded-date="addExcludedDate"
+            @remove-excluded-date="removeExcludedDate" @update:note="scheduleNote = $event" />
           <div class="field-group wide">
             <h3>E 项：结构化事件数据</h3>
             <div class="group-grid structured-e">
-              <label
-                >原因{{
-                  [
-                    "AD.CLS",
-                    "AD.LIM",
-                    "RWY.LIM",
-                    "ATSA.ACT",
-                    "ATSA.NEW",
-                    "NAV.UNS",
-                  ].includes(form.scenario)
-                    ? "（可选）"
-                    : " *"
-                }}<input
-                  v-model="form.reason"
-                  placeholder="例如 SURFACE MAINTENANCE" /></label
-              ><label
-                >备注<input
-                  v-model="form.remarks"
-                  placeholder="可选，例如 RUBBER REMOVAL"
-              /></label>
+              <label>原因{{
+                [
+                  "AD.CLS",
+                  "AD.LIM",
+                  "RWY.LIM",
+                  "ATSA.ACT",
+                  "ATSA.NEW",
+                  "NAV.UNS",
+                ].includes(form.scenario)
+                  ? "（可选）"
+                  : " *"
+              }}<input v-model="form.reason" placeholder="例如 SURFACE MAINTENANCE" /></label><label>备注<input
+                  v-model="form.remarks" placeholder="可选，例如 RUBBER REMOVAL" /></label>
             </div>
-            <small
-              >事件状态由场景规则和上方业务输入自动确定，不需要人工重复选择。</small
-            >
+            <small>事件状态由场景规则和上方业务输入自动确定，不需要人工重复选择。</small>
           </div>
-          <label>F 项：下限（仅QW/QR）<input :value="itemF()" readonly /></label
-          ><label
-            >G 项：上限（仅QW/QR）<input :value="itemG()" readonly
-          /></label>
+          <label>F 项：下限（仅QW/QR）<input :value="itemF()" readonly /></label><label>G 项：上限（仅QW/QR）<input :value="itemG()"
+              readonly /></label>
         </div>
         <div class="actions">
-          <button
-            @click="
-              view = 'list';
-              editingId = null;
-            "
-          >
-            取消</button
-          ><button class="primary" @click="prepareScheduleAndCreate">
+          <button @click="
+            view = 'list';
+          editingId = null;
+          ">
+            取消</button><button class="primary" @click="prepareScheduleAndCreate">
             {{ editingId ? "保存修改" : "保存为草稿" }}
           </button>
         </div>
       </section>
-      <NotamDetail
-        v-else
-        :notam="selected"
-        :xml="xml"
-        :cnotam="cnotam"
-        :q-line="qLine"
-        :compact-date-time="compact"
-        :schedule-text="scheduleText"
-        :item-f="itemF"
-        :item-g="itemG"
-        :format-date-time="dt"
-        @remove="remove"
-        @copy="copyDraft"
-        @edit="editDraft"
-        @publish="publish"
-      />
+      <NotamDetail v-else :notam="selected" :xml="xml" :cnotam="cnotam" :q-line="qLine" :compact-date-time="compact"
+        :schedule-text="scheduleText" :item-f="itemF" :item-g="itemG" :format-date-time="dt" @remove="remove"
+        @copy="copyDraft" @edit="editDraft" @publish="publish" />
     </main>
   </div>
 </template>

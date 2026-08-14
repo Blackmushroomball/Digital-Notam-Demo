@@ -28,6 +28,18 @@ defineProps({
     type: Function,
     required: true,
   },
+  currentPage: {
+    type: Number,
+    required: true,
+  },
+  totalPages: {
+    type: Number,
+    required: true,
+  },
+  totalItems: {
+    type: Number,
+    required: true,
+  },
 });
 
 defineEmits([
@@ -39,6 +51,7 @@ defineEmits([
   "detail",
   "publish",
   "remove",
+  "change-page",
 ]);
 
 function toggleItem(checkedIds, id, checked) {
@@ -102,7 +115,7 @@ function toggleItem(checkedIds, id, checked) {
               type="checkbox"
               :checked="allFilteredSelected"
               :disabled="!items.length"
-              title="全选当前筛选结果"
+              title="全选当前页"
               @change="$emit('toggle-all', $event)"
             />
           </th>
@@ -162,5 +175,41 @@ function toggleItem(checkedIds, id, checked) {
         </tr>
       </tbody>
     </table>
+
+    <!-- 通告列表分页：显示总数、当前页码以及翻页按钮 -->
+    <div class="pagination">
+      <span
+        >共 {{ totalItems }} 条，第 {{ currentPage }} /
+        {{ totalPages }} 页</span
+      >
+
+      <div class="pagination-actions">
+        <button
+          type="button"
+          :disabled="currentPage === 1"
+          @click="$emit('change-page', currentPage - 1)"
+        >
+          上一页
+        </button>
+
+        <button
+          v-for="page in totalPages"
+          :key="page"
+          type="button"
+          :class="{ active: page === currentPage }"
+          @click="$emit('change-page', page)"
+        >
+          {{ page }}
+        </button>
+
+        <button
+          type="button"
+          :disabled="currentPage === totalPages"
+          @click="$emit('change-page', currentPage + 1)"
+        >
+          下一页
+        </button>
+      </div>
+    </div>
   </section>
 </template>
