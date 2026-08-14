@@ -8,17 +8,11 @@
 .\run.ps1
 ```
 
-启动后访问 <http://localhost:8080>。脚本会将 Java 源码按 `--release 21` 编译后启动，不需要 Maven。
+启动后访问 <http://localhost:8080>。脚本先使用 NVM 当前选中的 Node/npm 执行 Vite 构建，再使用仓库内置的 Maven Wrapper 将 Java 源码按 `--release 21` 编译并启动；不需要全局安装 Maven。首次运行前应先在当前 PowerShell 中通过 `nvm use <version>` 选择 Node 20.19+ 或 22.12+，并在 `frontend` 目录执行一次 `npm install`。
 
-如需修改并重新构建前端：
+前端构建结果输出到 `src/main/resources/public`，因此修改前端后仍直接运行 `run.ps1` 即可。
 
-```powershell
-cd frontend
-npm install
-npm run build
-```
-
-构建结果会输出到 `src/main/resources/public`。
+`verify-external-resources.ps1` 只校验外部模板和虚拟数据目录的 SHA-256 指纹，确认这些基准资源未被意外修改；它不会编译或启动系统，不能替代 `run.ps1`。
 
 ## API
 
