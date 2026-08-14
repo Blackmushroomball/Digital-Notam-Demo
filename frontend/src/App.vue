@@ -1493,6 +1493,28 @@ onMounted(() => {
                   :disabled="!!editingId" /></label><label>通告标题 *<input v-model="form.title" /></label>
             </div>
           </div>
+          <div class="field-group wide abc-fields">
+            <label v-if="
+              !['ATSA.ACT', 'ATSA.NEW', 'NAV.UNS'].includes(form.scenario)
+            ">A 项：机场<select v-model="form.airport" :disabled="['RWY.CLS', 'RWY.LIM'].includes(form.scenario)"
+                @change="airportChanged">
+                <option v-for="a in airports" :key="a.designator" :value="a.designator">
+                  {{ a.designator }} — {{ a.name }} ({{ a.type }})
+                </option>
+              </select><small v-if="['RWY.CLS', 'RWY.LIM'].includes(form.scenario)">{{ form.scenario }} 第一版仅支持具备完整跑道基线的
+                EADD</small><small v-else-if="airports.find((a) => a.designator === form.airport)">FIR {{ form.fir }} ·
+                {{
+                  airports.find((a) => a.designator === form.airport).firSource
+                }}</small></label><label v-else-if="form.scenario === 'NAV.UNS'">A 项：自动解析结果<input
+                :value="selectedAirportCodes().join(', ') || 'EAAD（Scope E）'" readonly /></label><label
+              v-else-if="form.scenario === 'ATSA.NEW'">A 项：空间分析结果<input :value="atsaNewAssociations?.firs
+                  .map((x) => x.designator)
+                  .join(', ') || '请先分析几何'
+                " readonly /></label><label v-else>A 项：自动解析结果<input value="EAAD（受影响机场为空时Scope E）"
+                readonly /></label><label>B 项：开始时间 *<input v-model="form.effectiveStart"
+                type="datetime-local" /></label><label>C 项：结束时间 *<input v-model="form.effectiveEnd"
+                type="datetime-local" /></label>
+          </div>
           <div class="field-group wide">
             <h3>Q 行</h3>
             <div class="group-grid q-grid">
@@ -1559,28 +1581,6 @@ onMounted(() => {
                     fl(form.upperRestricted ? form.upperMeters : "", true)
                   }}</small></label>
             </div>
-          </div>
-          <div class="field-group wide abc-fields">
-            <label v-if="
-              !['ATSA.ACT', 'ATSA.NEW', 'NAV.UNS'].includes(form.scenario)
-            ">A 项：机场<select v-model="form.airport" :disabled="['RWY.CLS', 'RWY.LIM'].includes(form.scenario)"
-                @change="airportChanged">
-                <option v-for="a in airports" :key="a.designator" :value="a.designator">
-                  {{ a.designator }} — {{ a.name }} ({{ a.type }})
-                </option>
-              </select><small v-if="['RWY.CLS', 'RWY.LIM'].includes(form.scenario)">{{ form.scenario }} 第一版仅支持具备完整跑道基线的
-                EADD</small><small v-else-if="airports.find((a) => a.designator === form.airport)">FIR {{ form.fir }} ·
-                {{
-                  airports.find((a) => a.designator === form.airport).firSource
-                }}</small></label><label v-else-if="form.scenario === 'NAV.UNS'">A 项：自动解析结果<input
-                :value="selectedAirportCodes().join(', ') || 'EAAD（Scope E）'" readonly /></label><label
-              v-else-if="form.scenario === 'ATSA.NEW'">A 项：空间分析结果<input :value="atsaNewAssociations?.firs
-                  .map((x) => x.designator)
-                  .join(', ') || '请先分析几何'
-                " readonly /></label><label v-else>A 项：自动解析结果<input value="EAAD（受影响机场为空时Scope E）"
-                readonly /></label><label>B 项：开始时间 *<input v-model="form.effectiveStart"
-                type="datetime-local" /></label><label>C 项：结束时间 *<input v-model="form.effectiveEnd"
-                type="datetime-local" /></label>
           </div>
           <AtsaActFields v-if="form.scenario === 'ATSA.ACT'" :form="form" :groups="airspaceGroups" :airports="airports"
             :selected-airport-codes="selectedAirportCodes()" :preview="activationPreview"
