@@ -549,11 +549,14 @@ function structuredGeometryJson() {
 function editableGeometry(value) {
   const document = JSON.parse(value);
   const geometry = document.geometry;
-  if (!geometry || !["CIRCLE", "POLYGON", "CORRIDOR"].includes(geometry.type))
-    throw new Error("图形模式仅支持 CIRCLE、POLYGON 和 CORRIDOR");
+  if (!geometry || !["CIRCLE", "CIRCLE_SECTOR", "POLYGON", "CORRIDOR"].includes(geometry.type))
+    throw new Error("图形模式仅支持 CIRCLE、CIRCLE_SECTOR、POLYGON 和 CORRIDOR");
   if (geometry.type === "POLYGON") {
-    if (geometry.segments?.length !== 1 || geometry.segments[0].type !== "GEODESIC")
-      throw new Error("包含弧线或混合片段的多边形只能在高级 JSON 模式中编辑");
+    const segmentTypes = geometry.segments?.map((segment) => segment.type) || [];
+    const plainPolygon = segmentTypes.length === 1 && segmentTypes[0] === "GEODESIC";
+    const arcArea = segmentTypes.length === 2 && segmentTypes[0] === "ARC_BY_EDGE" && segmentTypes[1] === "GEODESIC";
+    if (!plainPolygon && !arcArea)
+      throw new Error("该多边形片段组合只能在高级 JSON 模式中编辑");
   }
   if (geometry.type === "CORRIDOR") {
     const segments = geometry.centreline?.segments;
@@ -564,6 +567,8 @@ function editableGeometry(value) {
 }
 
 function syncStructuredGeometry(geometry) {
+  if (geometry.type === "CIRCLE_SECTOR")
+    throw new Error("扇区没有对应的结构化表单，请继续使用图形绘制或高级 JSON 模式");
   form.geometryType = geometry.type;
   form.geometryGmlId = geometry.gmlId || `atsa-new-${crypto.randomUUID()}`;
   if (geometry.type === "CIRCLE") {
@@ -573,10 +578,11 @@ function syncStructuredGeometry(geometry) {
     form.circleRadiusUom = geometry.radius.uom;
     return;
   }
-  const positions =
-    geometry.type === "POLYGON"
-      ? geometry.segments[0].positions
-      : geometry.centreline.segments[0].positions;
+  if (geometry.type === "POLYGON" && geometry.segments[0].type !== "GEODESIC")
+    throw new Error("弧边区域没有对应的结构化表单，请继续使用图形绘制或高级 JSON 模式");
+  const positions = geometry.type === "POLYGON"
+    ? geometry.segments[0].positions
+    : geometry.centreline.segments[0].positions;
   form.geometryPoints = positions.map((point) => `${point.x},${point.y}`).join("\n");
   if (geometry.type === "CORRIDOR") {
     form.corridorWidth = String(geometry.width.value);
@@ -1657,6 +1663,7 @@ onMounted(() => {
             @change-mode="changeActivationMode" @load-preview="loadActivationPreview"
             @update:tab="activationTab = $event" @update:cursor="activationCursor = $event" />
           <AtsaNewFields v-if="form.scenario === 'ATSA.NEW'" :form="form" :airports="airports"
+            :baseline-airspaces="baselineAirspaces"
             :filtered-baseline-airspaces="filteredBaselineAirspaces" :atsa-new-associations="atsaNewAssociations"
             :atsa-new-association-error="atsaNewAssociationError"
             :atsa-new-association-loading="atsaNewAssociationLoading" :selected-airport-codes="selectedAirportCodes"

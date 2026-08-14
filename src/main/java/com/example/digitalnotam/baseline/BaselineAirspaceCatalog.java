@@ -46,7 +46,9 @@ public final class BaselineAirspaceCatalog {
     public List<Group> groups(){return groups;}
     public String json(){
         StringBuilder out=new StringBuilder("[");for(int i=0;i<groups.size();i++){if(i>0)out.append(',');Group g=groups.get(i);out.append("{\"id\":\"").append(esc(g.id())).append("\",\"name\":\"").append(esc(g.name())).append("\",\"members\":[");
-            for(int j=0;j<g.members().size();j++){if(j>0)out.append(',');Airspace a=get(g.members().get(j));out.append("{\"uuid\":\"").append(a.uuid()).append("\",\"type\":\"").append(esc(a.type())).append("\",\"name\":\"").append(esc(a.name())).append("\",\"designator\":\"").append(esc(a.designator())).append("\",\"classification\":\"").append(esc(a.classification())).append("\"}");}
+            for(int j=0;j<g.members().size();j++){if(j>0)out.append(',');Airspace a=get(g.members().get(j));out.append("{\"uuid\":\"").append(a.uuid()).append("\",\"type\":\"").append(esc(a.type())).append("\",\"name\":\"").append(esc(a.name())).append("\",\"designator\":\"").append(esc(a.designator())).append("\",\"classification\":\"").append(esc(a.classification())).append("\",\"points\":[");
+                for(int k=0;k<a.points().size();k++){if(k>0)out.append(',');Point p=a.points().get(k);out.append("{\"latitude\":").append(p.latitude()).append(",\"longitude\":").append(p.longitude()).append('}');}
+                out.append("]}");}
             out.append("]}");}return out.append(']').toString();
     }
     private static List<Group> loadGroups(Map<String,Airspace> all)throws Exception{

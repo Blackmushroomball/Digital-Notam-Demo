@@ -35,8 +35,8 @@ public final class AtsaNewGeometrySupport {
         var issues = validator.validate(geometry);
         if (!issues.isEmpty())
             throw new IllegalArgumentException(issues.getFirst().path()+": "+issues.getFirst().message());
-        if (!(geometry instanceof Polygon || geometry instanceof Circle || geometry instanceof Corridor))
-            throw new IllegalArgumentException("ATSA.NEW geometry must be POLYGON, CIRCLE or CORRIDOR");
+        if (!(geometry instanceof Polygon || geometry instanceof Circle || geometry instanceof CircleSector || geometry instanceof Corridor))
+            throw new IllegalArgumentException("ATSA.NEW geometry must be POLYGON, CIRCLE, CIRCLE_SECTOR or CORRIDOR");
         var encoded = encoder.encode(geometry);
         if (!encoded.valid())
             throw new IllegalArgumentException(encoded.issues().getFirst().message());
@@ -45,6 +45,7 @@ public final class AtsaNewGeometrySupport {
         org.locationtech.jts.geom.Geometry footprint = switch (geometry) {
             case Polygon ignored -> polygon(boundary);
             case Circle ignored -> polygon(boundary);
+            case CircleSector ignored -> polygon(boundary);
             case Corridor corridor -> corridorFootprint(corridor);
             default -> throw new IllegalArgumentException("Unsupported ATSA.NEW geometry");
         };
@@ -86,6 +87,7 @@ public final class AtsaNewGeometrySupport {
         return switch (geometry) {
             case Polygon p -> segments(p.segments());
             case Circle c -> circle(c.center(),c.radius(),0,360);
+            case CircleSector s -> sector(s);
             case Corridor c -> positions(corridorFootprint(c).getBoundary().getCoordinates());
             default -> List.of();
         };
@@ -118,6 +120,20 @@ public final class AtsaNewGeometrySupport {
         int count=Math.max(12,(int)Math.ceil((end-start)/5d));List<Position> result=new ArrayList<>();
         double metres=com.example.aixm.geometry.json.GeometryJsonParser.metres(radius);
         for(int i=0;i<=count;i++)result.add(destination(center,start+(end-start)*i/count,metres));
+        return result;
+    }
+
+    private static List<Position> sector(CircleSector sector) {
+        double start=sector.startAngle().doubleValue(),end=sector.endAngle().doubleValue();
+        while(end<=start)end+=360;
+        List<Position> result=new ArrayList<>(circle(sector.center(),sector.outerRadius(),start,end));
+        if(sector.innerRadius()==null||com.example.aixm.geometry.json.GeometryJsonParser.metres(sector.innerRadius())==0){
+            result.add(sector.center());
+        }else{
+            List<Position> inner=circle(sector.center(),sector.innerRadius(),start,end);
+            for(int i=inner.size()-1;i>=0;i--)result.add(inner.get(i));
+        }
+        result.add(result.getFirst());
         return result;
     }
 

@@ -8,6 +8,7 @@ const GeometryMapEditor = defineAsyncComponent(
 defineProps({
   form: { type: Object, required: true },
   airports: { type: Array, required: true },
+  baselineAirspaces: { type: Array, required: true },
   filteredBaselineAirspaces: { type: Array, required: true },
   atsaNewAssociations: { type: Object, default: null },
   atsaNewAssociationError: { type: String, default: "" },
@@ -251,6 +252,7 @@ defineProps({
         v-else-if="form.geometryMode === 'MAP'"
         v-model="form.geometryJson"
         :airports="airports"
+        :airspaces="baselineAirspaces"
         @error="form.geometryModeError = $event"
       />
       <label v-else class="geometry-json"

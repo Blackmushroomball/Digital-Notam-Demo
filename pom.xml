@@ -63,6 +63,8 @@
                     <testIncludes>
                         <testInclude>com/example/aixm/**/*.java</testInclude>
                         <testInclude>com/example/digitalnotam/persistence/**/*.java</testInclude>
+                        <testInclude>com/example/digitalnotam/baseline/**/*.java</testInclude>
+                        <testInclude>com/example/digitalnotam/scenario/atsanew/**/*.java</testInclude>
                     </testIncludes>
                 </configuration>
             </plugin>

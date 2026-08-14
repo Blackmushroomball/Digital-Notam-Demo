@@ -384,6 +384,24 @@
   border-color: #f0a4aa;
   color: #b42318;
 }
+.map-layer-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #dce4ef;
+  background: #fff;
+  color: #344054;
+  font-size: 13px;
+}
+.map-layer-toolbar label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.map-layer-toolbar input {
+  width: auto;
+}
 .geometry-map {
   height: 440px;
   background-color: #edf3f8;
@@ -392,10 +410,22 @@
     linear-gradient(90deg, rgba(23, 105, 224, 0.08) 1px, transparent 1px);
   background-size: 32px 32px;
 }
-.geometry-map .leaflet-interactive {
+.geometry-map .event-geometry {
   stroke: #1769e0;
   fill: #6ca9f4;
   fill-opacity: 0.25;
+}
+.geometry-map .geometry-controls {
+  stroke: #f79009;
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+  fill: none;
+}
+.geometry-map .fir-baseline {
+  stroke: #7a5af8;
+}
+.geometry-map .airspace-baseline {
+  stroke: #12b76a;
 }
 .map-status-row {
   display: flex;
@@ -421,6 +451,53 @@
 .map-property-row small {
   align-self: center;
   color: #667085;
+}
+.sector-properties {
+  flex-wrap: wrap;
+}
+.geometry-node-panel {
+  padding: 12px;
+  border-top: 1px solid #dce4ef;
+  background: #fbfcfe;
+}
+.geometry-node-panel > div:first-child {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.geometry-node-panel small {
+  color: #667085;
+}
+.geometry-node-table-wrap {
+  max-height: 240px;
+  overflow: auto;
+}
+.geometry-node-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.geometry-node-table th,
+.geometry-node-table td {
+  padding: 6px;
+  border: 1px solid #dce4ef;
+  text-align: left;
+}
+.geometry-node-table tr.selected {
+  background: #fff3e0;
+}
+.geometry-node-table input {
+  min-width: 130px;
+  padding: 5px 7px;
+  font-family: Consolas, monospace;
+}
+.geometry-node-table button {
+  border: 1px solid #b8c9df;
+  border-radius: 5px;
+  background: #fff;
+  padding: 5px 9px;
 }
 .association-result {
   background: #eef7ff;
@@ -453,6 +530,10 @@
   }
   .map-drawing-toolbar .map-clear {
     margin-left: 0;
+  }
+  .geometry-node-panel > div:first-child {
+    align-items: flex-start;
+    flex-direction: column;
   }
   .map-property-row {
     align-items: stretch;
