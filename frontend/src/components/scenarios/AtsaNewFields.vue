@@ -1,4 +1,10 @@
 <script setup>
+import { defineAsyncComponent } from "vue";
+
+const GeometryMapEditor = defineAsyncComponent(
+  () => import("../common/GeometryMapEditor.vue"),
+);
+
 defineProps({
   form: { type: Object, required: true },
   airports: { type: Array, required: true },
@@ -9,6 +15,7 @@ defineProps({
   selectedAirportCodes: { type: Function, required: true },
   selectedExcludedAirspaces: { type: Function, required: true },
   analyseAtsaNewGeometry: { type: Function, required: true },
+  changeGeometryMode: { type: Function, required: true },
   toggleAffectedAirport: { type: Function, required: true },
   toggleExcludedAirspace: { type: Function, required: true },
 });
@@ -158,13 +165,19 @@ defineProps({
           <button
             type="button"
             :class="{ active: form.geometryMode === 'STRUCTURED' }"
-            @click="form.geometryMode = 'STRUCTURED'"
+            @click="changeGeometryMode('STRUCTURED')"
           >
             结构化</button
           ><button
             type="button"
+            :class="{ active: form.geometryMode === 'MAP' }"
+            @click="changeGeometryMode('MAP')"
+          >
+            图形绘制</button
+          ><button
+            type="button"
             :class="{ active: form.geometryMode === 'JSON' }"
-            @click="form.geometryMode = 'JSON'"
+            @click="changeGeometryMode('JSON')"
           >
             高级 JSON
           </button>
@@ -234,6 +247,12 @@ defineProps({
           >
         </label>
       </template>
+      <GeometryMapEditor
+        v-else-if="form.geometryMode === 'MAP'"
+        v-model="form.geometryJson"
+        :airports="airports"
+        @error="form.geometryModeError = $event"
+      />
       <label v-else class="geometry-json"
         >AIXM 几何 JSON *<textarea
           v-model="form.geometryJson"
@@ -245,6 +264,9 @@ defineProps({
           JSON，包括混合弧线片段。</small
         ></label
       >
+      <p v-if="form.geometryModeError" class="geometry-mode-error">
+        {{ form.geometryModeError }}
+      </p>
       <div class="geometry-actions">
         <button
           type="button"

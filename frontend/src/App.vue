@@ -150,7 +150,9 @@ const form = reactive({
   atsaNewNote: "",
   controllingUnitNote: "",
   geometryMode: "STRUCTURED",
+  geometryModeError: "",
   geometryType: "CIRCLE",
+  geometryGmlId: `atsa-new-${crypto.randomUUID()}`,
   geometryJson: "",
   circleX: "-27.3992573509",
   circleY: "53.6197929845",
@@ -510,20 +512,16 @@ function structuredPositions() {
     positions.push({ ...positions[0] });
   return positions;
 }
-/** Both editor modes produce the same reusable geometry JSON contract. */
-function atsaNewGeometryJson() {
-  if (form.geometryMode === "JSON") {
-    JSON.parse(form.geometryJson);
-    return form.geometryJson;
-  }
+function structuredGeometryJson() {
   const base = {
     schemaVersion: "1.0",
     geometry: {
       type: form.geometryType,
-      gmlId: `atsa-new-${crypto.randomUUID()}`,
+      gmlId: form.geometryGmlId || `atsa-new-${crypto.randomUUID()}`,
       crs: "EPSG:4326",
     },
   };
+  form.geometryGmlId = base.geometry.gmlId;
   if (form.geometryType === "CIRCLE")
     Object.assign(base.geometry, {
       center: {
@@ -539,12 +537,79 @@ function atsaNewGeometryJson() {
   else
     Object.assign(base.geometry, {
       centreline: {
-        gmlId: `centreline-${crypto.randomUUID()}`,
+        gmlId: `${base.geometry.gmlId}-centreline`,
+        crs: "EPSG:4326",
         segments: [{ type: "GEODESIC", positions: structuredPositions() }],
       },
       width: { value: Number(form.corridorWidth), uom: form.corridorWidthUom },
     });
   return JSON.stringify(base);
+}
+
+function editableGeometry(value) {
+  const document = JSON.parse(value);
+  const geometry = document.geometry;
+  if (!geometry || !["CIRCLE", "POLYGON", "CORRIDOR"].includes(geometry.type))
+    throw new Error("图形模式仅支持 CIRCLE、POLYGON 和 CORRIDOR");
+  if (geometry.type === "POLYGON") {
+    if (geometry.segments?.length !== 1 || geometry.segments[0].type !== "GEODESIC")
+      throw new Error("包含弧线或混合片段的多边形只能在高级 JSON 模式中编辑");
+  }
+  if (geometry.type === "CORRIDOR") {
+    const segments = geometry.centreline?.segments;
+    if (segments?.length !== 1 || segments[0].type !== "GEODESIC")
+      throw new Error("包含弧线或混合片段的走廊只能在高级 JSON 模式中编辑");
+  }
+  return geometry;
+}
+
+function syncStructuredGeometry(geometry) {
+  form.geometryType = geometry.type;
+  form.geometryGmlId = geometry.gmlId || `atsa-new-${crypto.randomUUID()}`;
+  if (geometry.type === "CIRCLE") {
+    form.circleX = String(geometry.center.x);
+    form.circleY = String(geometry.center.y);
+    form.circleRadius = String(geometry.radius.value);
+    form.circleRadiusUom = geometry.radius.uom;
+    return;
+  }
+  const positions =
+    geometry.type === "POLYGON"
+      ? geometry.segments[0].positions
+      : geometry.centreline.segments[0].positions;
+  form.geometryPoints = positions.map((point) => `${point.x},${point.y}`).join("\n");
+  if (geometry.type === "CORRIDOR") {
+    form.corridorWidth = String(geometry.width.value);
+    form.corridorWidthUom = geometry.width.uom;
+  }
+}
+
+function changeGeometryMode(nextMode) {
+  if (nextMode === form.geometryMode) return;
+  form.geometryModeError = "";
+  try {
+    const current = atsaNewGeometryJson();
+    if (nextMode === "MAP") {
+      editableGeometry(current);
+      form.geometryJson = current;
+    } else if (nextMode === "JSON") {
+      form.geometryJson = current;
+    } else {
+      syncStructuredGeometry(editableGeometry(current));
+    }
+    form.geometryMode = nextMode;
+  } catch (error) {
+    form.geometryModeError = error.message;
+  }
+}
+
+/** Every editor mode produces the same reusable geometry JSON contract. */
+function atsaNewGeometryJson() {
+  if (["JSON", "MAP"].includes(form.geometryMode)) {
+    JSON.parse(form.geometryJson);
+    return form.geometryJson;
+  }
+  return structuredGeometryJson();
 }
 async function analyseAtsaNewGeometry(applyAirports = true) {
   atsaNewAssociationLoading.value = true;
@@ -1485,12 +1550,11 @@ onMounted(() => {
                   <option v-for="s in scenarios" :key="s[0]" :value="s[0]">
                     {{ s[0] }} — {{ s[1] }}
                   </option>
-                </select></label><label>编号系列 *<select v-model="form.numberSeries" :disabled="!!editingId">
+                </select></label><label>编号系列 *<select v-model="form.numberSeries">
                   <option value="A">A — 国际分发</option>
                   <option value="C">C — 国内分发</option>
                   <option value="D">D — 地区内分发</option>
-                </select></label><label>编号数字<input v-model="form.numberDigits" maxlength="4" placeholder="留空自动分配"
-                  :disabled="!!editingId" /></label><label>通告标题 *<input v-model="form.title" /></label>
+                </select></label><label>编号数字<input v-model="form.numberDigits" maxlength="4" placeholder="留空自动分配" /></label><label>通告标题 *<input v-model="form.title" /></label>
             </div>
           </div>
           <div class="field-group wide abc-fields">
@@ -1597,6 +1661,7 @@ onMounted(() => {
             :atsa-new-association-error="atsaNewAssociationError"
             :atsa-new-association-loading="atsaNewAssociationLoading" :selected-airport-codes="selectedAirportCodes"
             :selected-excluded-airspaces="selectedExcludedAirspaces" :analyse-atsa-new-geometry="analyseAtsaNewGeometry"
+            :change-geometry-mode="changeGeometryMode"
             :toggle-affected-airport="toggleAffectedAirport" :toggle-excluded-airspace="toggleExcludedAirspace" />
           <NavUnsFields v-if="form.scenario === 'NAV.UNS'" :form="form" :navaid-types="navaidTypes"
             :navaids="filteredNavaids" :selected-navaid="selectedNavaid()" :airports="airports"

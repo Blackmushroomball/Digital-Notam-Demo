@@ -152,8 +152,9 @@ public final class DigitalNotamApplication {
                     Notam current=found.get();
                     if(!"DRAFT".equals(current.status())){send(ex,409,"application/json",Json.message("已发布通告不能编辑"));return;}
                     String body=new String(ex.getRequestBody().readAllBytes(),StandardCharsets.UTF_8);Map<String,String> v=Json.parseObject(body);List<AdLimRestriction> restrictions=parseAdLimRestrictions(body);
-                    try{Notam updated=draftFrom(v,restrictions,current.id(),current.number(),current.createdAt()).withScheduleData(parseScheduleData(body,v));validateDraft(updated);EventScheduleSupport.validate(updated);validateQFields(updated);send(ex,200,"application/json",Json.notam(REPO.save(updated)));}
+                    try{String number=REPO.assignNumberForUpdate(current.id(),v.get("numberSeries"),v.getOrDefault("numberDigits",""));Notam updated=draftFrom(v,restrictions,current.id(),number,current.createdAt()).withScheduleData(parseScheduleData(body,v));validateDraft(updated);EventScheduleSupport.validate(updated);validateQFields(updated);send(ex,200,"application/json",Json.notam(REPO.save(updated)));}
                     catch(IllegalArgumentException e){send(ex,400,"application/json",Json.message(e.getMessage()));}
+                    catch(IllegalStateException e){send(ex,409,"application/json",Json.message(e.getMessage()));}
                     return;
                 }
                 if (found.isEmpty()) { send(ex, 404, "application/json", Json.message("通告不存在")); return; }

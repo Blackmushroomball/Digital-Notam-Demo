@@ -62,6 +62,7 @@
                     -->
                     <testIncludes>
                         <testInclude>com/example/aixm/**/*.java</testInclude>
+                        <testInclude>com/example/digitalnotam/persistence/**/*.java</testInclude>
                     </testIncludes>
                 </configuration>
             </plugin>

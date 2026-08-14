@@ -32,6 +32,16 @@ public final class NotamRepository {
     public boolean delete(String id) { return data.remove(id) != null; }
 
     public synchronized String assignNumber(String series, String requestedDigits) {
+        return assignNumber(series, requestedDigits, null);
+    }
+
+    /** Assigns a number while allowing an existing draft to retain its own number. */
+    public synchronized String assignNumberForUpdate(String draftId, String series, String requestedDigits) {
+        if (draftId == null || draftId.isBlank()) throw new IllegalArgumentException("草稿ID不能为空");
+        return assignNumber(series, requestedDigits, draftId);
+    }
+
+    private String assignNumber(String series, String requestedDigits, String excludedDraftId) {
         String normalizedSeries = series == null ? "" : series.trim().toUpperCase(Locale.ROOT);
         if (!SERIES.contains(normalizedSeries)) throw new IllegalArgumentException("编号系列必须为 A、C 或 D");
         int year = Year.now(ZoneOffset.UTC).getValue() % 100;
@@ -40,12 +50,12 @@ public final class NotamRepository {
             int value = Integer.parseInt(requestedDigits);
             if (value < 1) throw new IllegalArgumentException("编号数字必须大于 0");
             String number = formatNumber(normalizedSeries, value, year);
-            if (numberExists(number)) throw new IllegalStateException("通告编号 " + number + " 已存在，请重新指定");
+            if (numberExists(number, excludedDraftId)) throw new IllegalStateException("通告编号 " + number + " 已存在，请重新指定");
             return number;
         }
         for (int value = 1; value <= 9999; value++) {
             String number = formatNumber(normalizedSeries, value, year);
-            if (!numberExists(number)) return number;
+            if (!numberExists(number, excludedDraftId)) return number;
         }
         throw new IllegalStateException(normalizedSeries + " 系列本年度编号已用完");
     }
@@ -56,6 +66,7 @@ public final class NotamRepository {
         batchReservations.addAll(requested);
     }
 
-    private boolean numberExists(String number) { return batchReservations.contains(number)||data.values().stream().anyMatch(n -> number.equals(n.number())); }
+    private boolean numberExists(String number) { return numberExists(number, null); }
+    private boolean numberExists(String number,String excludedDraftId) { return batchReservations.contains(number)||data.values().stream().anyMatch(n -> !n.id().equals(excludedDraftId)&&number.equals(n.number())); }
     private static String formatNumber(String series, int value, int year) { return "%s%04d/%02d".formatted(series, value, year); }
 }
